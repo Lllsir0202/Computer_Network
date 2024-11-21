@@ -3,7 +3,7 @@
 #include <defs.h>
 /*
     这里考虑设计如下：
-    |   校验和(8位)  |   状态位(8位)  |   ACK号(32位)   |       窗体大小(32位)     |   数据长度(16位)    |   数据(UDP接受和发出的原始数据包)    |
+    |   校验和(8位)  |   状态位(8位)  |   ACK号(32位)   |    Seq号(32位)    |       窗体大小(32位)     |   数据长度(16位)    |   数据(UDP接受和发出的原始数据包)    |
 
     对于数据段
     分为：
@@ -21,8 +21,11 @@
 class data
 {
 public:
+    // 添加析构函数清理内存
+    ~data();
+
     // 初始化一个data主要在于初始化一些私有变量
-    void init(uint8_t flag, uint32_t ack, uint32_t windowsize, uint16_t datalen, uint8_t *d);
+    void init(uint8_t flag, uint32_t ack, uint32_t seq, uint32_t windowsize, uint16_t datalen, uint8_t *d);
 
     // 通过传入的字节流得到对应的封装后的数据包 -> 同样的也是字节流
     uint8_t *gen_data(uint8_t *raw);
@@ -34,6 +37,8 @@ public:
     uint8_t get_checksum() { return __checksum; };
     uint8_t get_flag() { return __flag; };
     uint32_t get_ack() { return __ACK; };
+    uint32_t get_seq() { return __SEQ; };
+    uint32_t get_windowsize() { return __windowsize; };
     uint16_t get_datalen() { return __datalen; };
     uint8_t *get_data() { return __d; };
 
@@ -46,6 +51,9 @@ private:
 
     // 记录ACK号
     uint32_t __ACK;
+
+    // 记录序列号
+    uint32_t __SEQ;
 
     // 记录窗体大小
     uint32_t __windowsize;

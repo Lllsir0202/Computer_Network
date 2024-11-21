@@ -6,4 +6,4 @@
 #define EIGHTSIZE 0XFF
 
 // 记录除了数据段外的字节数
-#define INITSIZE 12
+#define INITSIZE 16

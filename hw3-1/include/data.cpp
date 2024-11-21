@@ -1,9 +1,15 @@
 #include "data.h"
 
-void data::init(uint8_t flag, uint32_t ack, uint32_t windowsize, uint16_t datalen, uint8_t *d)
+data::~data()
+{
+    delete[] __d;
+}
+
+void data::init(uint8_t flag, uint32_t ack, uint32_t seq, uint32_t windowsize, uint16_t datalen, uint8_t *d)
 {
     __flag = flag;
     __ACK = ack;
+    __SEQ = seq;
     __windowsize = windowsize;
     __datalen = datalen;
     __d = d;
@@ -21,6 +27,12 @@ void data::__gen_checksum()
     sum += (__ACK >> 8) & EIGHTSIZE;  // 第二个字节
     sum += (__ACK >> 16) & EIGHTSIZE; // 第三个字节
     sum += (__ACK >> 24) & EIGHTSIZE; // 第四个字节
+
+    // 计算SEQ
+    sum += __SEQ & EIGHTSIZE;         // 第一个字节
+    sum += (__SEQ >> 8) & EIGHTSIZE;  // 第二个字节
+    sum += (__SEQ >> 16) & EIGHTSIZE; // 第三个字节
+    sum += (__SEQ >> 24) & EIGHTSIZE; // 第四个字节
 
     // 计算窗体大小
     sum += __windowsize & EIGHTSIZE;         // 第一个字节
@@ -58,15 +70,21 @@ uint8_t *data::gen_data(uint8_t *raw)
     d[3] = (__ACK >> 8) & EIGHTSIZE;  // 第二个字节
     d[4] = (__ACK >> 16) & EIGHTSIZE; // 第三个字节
     d[5] = (__ACK >> 24) & EIGHTSIZE; // 第四个字节
+
+    // SEQ号
+    d[6] = __SEQ & EIGHTSIZE;         // 第一个字节
+    d[7] = (__SEQ >> 8) & EIGHTSIZE;  // 第二个字节
+    d[8] = (__SEQ >> 16) & EIGHTSIZE; // 第三个字节
+    d[9] = (__SEQ >> 24) & EIGHTSIZE; // 第四个字节
     // 窗体大小
-    d[6] = __windowsize & EIGHTSIZE;         // 第一个字节
-    d[7] = (__windowsize >> 8) & EIGHTSIZE;  // 第二个字节
-    d[8] = (__windowsize >> 16) & EIGHTSIZE; // 第三个字节
-    d[9] = (__windowsize >> 24) & EIGHTSIZE; // 第四个字节
+    d[10] = __windowsize & EIGHTSIZE;         // 第一个字节
+    d[11] = (__windowsize >> 8) & EIGHTSIZE;  // 第二个字节
+    d[12] = (__windowsize >> 16) & EIGHTSIZE; // 第三个字节
+    d[13] = (__windowsize >> 24) & EIGHTSIZE; // 第四个字节
     // 数据长度
-    d[10] = __datalen & EIGHTSIZE;        // 第一个字节
-    d[11] = (__datalen >> 8) & EIGHTSIZE; // 第二个字节
-    memcpy(d + 12, raw, __datalen * sizeof(uint8_t));
+    d[14] = __datalen & EIGHTSIZE;        // 第一个字节
+    d[15] = (__datalen >> 8) & EIGHTSIZE; // 第二个字节
+    memcpy(d + INITSIZE, raw, __datalen * sizeof(uint8_t));
 
     return d;
 }
@@ -76,18 +94,23 @@ void data::regen_data(uint8_t *d)
     __checksum = d[0];
     __flag = d[1];
 
-    __ACK = d[2] << 24;
-    __ACK += d[3] << 16;
-    __ACK += d[4] << 8;
-    __ACK += d[5];
+    __ACK = d[2];
+    __ACK += d[3] << 8;
+    __ACK += d[4] << 16;
+    __ACK += d[5] << 24;
 
-    __windowsize = d[6] << 24;
-    __windowsize += d[7] << 16;
-    __windowsize += d[8] << 8;
-    __windowsize += d[9];
+    __SEQ = d[6];
+    __SEQ += d[7] << 8;
+    __SEQ += d[8] << 16;
+    __SEQ += d[9] << 24;
 
-    __datalen = d[10] << 8;
-    __datalen += d[11];
+    __windowsize = d[10];
+    __windowsize += d[11] << 8;
+    __windowsize += d[12] << 16;
+    __windowsize += d[13] << 24;
 
-    memcpy(__d, d + 12, __datalen * sizeof(uint8_t));
+    __datalen = d[14] << 8;
+    __datalen += d[15];
+
+    memcpy(__d, d + INITSIZE, __datalen * sizeof(uint8_t));
 }
