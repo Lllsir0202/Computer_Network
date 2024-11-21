@@ -1,64 +1,61 @@
 #include <iostream>
-
+#include <stdint.h>
+#include <defs.h>
 /*
     这里考虑设计如下：
-    |   校验号  |   状态位(1位)  |   ACK号   |   数据长度(12位)    |   数据(UDP接受和发出的原始数据包)    |
+    |   校验和(8位)  |   状态位(8位)  |   ACK号(32位)   |       窗体大小(32位)     |   数据长度(16位)    |   数据(UDP接受和发出的原始数据包)    |
+
+    对于数据段
+    分为：
+
+    |   传输文件名  |   数据    |
 
     状态位用来标识： ————> 这个包是发送还是确认接受的
-    ACK号保留一位用于计算我们的校验和，便于处理
+                ————> 这个包是初始还是什么情况
+    这里设计如下：
+    |   RESERVED   |    SYNC    |    ACK    |    FIN    |   RST   |
+    |      4       |      1     |     1     |     1     |    1    |
+
 */
 
 class data
 {
 public:
-    // 初始化一个data主要在于对于初始化一些私有变量
-    void init();
+    // 初始化一个data主要在于初始化一些私有变量
+    void init(uint8_t flag, uint32_t ack, uint32_t windowsize, uint16_t datalen, uint8_t *d);
 
-    // 通过给定的string得到对应的封装后的数据包
-    std::string gen_data(std::string raw, bool flag, std::string ack);
+    // 通过传入的字节流得到对应的封装后的数据包 -> 同样的也是字节流
+    uint8_t *gen_data(uint8_t *raw);
 
-    // 解包string
-    std::string regen_data(char* d);
+    // 解包得到的字节流
+    void regen_data(uint8_t *d);
 
-    // 得到校验是否正确
-    bool get_verfy() { return __verify; };
-    // 得到校验和
-    std::string get_checksum() { return __checksum; };
-    // 得到状态位
-    bool get_flag() { return __flag; };
-    // 得到ACK号
-    std::string get_ack() { return __ACK; };
-    // 得到数据长度
-    int get_datalen() { return __datalen; };
-    // 得到数据
-    std::string get_data() { return __d; };
-
-    // 设定初始序列号
-    void set_ISN(std::string ISN) { __ISN = ISN; };
+    // 下面这些函数是用来得到私有变量的
+    uint8_t get_checksum() { return __checksum; };
+    uint8_t get_flag() { return __flag; };
+    uint32_t get_ack() { return __ACK; };
+    uint16_t get_datalen() { return __datalen; };
+    uint8_t *get_data() { return __d; };
 
 private:
-    // 标识是否校验正确
-    bool __verify = false;
+    // 记录8位校验和
+    uint8_t __checksum;
 
-    // 记录校验号
-    std::string __checksum;
-    // 记录状态位，这里其实应该在生成数据包的时候传入
-    // 对于flag ，我们设定当true标识是发出的包，false为传入的包
-    bool __flag; // -> 这里先设定成bool，后续可以进行修改
+    // 记录8位状态位
+    uint8_t __flag;
+
     // 记录ACK号
-    std::string __ACK;
+    uint32_t __ACK;
+
+    // 记录窗体大小
+    uint32_t __windowsize;
+
     // 记录数据长度
-    int __datalen;
-    // 记录得到的数据
-    std::string __d;
+    uint16_t __datalen;
 
-    // 记录初始序列号
-    std::string __ISN;
+    // 记录数据段
+    uint8_t *__d;
 
-    // 下面是一些生成数据包时候的辅助函数
-
-    // 根据数据得到校验和
-    // 由于在用户层计算二进制数据会很麻烦，这里对于每个部分求和，然后我们使用32位二进制数的最大值减去得到的校验和作为校验和
-    // 在接收端处理则是对于得到的各部分数据求和，在和校验和相加，从而保证数据等于32位二进制数的最大值。
+    // 用于处理生成校验和的私有成员变量
     void __gen_checksum();
 };
