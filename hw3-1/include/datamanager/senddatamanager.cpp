@@ -42,21 +42,26 @@ bool senddatamanager::verify(uint32_t acknum)
     }
 }
 
-void senddatamanager::acquire(uint32_t acknum)
+void senddatamanager::acknowledged(uint32_t acknum)
 {
     if (seq2data.find(acknum) == seq2data.end())
     {
-        std::string error = "ERROR: Cannot find data to be acquired ";
+        std::string error = "ERROR: Cannot find data to be acknowledged ";
         perror(error.c_str());
     }
     else
     {
+        auto it = seq2data.begin();
+        if (it->first != acknum)
+        {
+            std::cout << "lose package" << std::endl;
+        }
         auto d = seq2data[acknum];
         seq2data.erase(acknum);
-        // 更新下一个序列号为对方发送的渴望得到的
+        // 更新下一个确认号为对方发送的渴望得到的
         __Acknum = d->get_seq();
-        // 更新下一个next为seq+datalen+1
-        __Seqnum = d->get_ack() + d->get_datalen() + 1;
+        // 更新下一个序列号为ack+datalen
+        __Seqnum = d->get_ack() + d->get_datalen();
         delete d;
     }
 }
@@ -129,7 +134,7 @@ bool senddatamanager::solve_package(uint8_t *pack)
         // 确认这是一个确认数据包
         assert((d->get_flag() & ACK) == ACK);
         // 这是对收到的接受包进行确认，从缓冲区移去
-        acquire(d->get_ack());
+        acknowledged(d->get_ack());
 
         // 确认之后这个包就无用了
         delete d;

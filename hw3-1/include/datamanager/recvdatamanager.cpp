@@ -41,7 +41,7 @@ bool recvdatamanager::verify(uint32_t acknum)
     }
 }
 
-void recvdatamanager::acquire(uint32_t acknum)
+void recvdatamanager::acknowledge(uint32_t acknum)
 {
     if (seq2data.find(acknum) == seq2data.end())
     {
@@ -54,8 +54,8 @@ void recvdatamanager::acquire(uint32_t acknum)
         seq2data.erase(acknum);
         // 更新下一个序列号为对方发送的渴望得到的
         __Acknum = d->get_seq();
-        // 更新下一个next为seq+datalen+1
-        __Seqnum = d->get_ack() + d->get_datalen() + 1;
+        // 更新下一个next为seq+datalen
+        __Seqnum = d->get_ack() + d->get_datalen();
         delete d;
     }
 }
@@ -128,7 +128,7 @@ bool recvdatamanager::solve_package(uint8_t *pack)
         // 确认这是一个数据包
         // assert((d->get_flag() & ACK) == ACK);
         // 这是对收到的接受包进行确认，从缓冲区移去
-        acquire(d->get_ack());
+        acknowledge(d->get_ack());
 
         // 确认之后这个包就无用了
         delete d;

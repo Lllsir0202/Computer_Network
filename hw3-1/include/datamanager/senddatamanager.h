@@ -33,7 +33,7 @@ public:
     bool verify(uint32_t acknum);
 
     // 对某一个数据进行确认
-    void acquire(uint32_t acknum);
+    void acknowledged(uint32_t acknum);
 
     // 还需要封装函数对ACK数据包进行处理，以及计算出确认序列号
 

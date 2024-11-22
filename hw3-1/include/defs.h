@@ -8,3 +8,6 @@
 
 // 记录除了数据段外的字节数
 #define INITSIZE 16
+
+// 定义超时时间(微秒)
+#define OVERTIME 500
