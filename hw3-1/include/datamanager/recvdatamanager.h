@@ -12,7 +12,7 @@
 
 // 在这里考虑后还是将发送管理和接收管理进行分开封装
 
-// 这个类处理的是发送的数据包管理，主要需要：
+// 这个类处理的是接收的数据包管理，主要需要：
 // 根据给定的数据流封装数据包       ->      gen_package()
 // 根据随机种子生成ISN(just called once)    ->      init_ISN() 
 // 对发送的数据包进行存储       ->      seq2data(TYPE: std::map)
@@ -74,6 +74,6 @@ private:
     // refer to unack package
     std::map<uint32_t, data *> seq2data;
 
-    // 用于验证data内的数据求和是否为0，作为校验辅助函数    ->  only used in resolve ack package
+    // 用于验证data内的数据求和是否为最大值，作为校验辅助函数    ->  only used in resolve ack package
     bool __verify_data(data *d);
 };

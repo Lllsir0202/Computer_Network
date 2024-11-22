@@ -74,6 +74,6 @@ private:
     // refer to unack package
     std::map<uint32_t, data *> seq2data;
 
-    // 用于验证data内的数据求和是否为0，作为校验辅助函数    ->  only used in resolve ack package
+    // 用于验证data内的数据求和是否为最大值，作为校验辅助函数    ->  only used in resolve ack package
     bool __verify_data(data *d);
 };

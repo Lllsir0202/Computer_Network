@@ -1,7 +1,7 @@
-#define SYNC 0x8
-#define ACK 0x4
-#define FIN 0x2
-#define RST 0x1
+#define SYNC 0x8 // 用于握手
+#define ACK 0x4  // 用于确认
+#define FIN 0x2  // 用于挥手
+#define RST 0x1  // 用于重传
 
 // 用于处理多字节转8位单字节情况
 #define EIGHTSIZE 0XFF
