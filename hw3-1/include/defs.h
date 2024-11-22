@@ -1,6 +1,7 @@
 #define SYNC 0x8
 #define ACK 0x4
 #define FIN 0x2
+#define RST 0x1
 
 // 用于处理多字节转8位单字节情况
 #define EIGHTSIZE 0XFF

@@ -13,6 +13,8 @@ void data::init(uint8_t flag, uint32_t ack, uint32_t seq, uint32_t windowsize, u
     __windowsize = windowsize;
     __datalen = datalen;
     __d = d;
+    // 生成校验和
+    __gen_checksum();
 }
 
 void data::__gen_checksum()
