@@ -157,6 +157,24 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
             return true;
         }
         break;
+        // 第二次挥手
+        case 2:
+        {
+            assert(d->get_flag() & (FIN | ACK) == (FIN | ACK));
+            acknowledged(d->get_ack());
+            delete d;
+            return true;
+        }
+        break;
+        // 第四次挥手
+        case 3:
+        {
+            assert(d->get_flag() & (ACK) == ACK);
+            acknowledged(d->get_ack());
+            delete d;
+            return true;
+        }
+        break;
         default:
         {
             delete d;

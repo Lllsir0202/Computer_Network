@@ -13,8 +13,8 @@
     状态位用来标识： ————> 这个包是发送还是确认接受的
                 ————> 这个包是初始还是什么情况
     这里设计如下：
-    |   RESERVED   |    Trans   |   SYNC    |    ACK    |    FIN    |   RST   |
-    |      4       |      1     |     1     |     1     |    1      |    1    |
+    |   RESERVED   |    Start   |   Trans   |   SYNC    |    ACK    |    FIN    |   RST   |
+    |      2       |      1     |     1     |     1     |     1     |     1     |    1    |
 
 */
 

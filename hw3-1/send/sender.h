@@ -21,6 +21,9 @@ public:
     // 这里肯定是发送端发起连接，所以这里应该先发送SYNC数据包
     void Connect();
 
+    // 四次挥手
+    void Disconnect();
+
     // 发送数据
     void Sendto(uint8_t *d, uint16_t dlen);
 

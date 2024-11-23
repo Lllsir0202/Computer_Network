@@ -1,3 +1,4 @@
+#define START 0x32 // 用于表示这是该文件的第一个数据包，用于传输长度和文件名
 #define TRANS 0x16 // 用于传输
 #define SYNC 0x8   // 用于握手
 #define ACK 0x4    // 用于确认

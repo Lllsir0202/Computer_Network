@@ -1,6 +1,7 @@
 #pragma once
 #include "data.h"
 #include <map>
+#include <fstream>
 
 /*
 首先对于数据包我们主要需要考虑两种情况：
@@ -14,7 +15,7 @@
 
 // 这个类处理的是接收的数据包管理，主要需要：
 // 根据给定的数据流封装数据包       ->      gen_package()
-// 根据随机种子生成ISN(just called once)    ->      init_ISN() 
+// 根据随机种子生成ISN(just called once)    ->      init_ISN()
 // 对发送的数据包进行存储       ->      seq2data(TYPE: std::map)
 // 对给定的序列号进行确认       ->      verify()
 // 更新新的序列号和确认号       ->
@@ -22,6 +23,7 @@
 class recvdatamanager
 {
 public:
+    recvdatamanager();
     // 构建析构函数，释放内存
     ~recvdatamanager();
     // 使用随机数生成ISN
@@ -41,7 +43,16 @@ public:
     uint8_t *get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen);
 
     // 这个函数用于基于原始数据解包package
-    bool solve_package(uint8_t *pack);
+    // @brief
+    /*
+        0   ->      正常传输确认数据
+        1   ->      第一次握手接收的数据包
+        2   ->      第一次挥手接受的数据包
+        3   ->      第三次挥手接收的数据包
+    */
+    bool solve_package(uint8_t *pack, int flag);
+
+    void add_log(std::string log);
 
     // 下面的函数用于获得私有变量
     uint32_t get_ISN() { return __ISN; };
@@ -49,9 +60,9 @@ public:
     uint32_t get_SEQ() { return __Seqnum; };
     data *get_data(uint32_t acknum)
     {
-        if (seq2data.find(acknum) != seq2data.end())
+        if (seq2data.find(acknum - 1) != seq2data.end())
         {
-            return seq2data[acknum];
+            return seq2data[acknum - 1];
         }
         else
         {
@@ -76,4 +87,13 @@ private:
 
     // 用于验证data内的数据求和是否为最大值，作为校验辅助函数    ->  only used in resolve ack package
     bool __verify_data(data *d);
+
+    // 在接收端对方确认收到后，应该将该数据写入指定位置
+    std::string __path;
+
+    // 输出流
+    std::ofstream fileout;
+
+    // 输出日志信息
+    std::ofstream logout;
 };

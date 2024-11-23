@@ -2,6 +2,15 @@
 #include <random>
 #include <cassert>
 
+recvdatamanager::recvdatamanager()
+{
+    logout.open("../recv.log", std::ios::app);
+    if (!logout.is_open())
+    {
+        std::cout << "CANNOT OPEN LOG " << std::endl;
+    }
+}
+
 recvdatamanager::~recvdatamanager()
 {
     for (auto it = seq2data.begin(); it != seq2data.end(); it++)
@@ -29,33 +38,36 @@ void recvdatamanager::init_ISN()
 
 bool recvdatamanager::verify(uint32_t acknum)
 {
-    if (seq2data.find(acknum) == seq2data.end())
+    if (seq2data.find(acknum - 1) == seq2data.end())
     {
         std::string error = "ERROR: Package preACKED ";
         perror(error.c_str());
     }
     else
     {
-        auto d = seq2data[acknum];
+        auto d = seq2data[acknum - 1];
         return __verify_data(d);
     }
 }
 
 void recvdatamanager::acknowledge(uint32_t acknum)
 {
-    if (seq2data.find(acknum) == seq2data.end())
+    if (seq2data.find(acknum - 1) == seq2data.end())
     {
         std::string error = "ERROR: Cannot find data to be acquired ";
         perror(error.c_str());
     }
     else
     {
-        auto d = seq2data[acknum];
+        std::string log = "Acknowledge seqnum package " + std::to_string(acknum -1);
+        add_log(log);
+        
+        auto d = seq2data[acknum - 1];
         seq2data.erase(acknum);
         // 更新下一个序列号为对方发送的渴望得到的
-        __Acknum = d->get_seq();
+        __Acknum = d->get_seq() + d->get_datalen() + 1;
         // 更新下一个next为seq+datalen
-        __Seqnum = d->get_ack() + d->get_datalen();
+        //__Seqnum = d->get_ack() + d->get_datalen();
         delete d;
     }
 }
@@ -113,26 +125,67 @@ uint8_t *recvdatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     auto d = new data();
     d->init(flag, __Acknum, __Seqnum, windowsize, datalen, raw);
 
-    // 保存ACKnum对应的数据包
-    seq2data[__Acknum] = d;
+    // 生成对应数据包后，将seq += datalen
+    __Seqnum += datalen;
+    // 保存Seqnum对应的数据包
+    seq2data[__Seqnum] = d;
     return d->gen_data(raw);
 }
 
-bool recvdatamanager::solve_package(uint8_t *pack)
+bool recvdatamanager::solve_package(uint8_t *pack, int flag)
 {
     auto d = new data;
     d->regen_data(pack);
     // 对于收到的包进行解包，然后进行差错检验
     if (verify(d->get_ack()))
     { // 标识差错检测通过
-        // 确认这是一个数据包
-        // assert((d->get_flag() & ACK) == ACK);
-        // 这是对收到的接受包进行确认，从缓冲区移去
-        acknowledge(d->get_ack());
+        switch (flag)
+        {
+        case 0:
+        { // 确认这是一个数据包
+            assert((d->get_flag() & ACK) == ACK);
+            // 这是对收到的接受包进行确认，从缓冲区移去
+            acknowledge(d->get_ack());
 
-        // 确认之后这个包就无用了
-        delete d;
-        return true;
+            // 确认之后这个包就无用了
+            delete d;
+            return true;
+        }
+        break;
+        // 第一次握手
+        case 1:
+        {
+            assert(d->get_flag() & (SYNC | ACK) == (SYNC | ACK));
+            acknowledge(d->get_ack());
+            delete d;
+            return true;
+        }
+        break;
+        // 第一次挥手
+        case 2:
+        {
+            assert(d->get_flag() & FIN == FIN);
+            acknowledge(d->get_ack());
+            delete d;
+            return true;
+        }
+        break;
+        // 第三次挥手
+        case 3:
+        {
+            assert(d->get_flag() & ACK == ACK);
+            acknowledge(d->get_ack());
+            delete d;
+            return true;
+        }
+        break;
+        default:
+        {
+            delete d;
+            perror("Invalid flag ");
+        }
+        break;
+        }
     }
     else
     {
@@ -140,4 +193,9 @@ bool recvdatamanager::solve_package(uint8_t *pack)
         return false;
         // 在这里返回false，在外面封装处理函数
     }
+}
+
+void recvdatamanager::add_log(std::string log)
+{
+    logout << log << std::endl;
 }

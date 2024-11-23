@@ -43,7 +43,9 @@ public:
     // 这个函数用于基于原始数据解包package
     // @brief flag refers to which case ->
     /*  0   ->      正常传输
-        1   ->      第一次握手 发送后接收的包
+        1   ->      第一次握手 发送后接收的包   ->  即第二次握手
+        2   ->      第一次挥手 发送后接受的包   ->  即第二次挥手
+        3   ->      第三次挥手 发送后接收的包   ->  即第四次挥手
     */
     bool solve_package(uint8_t *pack, int flag);
 
@@ -53,9 +55,9 @@ public:
     uint32_t get_SEQ() { return __Seqnum; };
     data *get_data(uint32_t acknum)
     {
-        if (seq2data.find(acknum) != seq2data.end())
+        if (seq2data.find(acknum - 1) != seq2data.end())
         {
-            return seq2data[acknum];
+            return seq2data[acknum - 1];
         }
         else
         {
