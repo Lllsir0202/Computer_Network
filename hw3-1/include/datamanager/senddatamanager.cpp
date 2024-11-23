@@ -3,6 +3,10 @@
 #include <random>
 #include <cassert>
 
+// 由于这里我们记录的序列号其实是收到的确认号-1，
+// 所以这里我们对于传入的acknum，可以这样处理
+// 我们记录的映射是原序列号+datalen
+
 senddatamanager::~senddatamanager()
 {
     for (auto it = seq2data.begin(); it != seq2data.end(); it++)
@@ -30,39 +34,35 @@ void senddatamanager::init_ISN()
 
 bool senddatamanager::verify(uint32_t acknum)
 {
-    if (seq2data.find(acknum) == seq2data.end())
+    if (seq2data.find(acknum - 1) == seq2data.end())
     {
         std::string error = "ERROR: Package preACKED ";
         perror(error.c_str());
     }
     else
     {
-        auto d = seq2data[acknum];
+        auto d = seq2data[acknum - 1];
         return __verify_data(d);
     }
 }
 
-void senddatamanager::acknowledged(uint32_t acknum)
+bool senddatamanager::acknowledged(uint32_t acknum)
 {
-    if (seq2data.find(acknum) == seq2data.end())
+    if (seq2data.find(acknum - 1) == seq2data.end())
     {
         std::string error = "ERROR: Cannot find data to be acknowledged ";
-        perror(error.c_str());
+        return false;
     }
     else
     {
-        auto it = seq2data.begin();
-        if (it->first != acknum)
-        {
-            std::cout << "lose package" << std::endl;
-        }
-        auto d = seq2data[acknum];
-        seq2data.erase(acknum);
+        auto d = seq2data[acknum - 1];
+        seq2data.erase(acknum - 1);
         // 更新下一个确认号为对方发送的渴望得到的
-        __Acknum = d->get_seq();
+        __Acknum = d->get_seq() + d->get_datalen() + 1;
         // 更新下一个序列号为ack+datalen
-        __Seqnum = d->get_ack() + d->get_datalen();
+        //__Seqnum = d->get_ack() + d->get_datalen();
         delete d;
+        return true;
     }
 }
 
@@ -119,26 +119,51 @@ uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     auto d = new data();
     d->init(flag, __Acknum, __Seqnum, windowsize, datalen, raw);
 
-    // 保存ACKnum对应的数据包
-    seq2data[__Acknum] = d;
+    // 在生成对应的后，我们将seq += datalen，于是接收到的确认号其实就是seq+1
+    __Seqnum += datalen;
+
+    // 保存Seqnum对应的数据包
+    seq2data[__Seqnum] = d;
     return d->gen_data(raw);
 }
 
-bool senddatamanager::solve_package(uint8_t *pack)
+bool senddatamanager::solve_package(uint8_t *pack, int flag)
 {
     auto d = new data;
     d->regen_data(pack);
     // 对于收到的包进行解包，然后进行差错检验
     if (verify(d->get_ack()))
     { // 标识差错检测通过
-        // 确认这是一个确认数据包
-        assert((d->get_flag() & ACK) == ACK);
-        // 这是对收到的接受包进行确认，从缓冲区移去
-        acknowledged(d->get_ack());
+        switch (flag)
+        {
+        case 0:
+        { // 确认这是一个确认数据包
+            assert((d->get_flag() & ACK) == ACK);
+            // 这是对收到的接受包进行确认，从缓冲区移去
+            acknowledged(d->get_ack());
 
-        // 确认之后这个包就无用了
-        delete d;
-        return true;
+            // 确认之后这个包就无用了
+            delete d;
+            return true;
+        }
+        break;
+        // refer to handshake recv
+        case 1:
+        {
+            // 确认收到的包SYNC和ACK被置位
+            assert(d->get_flag() & (SYNC | ACK) == (SYNC | ACK));
+            acknowledged(d->get_ack());
+            delete d;
+            return true;
+        }
+        break;
+        default:
+        {
+            delete d;
+            perror("Invalid flag ");
+        }
+        break;
+        }
     }
     else
     {

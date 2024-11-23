@@ -14,7 +14,7 @@
 
 // 这个类处理的是发送的数据包管理，主要需要：
 // 根据给定的数据流封装数据包       ->      gen_package()
-// 根据随机种子生成ISN(just called once)    ->      init_ISN() 
+// 根据随机种子生成ISN(just called once)    ->      init_ISN()
 // 对发送的数据包进行存储       ->      seq2data(TYPE: std::map)
 // 对给定的序列号进行确认       ->      verify()
 // 更新新的序列号和确认号       ->
@@ -33,7 +33,7 @@ public:
     bool verify(uint32_t acknum);
 
     // 对某一个数据进行确认
-    void acknowledged(uint32_t acknum);
+    bool acknowledged(uint32_t acknum);
 
     // 还需要封装函数对ACK数据包进行处理，以及计算出确认序列号
 
@@ -41,7 +41,11 @@ public:
     uint8_t *get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen);
 
     // 这个函数用于基于原始数据解包package
-    bool solve_package(uint8_t *pack);
+    // @brief flag refers to which case ->
+    /*  0   ->      正常传输
+        1   ->      第一次握手 发送后接收的包
+    */
+    bool solve_package(uint8_t *pack, int flag);
 
     // 下面的函数用于获得私有变量
     uint32_t get_ISN() { return __ISN; };

@@ -12,11 +12,17 @@ class sender
 {
 public:
     // 可以在初始化时就得到socket，然后后续调用不需要传递socket了
-    sender(SOCKET sendsocket, std::string recvaddr, int port);
+    sender(SOCKET sendsocket, std::string recvaddr, int port, int buffsize);
+
+    // 析构函数释放内存
+    ~sender();
 
     // 在外层处理好socket创建，传递给sender，就可以连接了
     // 这里肯定是发送端发起连接，所以这里应该先发送SYNC数据包
     void Connect();
+
+    // 发送数据
+    void Sendto(uint8_t *d, uint16_t dlen);
 
     // 这是修改目标地址和端口的函数
     // 注意修改后可能需要重新连接，而且这里暂时设为虚函数避免不必要的问题

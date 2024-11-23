@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include "defs.h"
 
 class timer
 {
@@ -8,5 +9,5 @@ public:
     bool starttimer();
 
 private:
-    int __time = 0;
+    int __time = TIMEOUT;
 };
