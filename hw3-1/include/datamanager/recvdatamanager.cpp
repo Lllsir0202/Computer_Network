@@ -4,11 +4,12 @@
 
 recvdatamanager::recvdatamanager()
 {
-    logout.open("../recv.log", std::ios::app);
+    logout.open("./recv.log", std::ios::app);
     if (!logout.is_open())
     {
         std::cout << "CANNOT OPEN LOG " << std::endl;
     }
+    __path = "./";
 }
 
 recvdatamanager::~recvdatamanager()
@@ -59,9 +60,9 @@ void recvdatamanager::acknowledge(uint32_t acknum)
     }
     else
     {
-        std::string log = "Acknowledge seqnum package " + std::to_string(acknum -1);
+        std::string log = "Acknowledge seqnum package " + std::to_string(acknum - 1);
         add_log(log);
-        
+
         auto d = seq2data[acknum - 1];
         seq2data.erase(acknum);
         // 更新下一个序列号为对方发送的渴望得到的
@@ -142,12 +143,32 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         switch (flag)
         {
         case 0:
-        { // 确认这是一个数据包
-            assert((d->get_flag() & ACK) == ACK);
-            // 这是对收到的接受包进行确认，从缓冲区移去
-            acknowledge(d->get_ack());
+        {
+            // 这里对接收端应该将这个文件写回
+            // acknowledge(d->get_ack());
+            // 这种情况表示这个数据包是第一个数据包
+            if (d->get_flag() & START == START)
+            {
+                // 这里第一个数据包仅传输文件名
+                std::string filename = std::string((char *)(d->get_data()));
+                __filename = filename;
+                __filepath = __path + filename;
+                __packagenum = 0;
+                fileout.open(__filepath.c_str(), std::ios::app);
+                std::string log = "Start to accept " + __filename + " in file path: " + __filepath;
+                add_log(log);
+            }
+            else if (d->get_flag() & TRANS == TRANS)
+            {
+                // 这是文件传输的情况
+                // 将文件写回
+                __packagenum++;
+                std::string log = "Filename: " + __filename + " Package number: " + std::to_string(__packagenum);
+                fileout << d->get_data();
+                add_log(log);
+            }
 
-            // 确认之后这个包就无用了
+            // 接收之后这个包就无用了
             delete d;
             return true;
         }
@@ -157,6 +178,9 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         {
             assert(d->get_flag() & (SYNC | ACK) == (SYNC | ACK));
             acknowledge(d->get_ack());
+
+            std::string log = "Acknowledge First Handshake";
+            add_log(log);
             delete d;
             return true;
         }
@@ -166,6 +190,9 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         {
             assert(d->get_flag() & FIN == FIN);
             acknowledge(d->get_ack());
+
+            std::string log = "Acknowledge First Wave";
+            add_log(log);
             delete d;
             return true;
         }
@@ -175,6 +202,9 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         {
             assert(d->get_flag() & ACK == ACK);
             acknowledge(d->get_ack());
+
+            std::string log = "Acknowledge Third Wave";
+            add_log(log);
             delete d;
             return true;
         }
@@ -198,4 +228,5 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
 void recvdatamanager::add_log(std::string log)
 {
     logout << log << std::endl;
+    std::cout << log << std::endl;
 }

@@ -32,7 +32,7 @@ public:
     virtual bool reset_recv(std::string recvaddr, int port) = 0;
 
     // 这是获得senddatamanaer的函数
-    senddatamanager get_sdm() { return __sdm; };
+    const senddatamanager* get_sdm() { return &__sdm; };
 
     // 获得目标地址
     std::string get_recvaddr() { return __recvaddr; };

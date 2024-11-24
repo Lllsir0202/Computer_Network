@@ -1,6 +1,7 @@
 #pragma once
 #include "data.h"
 #include <map>
+#include <fstream>
 
 /*
 首先对于数据包我们主要需要考虑两种情况：
@@ -22,6 +23,7 @@
 class senddatamanager
 {
 public:
+    senddatamanager();
     // 构建析构函数，释放内存
     ~senddatamanager();
     // 使用随机数生成ISN
@@ -48,6 +50,9 @@ public:
         3   ->      第三次挥手 发送后接收的包   ->  即第四次挥手
     */
     bool solve_package(uint8_t *pack, int flag);
+
+    // 添加日志
+    void add_log(std::string log);
 
     // 下面的函数用于获得私有变量
     uint32_t get_ISN() { return __ISN; };
@@ -82,4 +87,7 @@ private:
 
     // 用于验证data内的数据求和是否为最大值，作为校验辅助函数    ->  only used in resolve ack package
     bool __verify_data(data *d);
+
+    // 输出日志信息
+    std::ofstream logout;
 };

@@ -2,10 +2,21 @@
 #include "senddatamanager.h"
 #include <random>
 #include <cassert>
+#include <chrono>
+#include <thread>
 
 // 由于这里我们记录的序列号其实是收到的确认号-1，
 // 所以这里我们对于传入的acknum，可以这样处理
 // 我们记录的映射是原序列号+datalen
+
+senddatamanager::senddatamanager()
+{
+    logout.open("./send.log", std::ios::app);
+    if (!logout.is_open())
+    {
+        std::cout << "CANNOT OPEN LOG " << std::endl;
+    }
+}
 
 senddatamanager::~senddatamanager()
 {
@@ -142,6 +153,8 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
             // 这是对收到的接受包进行确认，从缓冲区移去
             acknowledged(d->get_ack());
 
+            std::string log = "Acknowledge package seqnum " + std::to_string(d->get_ack() - 1);
+            add_log(log);
             // 确认之后这个包就无用了
             delete d;
             return true;
@@ -153,6 +166,9 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
             // 确认收到的包SYNC和ACK被置位
             assert(d->get_flag() & (SYNC | ACK) == (SYNC | ACK));
             acknowledged(d->get_ack());
+
+            std::string log = "Acknowledge Second Handshake";
+            add_log(log);
             delete d;
             return true;
         }
@@ -162,15 +178,22 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
         {
             assert(d->get_flag() & (FIN | ACK) == (FIN | ACK));
             acknowledged(d->get_ack());
+
+            std::string log = "Acknowledge Second Wave";
+            add_log(log);
             delete d;
             return true;
         }
         break;
         // 第四次挥手
+        // 第四次挥手
         case 3:
         {
-            assert(d->get_flag() & (ACK) == ACK);
+            assert(d->get_flag() & ACK == ACK);
             acknowledged(d->get_ack());
+
+            std::string log = "Acknowledge Fourth Wave";
+            add_log(log);
             delete d;
             return true;
         }
@@ -189,4 +212,10 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
         return false;
         // 在这里返回false，在外面封装处理函数
     }
+}
+
+void senddatamanager::add_log(std::string log)
+{
+    logout << log << std::endl;
+    std::cout << log << std::endl;
 }

@@ -32,25 +32,29 @@ void sender::Connect()
     {
         if (cnt == 3)
         {
-            std::cout << "Failed to connect in First handshake , please retry " << std::endl;
-            break;
+            std::string log = "Failed to connect in First handshake , please retry ";
+            __sdm.add_log(log);
+            return;
         }
         // 表示需要重传，即出现了超时
         // 这里尝试重传3次
-        std::cout << "First handshake timeout try " << cnt << " time " << std::endl;
+        std::string log = "First handshake timeout try " + std::to_string(cnt) + " time ";
+        __sdm.add_log(log);
         sendto(__sendsocket, (char *)first, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
         cnt++;
     }
-    std::cout << "First handshake Succeed! " << std::endl;
+    std::string log = "First handshake Succeed! ";
+    __sdm.add_log(log);
     cnt = 0;
     // 对接收到的数据包进行处理，这里应该判断是不是ACK+SYN
     if (__sdm.solve_package(buff, 1))
     {
-        std::cout << "Second handshake Succeed! " << std::endl;
+        // std::cout << "Second handshake Succeed! " << std::endl;
     }
     else
     {
-        std::cout << "Second handshake Failed " << std::endl;
+        std::string log = "Second handshake Failed ";
+        __sdm.add_log(log);
     }
 
     // 第三次握手
@@ -60,7 +64,8 @@ void sender::Connect()
     // 这里将数据包的flag位     ACK置位
     first = __sdm.get_package(ACK, (uint8_t *)_connect_.c_str(), __windowsize, 1);
     sendto(__sendsocket, (char *)first, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
-    std::cout << "Third handshake Succeed! " << std::endl;
+    std::string log = "Third handshake Succeed! ";
+    __sdm.add_log(log);
     // 当超时未收到数据时，应该断开连接
 }
 
@@ -79,25 +84,28 @@ void sender::Disconnect()
     {
         if (cnt == 3)
         {
-            std::cout << "Failed to disconnect in First wave , please retry " << std::endl;
-            break;
+            std::string log = "Failed to disconnect in First wave , please retry ";
+            __sdm.add_log(log);
+            return;
         }
         // 表示需要重传，即出现了超时
         // 这里尝试重传3次
-        std::cout << "First wave timeout try " << cnt << " times " << std::endl;
+        std::string log = "First wave timeout try " + std::to_string(cnt) + " times ";
+        __sdm.add_log(log);
         sendto(__sendsocket, (char *)first, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
         cnt++;
     }
-    std::cout << "First wave Succeed! " << std::endl;
+    __sdm.add_log("First wave Succeed! ");
     cnt = 0;
     // 对接收到的数据包进行处理，这里应该判断是不是FIN+ACK
     if (__sdm.solve_package(buff, 2))
     {
-        std::cout << "Second wave Succeed! " << std::endl;
+        // std::cout << "Second wave Succeed! " << std::endl;
     }
     else
     {
-        std::cout << "Second wave Failed " << std::endl;
+        std::string log = "Second wave Failed ";
+        __sdm.add_log(log);
     }
 
     // 第三次挥手
@@ -114,25 +122,27 @@ void sender::Disconnect()
     {
         if (cnt == 3)
         {
-            std::cout << "Failed to disconnect in Third wave , please retry " << std::endl;
-            break;
+            std::string log = "Failed to disconnect in Third wave , please retry ";
+            __sdm.add_log(log);
+            return;
         }
         // 表示需要重传，即出现了超时
         // 这里尝试重传3次
-        std::cout << "Third wave timeout try " << cnt << " times " << std::endl;
+        std::string log = "Third wave timeout try " + std::to_string(cnt) + " times ";
+        __sdm.add_log(log);
         sendto(__sendsocket, (char *)third, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
         cnt++;
     }
-    std::cout << "Third wave Succeed! " << std::endl;
+    __sdm.add_log("Third wave Succeed");
     cnt = 0;
     // 对接收到的数据包进行处理，这里应该判断是不是FIN+ACK
     if (__sdm.solve_package(buff, 3))
     {
-        std::cout << "Fourth wave Succeed! " << std::endl;
+        // std::cout << "Fourth wave Succeed! " << std::endl;
     }
     else
     {
-        std::cout << "Fourth wave Failed " << std::endl;
+        __sdm.add_log("Fourth wave Failed");
     }
 }
 

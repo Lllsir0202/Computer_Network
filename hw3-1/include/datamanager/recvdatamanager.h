@@ -91,6 +91,15 @@ private:
     // 在接收端对方确认收到后，应该将该数据写入指定位置
     std::string __path;
 
+    // 存储当前文件名
+    std::string __filename;
+
+    // 存储当前包数
+    int __packagenum = 0;
+
+    // 这是存储文件位置的
+    std::string __filepath;
+
     // 输出流
     std::ofstream fileout;
 
