@@ -17,6 +17,22 @@ public:
 
     // 这里在连接阶段和挥手阶段应该有一些不同
     // 这里被创建后，应该不停接收信息，再接收后发送
+    void Connect();
+
+    void Disconnect();
+
+    void Recvfrom();
+
+    virtual bool reset_send(std::string sendaddr, int port) = 0;
+
+    // 这是获取私有变量的函数
+    const recvdatamanager *get_rdm() { return &__rdm; };
+
+    // 获得目标地址
+    std::string get_sendaddr() { return __sendaddr; };
+
+    // 获得目标端口
+    int get_port() { return __port; };
 
 private:
     recvdatamanager __rdm;
@@ -34,4 +50,6 @@ private:
 
     // 缓冲区
     uint8_t *buff;
+
+    int __buffsize;
 };

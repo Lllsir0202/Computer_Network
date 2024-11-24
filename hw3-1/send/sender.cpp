@@ -19,6 +19,8 @@ sender::~sender()
 
 void sender::Connect()
 {
+    // 初始化序列号
+    __sdm.init_ISN();
     socklen_t addr_len = sizeof(__recv_addr);
     std::string _connect_ = "";
     // 第一次握手
@@ -157,8 +159,8 @@ void sender::Sendto(uint8_t *d, uint16_t dlen)
     {
         if (cnt == 3)
         {
-            std::cout << "Failed to connect in First handshake , please retry " << std::endl;
-            break;
+            std::cout << "Failed to recv ACK , please retry " << std::endl;
+            return;
         }
         // 表示需要重传，即出现了超时
         // 这里尝试重传3次
@@ -168,7 +170,7 @@ void sender::Sendto(uint8_t *d, uint16_t dlen)
     }
 
     cnt = 0;
-    // 对接收到的数据包进行处理，这里应该判断是不是ACK+SYN
+    // 对接收到的数据包进行处理，这里应该判断是不是ACK
     if (__sdm.solve_package(buff, 0))
     {
         std::cout << "Transmit Succeed! " << std::endl;

@@ -167,6 +167,13 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 fileout << d->get_data();
                 add_log(log);
             }
+            else if (d->get_flag() & FIN == FIN)
+            {
+                // 这是在接收到数据时已经收到FIN的情况
+                delete d;
+                solve_package(pack, 3);
+                return false;
+            }
 
             // 接收之后这个包就无用了
             delete d;
@@ -185,8 +192,20 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             return true;
         }
         break;
-        // 第一次挥手
+        // 第三次握手
         case 2:
+        {
+            assert(d->get_flag() & ACK == ACK);
+            acknowledge(d->get_ack());
+
+            std::string log = "Acknowledge Third Handshake";
+            add_log(log);
+            delete d;
+            return true;
+        }
+        break;
+        // 第一次挥手
+        case 3:
         {
             assert(d->get_flag() & FIN == FIN);
             acknowledge(d->get_ack());
@@ -198,7 +217,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         }
         break;
         // 第三次挥手
-        case 3:
+        case 4:
         {
             assert(d->get_flag() & ACK == ACK);
             acknowledge(d->get_ack());
