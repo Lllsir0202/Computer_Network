@@ -23,10 +23,10 @@ public:
 
     void Recvfrom();
 
-    virtual bool reset_send(std::string sendaddr, int port) = 0;
+    // virtual bool reset_send(std::string sendaddr, int port) = 0;
 
     // 这是获取私有变量的函数
-    const recvdatamanager *get_rdm() { return &__rdm; };
+    recvdatamanager *get_rdm() { return &__rdm; };
 
     // 获得目标地址
     std::string get_sendaddr() { return __sendaddr; };

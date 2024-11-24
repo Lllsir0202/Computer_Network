@@ -29,10 +29,10 @@ public:
 
     // 这是修改目标地址和端口的函数
     // 注意修改后可能需要重新连接，而且这里暂时设为虚函数避免不必要的问题
-    virtual bool reset_recv(std::string recvaddr, int port) = 0;
+    // virtual bool reset_recv(std::string recvaddr, int port) = 0;
 
     // 这是获得senddatamanaer的函数
-    const senddatamanager* get_sdm() { return &__sdm; };
+    senddatamanager* get_sdm() { return &__sdm; };
 
     // 获得目标地址
     std::string get_recvaddr() { return __recvaddr; };
