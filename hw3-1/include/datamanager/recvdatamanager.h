@@ -100,7 +100,7 @@ private:
     int __packagenum = 0;
 
     // 这是存储文件位置的
-    std::string __filepath;
+    std::string __filepath = "./";
 
     // 输出流
     std::ofstream fileout;

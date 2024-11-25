@@ -1,4 +1,5 @@
 #include "sender.h"
+#include <cassert>
 
 sender::sender(SOCKET sendsocket, std::string recvaddr, int port, int buffsize)
 {
@@ -189,10 +190,12 @@ void sender::Disconnect()
     }
 }
 
-void sender::Sendto(uint8_t *d, uint16_t dlen)
+void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
 {
     socklen_t addr_len = sizeof(__recv_addr);
-    uint8_t *Data = __sdm.get_package(TRANS, d, __windowsize, dlen);
+    // 确保flag是TRANS或者START
+    assert(flag == START || flag == TRANS);
+    uint8_t *Data = __sdm.get_package(flag, d, __windowsize, dlen);
     sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
 
     int cnt = 0;

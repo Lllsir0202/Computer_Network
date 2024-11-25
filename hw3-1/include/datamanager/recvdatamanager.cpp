@@ -149,11 +149,18 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             if ((d->get_flag() & START) == START)
             {
                 // 这里第一个数据包仅传输文件名
+                std::cout << "here" << std::endl;
                 std::string filename = std::string((char *)(d->get_data()));
+                std::cout << filename << std::endl;
                 __filename = filename;
                 __filepath = __path + filename;
                 __packagenum = 0;
-                fileout.open(__filepath.c_str(), std::ios::app);
+                fileout.open(__filepath.c_str(), std::ios::app | std::ios::out);
+                if (!fileout.is_open())
+                {
+                    std::cout << "error, failed to accept " << std::endl;
+                    return false;
+                }
                 std::string log = "Start to accept " + __filename + " in file path: " + __filepath;
                 add_log(log);
             }

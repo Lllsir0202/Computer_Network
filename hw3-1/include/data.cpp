@@ -2,6 +2,10 @@
 
 data::~data()
 {
+    if ((__flag & TRANS) == TRANS || (__flag & START) == START)
+    {
+        delete[] __d;
+    }
 }
 
 void data::init(uint8_t flag, uint32_t ack, uint32_t seq, uint32_t windowsize, uint16_t datalen, uint8_t *d)
@@ -118,9 +122,11 @@ void data::regen_data(uint8_t *d)
     __datalen = d[14];
     __datalen += d[15] << 8;
 
+    __d = new uint8_t[__datalen + 1];
     // 这里应该只有数据包的时候才进行memcpy
     if ((__flag & TRANS) == TRANS || (__flag & START) == START)
     {
         memcpy(__d, d + INITSIZE, __datalen * sizeof(uint8_t));
     }
+    __d[__datalen] = '\0';
 }

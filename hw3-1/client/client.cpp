@@ -69,7 +69,7 @@ int main()
         client.get_sdm()->add_log(log);
         // 在类中的析构函数处理了
         // closesocket(sendsocket);
-        //WSACleanup();
+        // WSACleanup();
         return 1;
     }
 
@@ -86,6 +86,7 @@ int main()
         return 1;
     }
 
+    std::string filename;
     while (1)
     {
         int file = sendfile();
@@ -100,6 +101,8 @@ int main()
         case 1:
         {
             filepath = "./1.jpg";
+            filename = "1.jpg";
+            client.Sendto((uint8_t *)filename.c_str(), filename.length(), START);
             std::ifstream filein;
             filein.open(filepath, std::ios::binary);
             if (!filein.is_open())
@@ -108,9 +111,9 @@ int main()
             }
             while (filein.read((char *)buff, READSIZE))
             {
-                client.Sendto(buff, READSIZE);
+                client.Sendto(buff, READSIZE, TRANS);
             }
-            client.Sendto(buff, filein.gcount());
+            client.Sendto(buff, filein.gcount(), TRANS);
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";
@@ -120,6 +123,8 @@ int main()
         case 2:
         {
             filepath = "./2.jpg";
+            filename = "2.jpg";
+            client.Sendto((uint8_t *)filename.c_str(), filename.length(), START);
             std::ifstream filein;
             filein.open(filepath, std::ios::binary);
             if (!filein.is_open())
@@ -128,9 +133,9 @@ int main()
             }
             while (filein.read((char *)buff, READSIZE))
             {
-                client.Sendto(buff, READSIZE);
+                client.Sendto(buff, READSIZE, TRANS);
             }
-            client.Sendto(buff, filein.gcount());
+            client.Sendto(buff, filein.gcount(), TRANS);
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";
@@ -140,6 +145,8 @@ int main()
         case 3:
         {
             filepath = "./3.jpg";
+            filename = "3.jpg";
+            client.Sendto((uint8_t *)filename.c_str(), filename.length(), START);
             std::ifstream filein;
             filein.open(filepath, std::ios::binary);
             if (!filein.is_open())
@@ -148,9 +155,9 @@ int main()
             }
             while (filein.read((char *)buff, READSIZE))
             {
-                client.Sendto(buff, READSIZE);
+                client.Sendto(buff, READSIZE, TRANS);
             }
-            client.Sendto(buff, filein.gcount());
+            client.Sendto(buff, filein.gcount(), TRANS);
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";
@@ -160,6 +167,8 @@ int main()
         case 4:
         {
             filepath = "./helloworld.txt";
+            filename = "helloworld.txt";
+            client.Sendto((uint8_t *)filename.c_str(), filename.length(), START);
             std::ifstream filein;
             filein.open(filepath, std::ios::binary);
             if (!filein.is_open())
@@ -168,9 +177,9 @@ int main()
             }
             while (filein.read((char *)buff, READSIZE))
             {
-                client.Sendto(buff, READSIZE);
+                client.Sendto(buff, READSIZE, TRANS);
             }
-            client.Sendto(buff, filein.gcount());
+            client.Sendto(buff, filein.gcount(), TRANS);
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";

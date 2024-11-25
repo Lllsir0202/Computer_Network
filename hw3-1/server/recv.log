@@ -1,351 +1,70 @@
 Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Acknowledge First Handshake
-Start to accept client 
-Acknowledge First Handshake
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-Start to accept client 
-First handshake Failed 
-Second handshake Succeed! 
-Start to accept client 
-First handshake Failed 
-Second handshake Succeed! 
-Start to accept client 
-First handshake Failed 
-Second handshake Succeed! 
-Start to accept client 
-First handshake Failed 
-Second handshake Succeed! 
-Start to accept client 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake Succeed! 
-Start to accept client 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake Succeed! 
-Start to accept client 
-Start to accept client 
-First handshake Failed 
-Second handshake timeout try 1 time  Times passed 1002
-Second handshake timeout try 2 time  Times passed 1003
-Second handshake timeout try 3 time  Times passed 1059
-Second handshake timeout try 4 time  Times passed 1061
-Second handshake Succeed! 
-Third handshake Failed 
-Succeed to connect 
-Start to accept client 
-First handshake Failed 
-Second handshake timeout try 1 time  Times passed 1055
-Second handshake timeout try 2 time  Times passed 1002
-Second handshake timeout try 3 time  Times passed 1053
-Second handshake timeout try 4 time  Times passed 1059
-Second handshake timeout try 5 time  Times passed 1062
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1011
-Second handshake timeout try 2 time  Times passed 1055
-Second handshake timeout try 3 time  Times passed 1001
-Second handshake timeout try 4 time  Times passed 1057
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1051
-Second handshake timeout try 2 time  Times passed 1059
-Second handshake timeout try 3 time  Times passed 1060
-Second handshake timeout try 4 time  Times passed 1059
-Second handshake timeout try 5 time  Times passed 1054
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1061
-Second handshake timeout try 2 time  Times passed 1054
-Second handshake timeout try 3 time  Times passed 1054
-Second handshake timeout try 4 time  Times passed 1052
-Second handshake timeout try 5 time  Times passed 1055
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1000
-Second handshake timeout try 2 time  Times passed 1060
-Second handshake timeout try 3 time  Times passed 1056
-Second handshake timeout try 4 time  Times passed 1058
-Second handshake timeout try 5 time  Times passed 1057
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1003ms
-Second handshake timeout try 2 time  Times passed 1055ms
-Second handshake timeout try 3 time  Times passed 1063ms
-Second handshake timeout try 4 time  Times passed 1063ms
-Second handshake timeout try 5 time  Times passed 1060ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1060ms
-Second handshake timeout try 2 time  Times passed 1055ms
-Second handshake timeout try 3 time  Times passed 1049ms
-Second handshake timeout try 4 time  Times passed 1058ms
-Second handshake timeout try 5 time  Times passed 1059ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1002ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1001ms
-Second handshake timeout try 2 time  Times passed 1054ms
-Second handshake timeout try 3 time  Times passed 1002ms
-Second handshake timeout try 4 time  Times passed 1053ms
-Second handshake timeout try 5 time  Times passed 1062ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1058ms
-Second handshake timeout try 2 time  Times passed 1058ms
-Second handshake timeout try 3 time  Times passed 1058ms
-Second handshake timeout try 4 time  Times passed 1055ms
-Second handshake Succeed! 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1059ms
-Second handshake timeout try 2 time  Times passed 1005ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1055ms
-Second handshake timeout try 2 time  Times passed 1053ms
-Second handshake timeout try 3 time  Times passed 1059ms
-Second handshake timeout try 4 time  Times passed 1057ms
-Second handshake timeout try 5 time  Times passed 1007ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1002ms
-Second handshake timeout try 2 time  Times passed 1061ms
-Second handshake timeout try 3 time  Times passed 1061ms
-Second handshake timeout try 4 time  Times passed 1059ms
-Second handshake timeout try 5 time  Times passed 1060ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1057ms
-Second handshake timeout try 2 time  Times passed 1003ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1056ms
-Second handshake timeout try 2 time  Times passed 1061ms
-Second handshake timeout try 3 time  Times passed 1060ms
-Second handshake timeout try 4 time  Times passed 1004ms
-Second handshake timeout try 5 time  Times passed 1002ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1005ms
-Second handshake timeout try 2 time  Times passed 1059ms
-Second handshake timeout try 3 time  Times passed 1001ms
-Second handshake timeout try 4 time  Times passed 1056ms
-Second handshake timeout try 5 time  Times passed 1060ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1002ms
-Second handshake timeout try 2 time  Times passed 1010ms
-Second handshake timeout try 3 time  Times passed 1003ms
-Second handshake timeout try 4 time  Times passed 1057ms
-Second handshake timeout try 5 time  Times passed 1060ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1005ms
-Second handshake timeout try 2 time  Times passed 1003ms
-Start to accept client 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1057ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1006ms
-Second handshake timeout try 2 time  Times passed 1003ms
-Second handshake timeout try 3 time  Times passed 1002ms
-Second handshake timeout try 4 time  Times passed 1005ms
-Second handshake timeout try 5 time  Times passed 1060ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1004ms
-Second handshake timeout try 2 time  Times passed 1001ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1061ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1001ms
-Second handshake timeout try 2 time  Times passed 1057ms
-Second handshake timeout try 3 time  Times passed 1004ms
-Second handshake timeout try 4 time  Times passed 1058ms
-Second handshake timeout try 5 time  Times passed 1009ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1002ms
-Second handshake timeout try 2 time  Times passed 1062ms
-Second handshake timeout try 3 time  Times passed 1003ms
-Second handshake timeout try 4 time  Times passed 1003ms
-Second handshake timeout try 5 time  Times passed 1004ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1009ms
-Second handshake timeout try 2 time  Times passed 1057ms
-Second handshake timeout try 3 time  Times passed 1061ms
-Start to accept client 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1059ms
-Second handshake timeout try 2 time  Times passed 1005ms
-Second handshake timeout try 3 time  Times passed 1011ms
-Second handshake timeout try 4 time  Times passed 1001ms
-Second handshake timeout try 5 time  Times passed 1051ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1006ms
-Second handshake timeout try 2 time  Times passed 1056ms
-Second handshake timeout try 3 time  Times passed 1004ms
-Second handshake timeout try 4 time  Times passed 1006ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1054ms
-Second handshake timeout try 2 time  Times passed 1062ms
-Second handshake timeout try 3 time  Times passed 1060ms
-Second handshake timeout try 4 time  Times passed 1001ms
-Second handshake timeout try 5 time  Times passed 1004ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1001ms
-Second handshake timeout try 2 time  Times passed 1055ms
-Second handshake timeout try 3 time  Times passed 1060ms
-Second handshake timeout try 4 time  Times passed 1005ms
-Second handshake timeout try 5 time  Times passed 1005ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1059ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1054ms
-Second handshake timeout try 2 time  Times passed 1060ms
-Start to accept client 
-First handshake Failed 
-Second handshake timeout try 1 time  Times passed 1007ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1056ms
-Second handshake timeout try 2 time  Times passed 1062ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1000ms
-Second handshake timeout try 2 time  Times passed 1008ms
-Second handshake timeout try 3 time  Times passed 1061ms
-Second handshake timeout try 4 time  Times passed 1058ms
-Second handshake timeout try 5 time  Times passed 1061ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1003ms
-Second handshake timeout try 2 time  Times passed 1001ms
-Second handshake timeout try 3 time  Times passed 1059ms
-Second handshake timeout try 4 time  Times passed 1060ms
-Second handshake timeout try 5 time  Times passed 1057ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1003ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1059ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1001ms
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1002ms
-Second handshake timeout try 2 time  Times passed 1010ms
-Second handshake timeout try 3 time  Times passed 1011ms
-Second handshake timeout try 4 time  Times passed 1006ms
-Second handshake timeout try 5 time  Times passed 1006ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake timeout try 1 time  Times passed 1061ms
-Second handshake timeout try 2 time  Times passed 1003ms
-Second handshake timeout try 3 time  Times passed 1054ms
-Second handshake timeout try 4 time  Times passed 1059ms
-Second handshake timeout try 5 time  Times passed 1004ms
-Failed to connect in Second handshake , please retry 
-Start to accept client 
 Acknowledge First Handshake
 Second handshake Succeed! 
 Acknowledge Third Handshake
 Succeed to connect 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake Succeed! 
-Acknowledge Third Handshake
-Succeed to connect 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake Succeed! 
-Acknowledge Third Handshake
-Succeed to connect 
-Acknowledge First Wave
 Second Wave Succeed! 
-Third handshake Failed 
-Fourth wave Succeed
-Second Wave timeout try 1 time  Times passed 1000ms
-Second Wave timeout try 2 time  Times passed 1000ms
-Second Wave timeout try 3 time  Times passed 1002ms
-Second Wave timeout try 4 time  Times passed 1004ms
-Second Wave timeout try 5 time  Times passed 1005ms
-Failed to Disconnect in Second Wave , please retry 
-Start to accept client 
-Start to accept client 
-Acknowledge First Handshake
-Second handshake Succeed! 
-Acknowledge Third Handshake
-Succeed to connect 
-Acknowledge First Wave
-Second Wave Succeed! 
-Third Wave Succeed! 
-Third handshake Failed 
-Fourth wave Succeed
-Second Wave Succeed! 
-Third Wave timeout try 1 time  Times passed 1050ms
-Third Wave timeout try 2 time  Times passed 1059ms
-Third Wave timeout try 3 time  Times passed 1006ms
-Third Wave timeout try 4 time  Times passed 1060ms
-Third Wave timeout try 5 time  Times passed 1012ms
+Third Wave timeout try 1 time  Times passed 1003ms
+Third Wave timeout try 2 time  Times passed 1006ms
+Third Wave timeout try 3 time  Times passed 1000ms
+Third Wave timeout try 4 time  Times passed 1004ms
+Third Wave timeout try 5 time  Times passed 1009ms
 Failed to Disconnect in Third Wave , please retry 
 Start to accept client 
 Acknowledge First Handshake
 Second handshake Succeed! 
 Acknowledge Third Handshake
 Succeed to connect 
-Acknowledge First Wave
+Start to accept helloworld.txt in file path: ./helloworld.txt
+Send ACK of 9947
+Filename: helloworld.txt Package number: 1
+Send ACK of 9947
+Filename: helloworld.txt Package number: 2
+Send ACK of 9947
+Filename: helloworld.txt Package number: 3
+Send ACK of 9947
+Filename: helloworld.txt Package number: 4
+Send ACK of 9947
+Filename: helloworld.txt Package number: 5
+Send ACK of 9947
+Filename: helloworld.txt Package number: 6
+Send ACK of 9947
+Filename: helloworld.txt Package number: 7
+Send ACK of 9947
+Filename: helloworld.txt Package number: 8
+Send ACK of 9947
+Filename: helloworld.txt Package number: 9
+Send ACK of 9947
+Filename: helloworld.txt Package number: 10
+Send ACK of 9947
+Filename: helloworld.txt Package number: 11
+Send ACK of 9947
+Filename: helloworld.txt Package number: 12
+Send ACK of 9947
+Filename: helloworld.txt Package number: 13
+Send ACK of 9947
+Filename: helloworld.txt Package number: 14
+Send ACK of 9947
+Filename: helloworld.txt Package number: 15
+Send ACK of 9947
+Filename: helloworld.txt Package number: 16
+Send ACK of 9947
 Second Wave Succeed! 
-Third Wave Succeed! 
-Third handshake Failed 
-Fourth wave Succeed
+Third Wave timeout try 1 time  Times passed 1052ms
+Third Wave timeout try 2 time  Times passed 1058ms
+Start to accept client 
+Acknowledge First Handshake
+Second handshake Succeed! 
+Acknowledge Third Handshake
+Succeed to connect 
+Start to accept 1.jpg in file path: ./1.jpg
+Send ACK of 6398
+Filename: 1.jpg Package number: 1
+Send ACK of 6398
+Second Wave Succeed! 
+Third Wave timeout try 1 time  Times passed 1053ms
+Third Wave timeout try 2 time  Times passed 1001ms
+Third Wave timeout try 3 time  Times passed 1007ms
+Third Wave timeout try 4 time  Times passed 1062ms
+Third Wave timeout try 5 time  Times passed 1006ms
+Failed to Disconnect in Third Wave , please retry 

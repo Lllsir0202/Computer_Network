@@ -71,14 +71,12 @@ bool senddatamanager::acknowledged(uint32_t acknum)
     else
     {
         auto d = seq2data[acknum];
-        std::cout << "here" << std::endl;
         seq2data.erase(acknum);
         // 更新下一个确认号为对方发送的渴望得到的
         __Acknum = d->get_seq() + d->get_datalen();
-        std::cout << "here" << std::endl;
         // 更新下一个序列号为ack+datalen
         //__Seqnum = d->get_ack() + d->get_datalen();
-        std::cout << "here" << std::endl;
+        delete d;
         return true;
     }
 }
