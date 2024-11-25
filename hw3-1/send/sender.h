@@ -1,5 +1,5 @@
 #pragma once
-#include "senddatamanager.h"
+#include "../include/datamanager/senddatamanager.h"
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
@@ -19,7 +19,7 @@ public:
 
     // 在外层处理好socket创建，传递给sender，就可以连接了
     // 这里肯定是发送端发起连接，所以这里应该先发送SYNC数据包
-    void Connect();
+    bool Connect();
 
     // 四次挥手
     void Disconnect();

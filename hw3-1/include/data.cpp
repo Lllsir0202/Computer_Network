@@ -2,7 +2,6 @@
 
 data::~data()
 {
-    delete[] __d;
 }
 
 void data::init(uint8_t flag, uint32_t ack, uint32_t seq, uint32_t windowsize, uint16_t datalen, uint8_t *d)
@@ -86,7 +85,12 @@ uint8_t *data::gen_data(uint8_t *raw)
     // 数据长度
     d[14] = __datalen & EIGHTSIZE;        // 第一个字节
     d[15] = (__datalen >> 8) & EIGHTSIZE; // 第二个字节
-    memcpy(d + INITSIZE, raw, __datalen * sizeof(uint8_t));
+
+    // 当处理的是数据包的时候，进行复制
+    if ((__flag & TRANS) == TRANS || (__flag & START) == START)
+    {
+        memcpy(d + INITSIZE, raw, __datalen * sizeof(uint8_t));
+    }
 
     return d;
 }
@@ -111,8 +115,12 @@ void data::regen_data(uint8_t *d)
     __windowsize += d[12] << 16;
     __windowsize += d[13] << 24;
 
-    __datalen = d[14] << 8;
-    __datalen += d[15];
+    __datalen = d[14];
+    __datalen += d[15] << 8;
 
-    memcpy(__d, d + INITSIZE, __datalen * sizeof(uint8_t));
+    // 这里应该只有数据包的时候才进行memcpy
+    if ((__flag & TRANS) == TRANS || (__flag & START) == START)
+    {
+        memcpy(__d, d + INITSIZE, __datalen * sizeof(uint8_t));
+    }
 }

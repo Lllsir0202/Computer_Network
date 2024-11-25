@@ -1,5 +1,5 @@
 #pragma once
-#include "recvdatamanager.h"
+#include "../include/datamanager/recvdatamanager.h"
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
@@ -17,7 +17,7 @@ public:
 
     // 这里在连接阶段和挥手阶段应该有一些不同
     // 这里被创建后，应该不停接收信息，再接收后发送
-    void Connect();
+    bool Connect();
 
     void Disconnect();
 

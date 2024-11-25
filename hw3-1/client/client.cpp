@@ -54,15 +54,6 @@ int main()
     }
     // std::cout<<"Please input ip and port sendto " <<std::endl;
     SOCKET sendsocket = socket(AF_INET, SOCK_DGRAM, 0);
-    struct timeval timeout;
-    timeout.tv_sec = 0;
-    timeout.tv_usec = 500; // 500微秒超时
-    if (setsockopt(sendsocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout)) < 0)
-    {
-        perror("setsockopt failed");
-        closesocket(sendsocket);
-        return -1;
-    }
     struct sockaddr_in send_addr;
     memset(&send_addr, 0, sizeof(send_addr));
 
@@ -70,14 +61,30 @@ int main()
     send_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     send_addr.sin_port = htons(10088);
 
-    sender client(sendsocket, "127.0.0.1", 10086, MAXSIZE);
+    sender client(sendsocket, "127.0.0.1", 11111, MAXSIZE);
 
-    Sleep(100);
+    if (bind(sendsocket, (const sockaddr *)&send_addr, sizeof(send_addr)) == SOCKET_ERROR)
+    {
+        std::string log = "SendSocket Failed to bind ";
+        client.get_sdm()->add_log(log);
+        // 在类中的析构函数处理了
+        // closesocket(sendsocket);
+        //WSACleanup();
+        return 1;
+    }
 
     uint8_t buff[READSIZE];
 
+    bool flag;
+    flag = client.Connect();
     // 开始连接
-    client.Connect();
+    while (!flag)
+    {
+        std::cout << "HandShake failed " << std::endl;
+        // closesocket(sendsocket);
+        // WSACleanup();
+        return 1;
+    }
 
     while (1)
     {
@@ -178,8 +185,8 @@ int main()
     // 断开
     client.Disconnect();
     // 关闭socket
-    closesocket(sendsocket);
+    // closesocket(sendsocket);
 
-    WSACleanup();
+    // WSACleanup();
     return 0;
 }

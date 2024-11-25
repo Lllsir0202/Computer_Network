@@ -35,20 +35,13 @@ void recvdatamanager::init_ISN()
     uint32_t random_number = dis(gen);
 
     __ISN = random_number;
+    __Seqnum = __ISN;
 }
 
-bool recvdatamanager::verify(uint32_t acknum)
+bool recvdatamanager::verify(data *d)
 {
-    if (seq2data.find(acknum - 1) == seq2data.end())
-    {
-        std::string error = "ERROR: Package preACKED ";
-        perror(error.c_str());
-    }
-    else
-    {
-        auto d = seq2data[acknum - 1];
-        return __verify_data(d);
-    }
+
+    return __verify_data(d);
 }
 
 void recvdatamanager::acknowledge(uint32_t acknum)
@@ -56,7 +49,8 @@ void recvdatamanager::acknowledge(uint32_t acknum)
     if (seq2data.find(acknum - 1) == seq2data.end())
     {
         std::string error = "ERROR: Cannot find data to be acquired ";
-        perror(error.c_str());
+        std::cout << error << std::endl;
+        return;
     }
     else
     {
@@ -111,13 +105,18 @@ bool recvdatamanager::__verify_data(data *d)
     sum += (__datalen >> 8) & EIGHTSIZE; // 第二个字节
 
     // 计算数据部分的校验和
-    for (int i = 0; i < __datalen; i++)
+    if ((__flag & TRANS) == TRANS || (__flag & START) == START)
     {
-        sum += __d[i];
+        for (int i = 0; i < __datalen; i++)
+        {
+            sum += __d[i];
+        }
     }
 
+    sum = (sum & EIGHTSIZE) + (sum >> 8);
     sum += __checksum;
-    return ((sum & EIGHTSIZE) == EIGHTSIZE);
+    // std::cout << sum << std::endl;
+    return (sum == EIGHTSIZE);
 }
 
 uint8_t *recvdatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen)
@@ -138,7 +137,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
     auto d = new data;
     d->regen_data(pack);
     // 对于收到的包进行解包，然后进行差错检验
-    if (verify(d->get_ack()))
+    if (verify(d))
     { // 标识差错检测通过
         switch (flag)
         {
@@ -147,7 +146,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             // 这里对接收端应该将这个文件写回
             // acknowledge(d->get_ack());
             // 这种情况表示这个数据包是第一个数据包
-            if (d->get_flag() & START == START)
+            if ((d->get_flag() & START) == START)
             {
                 // 这里第一个数据包仅传输文件名
                 std::string filename = std::string((char *)(d->get_data()));
@@ -158,7 +157,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 std::string log = "Start to accept " + __filename + " in file path: " + __filepath;
                 add_log(log);
             }
-            else if (d->get_flag() & TRANS == TRANS)
+            else if ((d->get_flag() & TRANS) == TRANS)
             {
                 // 这是文件传输的情况
                 // 将文件写回
@@ -167,7 +166,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 fileout << d->get_data();
                 add_log(log);
             }
-            else if (d->get_flag() & FIN == FIN)
+            else if ((d->get_flag() & FIN) == FIN)
             {
                 // 这是在接收到数据时已经收到FIN的情况
                 delete d;
@@ -181,10 +180,16 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         }
         break;
         // 第一次握手
+        // 由于第一次握手不是接收端发送的，所以这里不能确认
         case 1:
         {
-            assert(d->get_flag() & (SYNC | ACK) == (SYNC | ACK));
-            acknowledge(d->get_ack());
+            assert((d->get_flag() & (SYNC)) == (SYNC));
+
+            // 但这里需要设定acknum
+            __Acknum = d->get_seq() + d->get_datalen();
+            std::cout << "ACKnum is " << __Acknum << " Seqnum is " << __Seqnum << std::endl;
+            std::cout << "Passed in seqnum is " << d->get_seq() << " Passed in datalen is " << d->get_datalen() << std::endl;
+            // acknowledge(d->get_ack());
 
             std::string log = "Acknowledge First Handshake";
             add_log(log);
@@ -195,7 +200,9 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         // 第三次握手
         case 2:
         {
-            assert(d->get_flag() & ACK == ACK);
+            assert((d->get_flag() & ACK) == ACK);
+            // std::cout << "here" << std::endl;
+            //  这是对第二次握手的确认
             acknowledge(d->get_ack());
 
             std::string log = "Acknowledge Third Handshake";
@@ -207,8 +214,9 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         // 第一次挥手
         case 3:
         {
-            assert(d->get_flag() & FIN == FIN);
-            acknowledge(d->get_ack());
+            assert((d->get_flag() & FIN) == FIN);
+            // 第一次挥手是发送端断开，这里不能确认
+            // acknowledge(d->get_ack());
 
             std::string log = "Acknowledge First Wave";
             add_log(log);
@@ -219,7 +227,8 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         // 第三次挥手
         case 4:
         {
-            assert(d->get_flag() & ACK == ACK);
+            assert((d->get_flag() & ACK) == ACK);
+            // 第二次挥手的确认
             acknowledge(d->get_ack());
 
             std::string log = "Acknowledge Third Wave";
@@ -231,7 +240,8 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         default:
         {
             delete d;
-            perror("Invalid flag ");
+            std::cout << "Invalid flag " << std::endl;
+            return false;
         }
         break;
         }
@@ -242,6 +252,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         return false;
         // 在这里返回false，在外面封装处理函数
     }
+    return true;
 }
 
 void recvdatamanager::add_log(std::string log)

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdint.h>
-#include <defs.h>
+#include "./defs.h"
 /*
     这里考虑设计如下：
     |   校验和(8位)  |   状态位(8位)  |   ACK号(32位)   |    Seq号(32位)    |       窗体大小(32位)     |   数据长度(16位)    |   数据(UDP接受和发出的原始数据包)    |
@@ -62,7 +62,7 @@ private:
     uint16_t __datalen;
 
     // 记录数据段
-    uint8_t *__d;
+    uint8_t *__d = nullptr;
 
     // 用于处理生成校验和的私有成员变量
     void __gen_checksum();

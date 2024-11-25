@@ -1,5 +1,5 @@
 #pragma once
-#include "data.h"
+#include "../data.h"
 #include <map>
 #include <fstream>
 
@@ -32,7 +32,7 @@ public:
     // 对上层传入的字节流数据包进行校验
     // 用于差错检验
     // 对给定的acknum进行一个检验
-    bool verify(uint32_t acknum);
+    bool verify(data *d);
 
     // 对某一个数据进行确认
     void acknowledge(uint32_t acknum);
@@ -68,7 +68,8 @@ public:
         else
         {
             std::string str = "ERROR: Invalid acknum " + std::to_string(acknum);
-            perror(str.c_str());
+            std::cout << str << std::endl;
+            return nullptr;
         }
     }
 
@@ -77,10 +78,10 @@ private:
     uint32_t __ISN;
 
     // 记录目前已经确认的最大序列号
-    uint32_t __Acknum;
+    uint32_t __Acknum = 0;
 
     // 记录目前期待接收到的序列号
-    uint32_t __Seqnum;
+    uint32_t __Seqnum = 0;
 
     // 记录数据buffer，这里记录序列号和对应的数据包 -> 已经解包后的
     // refer to unack package
