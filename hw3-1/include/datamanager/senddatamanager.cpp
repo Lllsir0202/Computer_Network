@@ -51,6 +51,7 @@ bool senddatamanager::verify(uint32_t acknum)
         std::string error = "ERROR: Package preACKED ";
         std::cout << error << std::endl;
         std::cout << "Seqnum is " << __Seqnum << " passed in ACKnum is " << acknum << " Acknum is " << __Acknum << std::endl;
+        std::cout << "Current first map number is " << seq2data.begin()->first << std::endl;
     }
     else
     {

@@ -46,7 +46,7 @@ bool recvdatamanager::verify(data *d)
 
 void recvdatamanager::acknowledge(uint32_t acknum)
 {
-    if (seq2data.find(acknum - 1) == seq2data.end())
+    if (seq2data.find(acknum) == seq2data.end())
     {
         std::string error = "ERROR: Cannot find data to be acquired ";
         std::cout << error << std::endl;
@@ -54,13 +54,13 @@ void recvdatamanager::acknowledge(uint32_t acknum)
     }
     else
     {
-        std::string log = "Acknowledge seqnum package " + std::to_string(acknum - 1);
+        std::string log = "Acknowledge seqnum package " + std::to_string(acknum);
         add_log(log);
 
-        auto d = seq2data[acknum - 1];
+        auto d = seq2data[acknum];
         seq2data.erase(acknum);
         // 更新下一个序列号为对方发送的渴望得到的
-        __Acknum = d->get_seq() + d->get_datalen() + 1;
+        __Acknum = d->get_seq() + d->get_datalen();
         // 更新下一个next为seq+datalen
         //__Seqnum = d->get_ack() + d->get_datalen();
         delete d;
@@ -149,7 +149,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             if ((d->get_flag() & START) == START)
             {
                 // 这里第一个数据包仅传输文件名
-                std::cout << "here" << std::endl;
+                // std::cout << "here" << std::endl;
                 std::string filename = std::string((char *)(d->get_data()));
                 std::cout << filename << std::endl;
                 __filename = filename;
@@ -194,10 +194,9 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
 
             // 但这里需要设定acknum
             __Acknum = d->get_seq() + d->get_datalen();
-            std::cout << "ACKnum is " << __Acknum << " Seqnum is " << __Seqnum << std::endl;
-            std::cout << "Passed in seqnum is " << d->get_seq() << " Passed in datalen is " << d->get_datalen() << std::endl;
+            // std::cout << "ACKnum is " << __Acknum << " Seqnum is " << __Seqnum << std::endl;
+            // std::cout << "Passed in seqnum is " << d->get_seq() << " Passed in datalen is " << d->get_datalen() << std::endl;
             // acknowledge(d->get_ack());
-
             std::string log = "Acknowledge First Handshake";
             add_log(log);
             delete d;
