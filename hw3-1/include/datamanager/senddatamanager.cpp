@@ -146,7 +146,7 @@ uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     std::cout << "Seqnum is " << __Seqnum << std::endl;
 
     // 在生成对应的后，我们将seq += datalen，于是接收到的确认号其实就是seq+1
-    if ((flag & ACK) != ACK || (flag & SYNC) == SYNC)
+    if ((flag & TRANS) == TRANS || (flag & SYNC) == SYNC || (flag & START) == START)
     {
         __Seqnum += datalen;
         seq2data[__Seqnum] = d;

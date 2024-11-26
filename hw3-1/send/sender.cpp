@@ -196,6 +196,7 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
     // 确保flag是TRANS或者START
     assert(flag == START || flag == TRANS);
     uint8_t *Data = __sdm.get_package(flag, d, __windowsize, dlen);
+    std::cout << "len is " << dlen << std::endl;
     sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
 
     int cnt = 0;
@@ -214,7 +215,9 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
         if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
         {
             cnt++;
+            std::cout << std::endl;
             std::cout << "Timeout , retry " << cnt << " time " << std::endl;
+            std::cout << std::endl;
             sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
             starttime = std::chrono::steady_clock::now();
         }

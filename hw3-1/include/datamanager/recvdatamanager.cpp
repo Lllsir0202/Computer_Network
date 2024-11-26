@@ -48,6 +48,7 @@ void recvdatamanager::acknowledge(uint32_t acknum)
 {
     if (seq2data.find(acknum) == seq2data.end())
     {
+        std::cout << "Acknum is " << acknum << std::endl;
         std::string error = "ERROR: Cannot find data to be acquired ";
         std::cout << error << std::endl;
         return;
@@ -159,7 +160,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 __filepath = __path + filename;
                 __packagenum = 0;
                 fileout.close();
-                fileout.open(__filepath.c_str(), std::ios::app | std::ios::out | std::ios::binary);
+                fileout.open(__filepath.c_str(), std::ios::out | std::ios::binary);
                 if (!fileout.is_open())
                 {
                     std::cout << "error, failed to accept " << std::endl;
@@ -214,8 +215,10 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             assert((d->get_flag() & ACK) == ACK);
             // std::cout << "here" << std::endl;
             //  这是对第二次握手的确认
-            acknowledge(d->get_ack());
-
+            // acknowledge(d->get_ack());
+            auto acknum = d->get_ack();
+            auto d = seq2data[acknum];
+            seq2data.erase(acknum);
             std::string log = "Acknowledge Third Handshake";
             add_log(log);
             delete d;

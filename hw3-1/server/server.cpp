@@ -19,9 +19,9 @@ int main()
 
     recv_addr.sin_family = AF_INET;
     recv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-    recv_addr.sin_port = htons(11111);
+    recv_addr.sin_port = htons(11112);
 
-    recver server(recvsocket, "127.0.0.1", 10088, MAXSIZE);
+    recver server(recvsocket, "127.0.0.1", 11111, MAXSIZE);
 
     if (bind(recvsocket, (const sockaddr *)&recv_addr, sizeof(recv_addr)) == SOCKET_ERROR)
     {
