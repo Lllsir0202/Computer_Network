@@ -56,7 +56,10 @@ void data::__gen_checksum()
     }
 
     //  回卷计算
-    sum = (sum & EIGHTSIZE) + (sum >> 8);
+    while (sum > EIGHTSIZE)
+    {
+        sum = (sum & EIGHTSIZE) + (sum >> 8);
+    }
 
     // 取反赋值
     __checksum = ~sum;

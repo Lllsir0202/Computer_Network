@@ -77,7 +77,7 @@ bool senddatamanager::acknowledged(uint32_t acknum)
         __Acknum = d->get_seq() + d->get_datalen();
         // 更新下一个序列号为ack+datalen
         //__Seqnum = d->get_ack() + d->get_datalen();
-        delete d;
+        // delete d;
         return true;
     }
 }
@@ -143,13 +143,16 @@ uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     std::cout << "Seqnum is " << __Seqnum << std::endl;
 
     // 在生成对应的后，我们将seq += datalen，于是接收到的确认号其实就是seq+1
-    __Seqnum += datalen;
+    if ((flag & ACK) != ACK || (flag & (ACK | SYNC)) == (ACK | SYNC))
+    {
+        __Seqnum += datalen;
+        seq2data[__Seqnum] = d;
+    }
 
     // 当传输的是数据包的时候，需要记录
     // if ((flag & TRANS) == TRANS || (flag & START) == START)
     //{ // 保存Seqnum对应的数据包
     // 这里可以把握手挥手也存储了，这样便于重传确认
-    seq2data[__Seqnum] = d;
     //}
     return d->gen_data(raw);
 }

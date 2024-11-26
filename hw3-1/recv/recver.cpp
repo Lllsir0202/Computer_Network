@@ -176,7 +176,6 @@ void recver::Recvfrom()
 {
     socklen_t addr_len = sizeof(__send_addr);
     // 对于接收端，需要处理接收数据，并且当结束时需要调用Disconnect
-    std::cout << "here" << std::endl;
     while (1)
     {
         int d = recvfrom(__recvsocket, (char *)buff, __buffsize, 0, (struct sockaddr *)&__send_addr, &addr_len);

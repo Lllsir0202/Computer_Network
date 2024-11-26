@@ -113,9 +113,11 @@ bool recvdatamanager::__verify_data(data *d)
         }
     }
 
-    sum = (sum & EIGHTSIZE) + (sum >> 8);
+    while (sum > EIGHTSIZE)
+    {
+        sum = (sum & EIGHTSIZE) + (sum >> 8);
+    }
     sum += __checksum;
-    // std::cout << sum << std::endl;
     return (sum == EIGHTSIZE);
 }
 
@@ -128,6 +130,7 @@ uint8_t *recvdatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     // 生成对应数据包后，将seq += datalen
     __Seqnum += datalen;
     // 保存Seqnum对应的数据包
+
     seq2data[__Seqnum] = d;
     return d->gen_data(raw);
 }
@@ -155,6 +158,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 __filename = filename;
                 __filepath = __path + filename;
                 __packagenum = 0;
+                fileout.close();
                 fileout.open(__filepath.c_str(), std::ios::app | std::ios::out);
                 if (!fileout.is_open())
                 {
@@ -162,6 +166,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                     return false;
                 }
                 std::string log = "Start to accept " + __filename + " in file path: " + __filepath;
+                __Acknum = d->get_seq() + d->get_datalen();
                 add_log(log);
             }
             else if ((d->get_flag() & TRANS) == TRANS)
@@ -172,6 +177,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 std::string log = "Filename: " + __filename + " Package number: " + std::to_string(__packagenum);
                 fileout << d->get_data();
                 add_log(log);
+                __Acknum = d->get_seq() + d->get_datalen();
             }
             else if ((d->get_flag() & FIN) == FIN)
             {
@@ -180,7 +186,6 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 solve_package(pack, 3);
                 return false;
             }
-
             // 接收之后这个包就无用了
             delete d;
             return true;
@@ -223,7 +228,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             assert((d->get_flag() & FIN) == FIN);
             // 第一次挥手是发送端断开，这里不能确认
             // acknowledge(d->get_ack());
-
+            __Acknum = d->get_seq() + d->get_datalen();
             std::string log = "Acknowledge First Wave";
             add_log(log);
             delete d;
@@ -255,6 +260,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
     else
     {
         // 这里应该进行重传了，但现在还没有实现
+        std::cout << "error" << std::endl;
         return false;
         // 在这里返回false，在外面封装处理函数
     }
