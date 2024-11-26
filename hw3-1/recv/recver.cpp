@@ -160,7 +160,7 @@ void recver::Disconnect()
     }
     else
     {
-        std::string log = "Third handshake Failed ";
+        std::string log = "Third Wave Failed ";
         __rdm.add_log(log);
     }
 

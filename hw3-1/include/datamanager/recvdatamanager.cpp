@@ -118,7 +118,7 @@ bool recvdatamanager::__verify_data(data *d)
         sum = (sum & EIGHTSIZE) + (sum >> 8);
     }
     sum += __checksum;
-    return (sum == EIGHTSIZE);
+    return ((sum & EIGHTSIZE) == EIGHTSIZE);
 }
 
 uint8_t *recvdatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen)
@@ -159,7 +159,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 __filepath = __path + filename;
                 __packagenum = 0;
                 fileout.close();
-                fileout.open(__filepath.c_str(), std::ios::app | std::ios::out);
+                fileout.open(__filepath.c_str(), std::ios::app | std::ios::out | std::ios::binary);
                 if (!fileout.is_open())
                 {
                     std::cout << "error, failed to accept " << std::endl;
@@ -175,7 +175,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
                 // 将文件写回
                 __packagenum++;
                 std::string log = "Filename: " + __filename + " Package number: " + std::to_string(__packagenum);
-                fileout << d->get_data();
+                fileout.write((char *)d->get_data(), d->get_datalen());
                 add_log(log);
                 __Acknum = d->get_seq() + d->get_datalen();
             }
@@ -260,7 +260,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
     else
     {
         // 这里应该进行重传了，但现在还没有实现
-        std::cout << "error" << std::endl;
+        // std::cout << "error" << std::endl;
         return false;
         // 在这里返回false，在外面封装处理函数
     }

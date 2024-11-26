@@ -61,8 +61,9 @@ void data::__gen_checksum()
         sum = (sum & EIGHTSIZE) + (sum >> 8);
     }
 
+    uint8_t tmp = sum;
     // 取反赋值
-    __checksum = ~sum;
+    __checksum = ~tmp;
     return;
 }
 

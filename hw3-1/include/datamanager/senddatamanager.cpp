@@ -130,9 +130,12 @@ bool senddatamanager::__verify_data(data *d)
     }
 
     // 对其他部分计算然后得到八位数值，再加上校验和，应该是等于0
-    sum = (sum & EIGHTSIZE) + (sum >> 8);
+    while (sum > EIGHTSIZE)
+    {
+        sum = (sum & EIGHTSIZE) + (sum >> 8);
+    }
     sum += __checksum;
-    return (sum == EIGHTSIZE);
+    return ((sum & EIGHTSIZE) == EIGHTSIZE);
 }
 
 uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen)
@@ -143,7 +146,7 @@ uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     std::cout << "Seqnum is " << __Seqnum << std::endl;
 
     // 在生成对应的后，我们将seq += datalen，于是接收到的确认号其实就是seq+1
-    if ((flag & ACK) != ACK || (flag & (ACK | SYNC)) == (ACK | SYNC))
+    if ((flag & ACK) != ACK || (flag & SYNC) == SYNC)
     {
         __Seqnum += datalen;
         seq2data[__Seqnum] = d;
