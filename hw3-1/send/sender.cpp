@@ -5,7 +5,7 @@ sender::sender(SOCKET sendsocket, std::string recvaddr, int port, int buffsize)
 {
     __sendsocket = sendsocket;
     struct timeval timeout;
-    timeout.tv_sec = 50;
+    timeout.tv_sec = 0;
     timeout.tv_usec = 0;
     if (setsockopt(__sendsocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout)) < 0)
     {
@@ -89,7 +89,7 @@ bool sender::Connect()
     // 释放第一次数据包的空间
     delete first;
     // 这里将数据包的flag位     ACK置位
-    uint8_t *third = __sdm.get_package(ACK, (uint8_t *)_connect_.c_str(), __windowsize, (uint16_t)1);
+    uint8_t *third = __sdm.get_package(ACK, (uint8_t *)_connect_.c_str(), __windowsize, (uint16_t)1, false);
     sendto(__sendsocket, (char *)third, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
     log = "Third handshake Succeed! ";
     __sdm.add_log(log);
@@ -151,9 +151,8 @@ void sender::Disconnect()
     delete first;
 
     uint8_t *third = __sdm.get_package(ACK, (uint8_t *)_connect_.c_str(), __windowsize, (uint16_t)1);
-
     // 这里将数据包的flag位     ACK置位
-    sendto(__sendsocket, (char *)first, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
+    sendto(__sendsocket, (char *)third, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
 
     starttime = std::chrono::steady_clock::now();
     nowtime = std::chrono::steady_clock::now();
@@ -188,6 +187,8 @@ void sender::Disconnect()
     {
         __sdm.add_log("Fourth wave Failed");
     }
+
+    __sdm.add_log("Succedd to disconnect! ");
 }
 
 void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)

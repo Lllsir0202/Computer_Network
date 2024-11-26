@@ -50,6 +50,7 @@ void recvdatamanager::acknowledge(uint32_t acknum)
     {
         std::cout << "Acknum is " << acknum << std::endl;
         std::string error = "ERROR: Cannot find data to be acquired ";
+        std::cout << "seq2data first is " << seq2data.begin()->first << std::endl;
         std::cout << error << std::endl;
         return;
     }
@@ -61,7 +62,6 @@ void recvdatamanager::acknowledge(uint32_t acknum)
         auto d = seq2data[acknum];
         seq2data.erase(acknum);
         // 更新下一个序列号为对方发送的渴望得到的
-        __Acknum = d->get_seq() + d->get_datalen();
         // 更新下一个next为seq+datalen
         //__Seqnum = d->get_ack() + d->get_datalen();
         delete d;
@@ -131,7 +131,7 @@ uint8_t *recvdatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     // 生成对应数据包后，将seq += datalen
     __Seqnum += datalen;
     // 保存Seqnum对应的数据包
-
+    std::cout << "Current seqnum is " << __Seqnum << std::endl;
     seq2data[__Seqnum] = d;
     return d->gen_data(raw);
 }
@@ -232,6 +232,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             // 第一次挥手是发送端断开，这里不能确认
             // acknowledge(d->get_ack());
             __Acknum = d->get_seq() + d->get_datalen();
+            std::cout << __Acknum << std::endl;
             std::string log = "Acknowledge First Wave";
             add_log(log);
             delete d;
@@ -244,7 +245,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             assert((d->get_flag() & ACK) == ACK);
             // 第二次挥手的确认
             acknowledge(d->get_ack());
-
+            __Acknum = d->get_seq() + d->get_datalen();
             std::string log = "Acknowledge Third Wave";
             add_log(log);
             delete d;

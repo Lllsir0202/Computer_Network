@@ -74,7 +74,6 @@ bool senddatamanager::acknowledged(uint32_t acknum)
         auto d = seq2data[acknum];
         seq2data.erase(acknum);
         // 更新下一个确认号为对方发送的渴望得到的
-        __Acknum = d->get_seq() + d->get_datalen();
         // 更新下一个序列号为ack+datalen
         //__Seqnum = d->get_ack() + d->get_datalen();
         // delete d;
@@ -138,7 +137,7 @@ bool senddatamanager::__verify_data(data *d)
     return ((sum & EIGHTSIZE) == EIGHTSIZE);
 }
 
-uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen)
+uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen, bool tag)
 {
     // 首先new一个data对象
     auto d = new data();
@@ -146,7 +145,7 @@ uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     std::cout << "Seqnum is " << __Seqnum << std::endl;
 
     // 在生成对应的后，我们将seq += datalen，于是接收到的确认号其实就是seq+1
-    if ((flag & TRANS) == TRANS || (flag & SYNC) == SYNC || (flag & START) == START)
+    if (tag)
     {
         __Seqnum += datalen;
         seq2data[__Seqnum] = d;
@@ -174,7 +173,7 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
             assert((d->get_flag() & ACK) == ACK);
             // 这是对收到的接受包进行确认，从缓冲区移去
             acknowledged(d->get_ack());
-
+            __Acknum = d->get_seq() + d->get_datalen();
             std::string log = "Acknowledge package seqnum " + std::to_string(d->get_ack() - 1);
             add_log(log);
             // 确认之后这个包就无用了
@@ -189,6 +188,7 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
             assert((d->get_flag() & (SYNC | ACK)) == (SYNC | ACK));
             // 这里其实是对第一次握手的数据包的确认
             acknowledged(d->get_ack());
+            __Acknum = d->get_seq() + d->get_datalen();
             // 第二次握手应该是第一次确认号获取，但这里应该已经有了处理
             std::string log = "Acknowledge Second Handshake";
             add_log(log);
@@ -201,7 +201,7 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
         {
             assert((d->get_flag() & (FIN | ACK)) == (FIN | ACK));
             acknowledged(d->get_ack());
-
+            __Acknum = d->get_seq() + d->get_datalen();
             std::string log = "Acknowledge Second Wave";
             add_log(log);
             delete d;
@@ -214,7 +214,7 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
         {
             assert((d->get_flag() & ACK) == ACK);
             acknowledged(d->get_ack());
-
+            __Acknum = d->get_seq() + d->get_datalen();
             std::string log = "Acknowledge Fourth Wave";
             add_log(log);
             delete d;

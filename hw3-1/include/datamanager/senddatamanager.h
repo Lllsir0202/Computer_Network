@@ -40,7 +40,8 @@ public:
     // 还需要封装函数对ACK数据包进行处理，以及计算出确认序列号
 
     // 这个函数用于基于原始数据生成package
-    uint8_t *get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen);
+    // @brief tag是用来处理是否需要存储的情况
+    uint8_t *get_package(uint8_t flag, uint8_t *raw, uint32_t windowsize, uint16_t datalen, bool tag = true);
 
     // 这个函数用于基于原始数据解包package
     // @brief flag refers to which case ->

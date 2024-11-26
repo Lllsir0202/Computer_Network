@@ -52,7 +52,7 @@ private:
     struct sockaddr_in __recv_addr;
 
     // 窗体大小
-    uint32_t __windowsize;
+    uint32_t __windowsize = 0;
 
     // 缓冲区
     uint8_t *buff;

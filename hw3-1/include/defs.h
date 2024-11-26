@@ -9,7 +9,7 @@
 #define EIGHTSIZE 0XFF
 
 // 记录除了数据段外的字节数
-#define INITSIZE 17
+#define INITSIZE 16
 
 // 定义超时时间(微秒)
 #define TIMEOUT 500

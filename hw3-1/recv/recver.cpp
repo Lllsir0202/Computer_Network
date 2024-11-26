@@ -5,7 +5,7 @@ recver::recver(SOCKET recvsocket, std::string sendaddr, int port, int buffsize)
 {
     __recvsocket = recvsocket;
     struct timeval timeout;
-    timeout.tv_sec = 50;
+    timeout.tv_sec = 0;
     timeout.tv_usec = 0;
     if (setsockopt(__recvsocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout)) < 0)
     {
@@ -37,7 +37,7 @@ bool recver::Connect()
     __rdm.init_ISN();
     socklen_t addr_len = sizeof(__send_addr);
     // 对于接收端，首先应该一直接收
-    std::cout << "Waiting client connect... " << std::endl;
+    std::cout << "Waiting client connect... ISN is " << __rdm.get_ISN() << std::endl;
     auto starttime = std::chrono::steady_clock::now();
     auto nowtime = std::chrono::steady_clock::now();
     while (recvfrom(__recvsocket, (char *)buff, 1 + INITSIZE, 0, (struct sockaddr *)&__send_addr, &addr_len) == -1)
@@ -74,7 +74,7 @@ bool recver::Connect()
     starttime = std::chrono::steady_clock::now();
     while (recvfrom(__recvsocket, (char *)buff, 1 + INITSIZE, 0, (struct sockaddr *)&__send_addr, &addr_len) == -1)
     {
-        if (cnt == 10)
+        if (cnt == 5)
         {
             std::string log = "Failed to connect in Second handshake , please retry ";
             __rdm.add_log(log);
@@ -138,7 +138,7 @@ void recver::Disconnect()
             return;
         }
         // 表示需要重传，即出现了超时
-        // 这里尝试重传3次
+        // 这里尝试重传5次
         nowtime = std::chrono::steady_clock::now();
         if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
         {
@@ -150,13 +150,12 @@ void recver::Disconnect()
         }
     }
 
-    log = "Third Wave Succeed! ";
-    __rdm.add_log(log);
     cnt = 0;
     // 对接收到的数据包进行处理，这里应该判断是不是ACK+SYN
     if (__rdm.solve_package(buff, 4))
     {
-        // std::cout << "Second handshake Succeed! " << std::endl;
+        log = "Third Wave Succeed! ";
+        __rdm.add_log(log);
     }
     else
     {
@@ -170,6 +169,7 @@ void recver::Disconnect()
     sendto(__recvsocket, (char *)fourth, 1 + INITSIZE, 0, (struct sockaddr *)&__send_addr, addr_len);
     __rdm.add_log("Fourth wave Succeed!");
     delete fourth;
+    __rdm.add_log("Succeed to disconnect!");
 }
 
 void recver::Recvfrom()
