@@ -4,13 +4,11 @@
 sender::sender(SOCKET sendsocket, std::string recvaddr, int port, int buffsize)
 {
     __sendsocket = sendsocket;
-    struct timeval timeout;
-    timeout.tv_sec = 0;
-    timeout.tv_usec = 0;
-    if (setsockopt(__sendsocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout)) < 0)
+    u_long mode = 1; // 非阻塞模式
+    if (ioctlsocket(__sendsocket, FIONBIO, &mode) != 0)
     {
-        perror("setsockopt failed");
-        closesocket(sendsocket);
+        perror("ioctlsocket failed");
+        closesocket(__sendsocket);
         WSACleanup();
     }
 
@@ -218,6 +216,7 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
             cnt++;
             std::cout << std::endl;
             std::cout << "Timeout , retry " << cnt << " time " << std::endl;
+            std::string log = "Timeout , retry " + std::to_string(cnt) + " time ";
             std::cout << std::endl;
             sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
             starttime = std::chrono::steady_clock::now();

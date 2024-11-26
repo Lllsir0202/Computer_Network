@@ -4,12 +4,10 @@
 recver::recver(SOCKET recvsocket, std::string sendaddr, int port, int buffsize)
 {
     __recvsocket = recvsocket;
-    struct timeval timeout;
-    timeout.tv_sec = 0;
-    timeout.tv_usec = 0;
-    if (setsockopt(__recvsocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout)) < 0)
+    u_long mode = 1; // 非阻塞模式
+    if (ioctlsocket(__recvsocket, FIONBIO, &mode) != 0)
     {
-        perror("setsockopt failed");
+        perror("ioctlsocket failed");
         closesocket(__recvsocket);
         WSACleanup();
     }
@@ -83,7 +81,7 @@ bool recver::Connect()
         // 表示需要重传，即出现了超时
         // 这里尝试重传5次
         nowtime = std::chrono::steady_clock::now();
-        if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
+        if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 2)
         {
             cnt++;
             std::string log = "Second handshake timeout try " + std::to_string(cnt) + " time " + " Times passed " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(nowtime - starttime).count()) + "ms";
@@ -140,7 +138,7 @@ void recver::Disconnect()
         // 表示需要重传，即出现了超时
         // 这里尝试重传5次
         nowtime = std::chrono::steady_clock::now();
-        if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
+        if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 2)
         {
             cnt++;
             std::string log = "Third Wave timeout try " + std::to_string(cnt) + " time " + " Times passed " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(nowtime - starttime).count()) + "ms";
