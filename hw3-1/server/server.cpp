@@ -1,6 +1,6 @@
 #include "../recv/recver.h"
-#define MAXSIZE 2000
-#define READSIZE 1500
+#define MAXSIZE 10000
+#define READSIZE 8000
 
 int main()
 {

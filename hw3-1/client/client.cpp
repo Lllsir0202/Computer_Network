@@ -1,6 +1,7 @@
 #include "sender.h"
-#define MAXSIZE 2000
-#define READSIZE 1500
+#include "../include/throughoutput.h"
+#define MAXSIZE 10000
+#define READSIZE 8000
 
 int sendfile()
 {
@@ -87,6 +88,7 @@ int main()
     }
 
     std::string filename;
+    throughoutputMonitor output;
     while (1)
     {
         int file = sendfile();
@@ -109,11 +111,15 @@ int main()
             {
                 std::cout << "Fail to open " + filepath + "\n";
             }
+            output.Start();
             while (filein.read((char *)buff, READSIZE))
             {
+                output.AddBytes(READSIZE);
                 client.Sendto(buff, READSIZE, TRANS);
             }
+            output.AddBytes(filein.gcount());
             client.Sendto(buff, filein.gcount(), TRANS);
+            output.Stop();
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";
@@ -131,11 +137,15 @@ int main()
             {
                 std::cout << "Fail to open " + filepath + "\n";
             }
+            output.Start();
             while (filein.read((char *)buff, READSIZE))
             {
+                output.AddBytes(READSIZE);
                 client.Sendto(buff, READSIZE, TRANS);
             }
+            output.AddBytes(filein.gcount());
             client.Sendto(buff, filein.gcount(), TRANS);
+            output.Stop();
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";
@@ -153,11 +163,15 @@ int main()
             {
                 std::cout << "Fail to open " + filepath + "\n";
             }
+            output.Start();
             while (filein.read((char *)buff, READSIZE))
             {
+                output.AddBytes(READSIZE);
                 client.Sendto(buff, READSIZE, TRANS);
             }
+            output.AddBytes(filein.gcount());
             client.Sendto(buff, filein.gcount(), TRANS);
+            output.Stop();
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";
@@ -175,11 +189,15 @@ int main()
             {
                 std::cout << "Fail to open " + filepath + "\n";
             }
+            output.Start();
             while (filein.read((char *)buff, READSIZE))
             {
+                output.AddBytes(READSIZE);
                 client.Sendto(buff, READSIZE, TRANS);
             }
+            output.AddBytes(filein.gcount());
             client.Sendto(buff, filein.gcount(), TRANS);
+            output.AddBytes(READSIZE);
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";
