@@ -91,13 +91,13 @@ int main()
     throughoutputMonitor output;
     while (1)
     {
+        Sleep(100);
         int file = sendfile();
         if (file == 5)
         {
             break;
         }
         std::string filepath;
-
         client.Start();
         switch (file)
         {
@@ -198,7 +198,7 @@ int main()
             }
             output.AddBytes(filein.gcount());
             client.Sendto(buff, filein.gcount(), TRANS);
-            output.AddBytes(READSIZE);
+            output.Stop();
             filein.close();
 
             std::string log = "File " + filepath + " succeed to trans ";
@@ -208,10 +208,9 @@ int main()
         default:
             break;
         }
+        Sleep(100);
         client.Stop();
-        std::cout << "hereh" << std::endl;
     }
-
     // 断开
     client.Disconnect();
     // 关闭socket

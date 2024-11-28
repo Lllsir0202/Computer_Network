@@ -198,20 +198,20 @@ void sender::Disconnect()
 // 在这里我们对于发送握手和挥手的时候，还是采用停等机制，对于传输数据时，我们重写函数Sendto，用于传输数据时的滑动窗口
 void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
 {
-    if (__sdm.get_seq2data_size() < 5)
+    if (__sdm.get_seq2data_size() < 33)
     {
         Lock();
         socklen_t addr_len = sizeof(__recv_addr);
         // 确保flag是TRANS或者START
         assert(flag == START || flag == TRANS);
         uint8_t *Data = __sdm.get_package(flag, d, __windowsize, dlen);
-        Unlock();
         std::cout << "len is " << dlen << std::endl;
         sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
+        Unlock();
         Sleep(10);
     }
     // 当现在的缓冲区等于最大值时
-    while (__sdm.get_seq2data_size() == 5)
+    while (__sdm.get_seq2data_size() == 32)
     {
         // 用适度的吞吐下降换取避免忙等待
         // std::cout << "123" << std::endl;
@@ -221,13 +221,6 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
 
 void sender::Recv()
 {
-    u_long mode = 1; // 非阻塞模式
-    if (ioctlsocket(__sendsocket, FIONBIO, &mode) != 0)
-    {
-        perror("ioctlsocket failed");
-        closesocket(__sendsocket);
-        WSACleanup();
-    }
     // 当正在运行时并且seq不为空
     while (is_Running)
     {
@@ -238,6 +231,7 @@ void sender::Recv()
             break;
         }
         Unlock();
+    L:
         socklen_t addr_len = sizeof(__recv_addr);
         int cnt = 0;
         auto starttime = std::chrono::steady_clock::now();
@@ -270,7 +264,6 @@ void sender::Recv()
                     Data = d->gen_data(d->get_data());
                 }
                 __sdm.clear_cnt();
-                Unlock();
                 if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
                 {
                     // 当超时并且为空时，退出
@@ -296,6 +289,7 @@ void sender::Recv()
                     std::cout << std::endl;
                 }
                 sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
+                Unlock();
                 delete Data;
                 starttime = std::chrono::steady_clock::now();
             }
@@ -315,4 +309,10 @@ void sender::Recv()
         }
         Unlock();
     }
+    // 当不为空时，需要继续接收
+    if (!__sdm.if_empty())
+    {
+        goto L;
+    }
+    Sleep(100);
 }

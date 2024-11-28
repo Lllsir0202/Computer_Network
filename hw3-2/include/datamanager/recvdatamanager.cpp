@@ -270,13 +270,6 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         break;
         }
     }
-    else
-    {
-        // 这里应该进行重传了，但现在还没有实现
-        // std::cout << "error" << std::endl;
-        return false;
-        // 在这里返回false，在外面封装处理函数
-    }
     return true;
 }
 

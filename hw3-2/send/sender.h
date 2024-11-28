@@ -59,16 +59,16 @@ public:
     {
         if (is_Running)
         {
+            is_Running = false;
             if (__recv_thread.joinable())
             {
                 __recv_thread.join();
             }
-            is_Running = false;
         }
     }
 
-    void Lock(){mtx.lock();}
-    void Unlock(){mtx.unlock();}
+    void Lock() { mtx.lock(); }
+    void Unlock() { mtx.unlock(); }
 
 private:
     senddatamanager __sdm;
