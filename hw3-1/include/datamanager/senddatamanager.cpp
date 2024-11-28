@@ -172,7 +172,12 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
         { // 确认这是一个确认数据包
             assert((d->get_flag() & ACK) == ACK);
             // 这是对收到的接受包进行确认，从缓冲区移去
-            acknowledged(d->get_ack());
+            bool flag = acknowledged(d->get_ack());
+            if (!flag)
+            {
+                delete d;
+                return false;
+            }
             __Acknum = d->get_seq() + d->get_datalen();
             std::string log = "Acknowledge package seqnum " + std::to_string(d->get_ack() - 1);
             add_log(log);
