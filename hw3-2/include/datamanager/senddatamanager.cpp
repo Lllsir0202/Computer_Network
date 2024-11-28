@@ -49,10 +49,7 @@ bool senddatamanager::verify(uint32_t acknum)
     if (seq2data.find(acknum) == seq2data.end())
     {
         // 这里采取三次快速重传，添加变量记录
-        if (acknum == seq2data.begin()->first - seq2data.begin()->second->get_datalen())
-        {
-            __cnt++;
-        }
+        __cnt++;
         return true;
     }
     else
@@ -68,7 +65,9 @@ bool senddatamanager::acknowledged(uint32_t acknum)
     if (seq2data.find(acknum) == seq2data.end())
     {
         // 如果确认号是当前包的上一个数据包，
-        std::cout << "here" << std::endl;
+        // std::cout << "here" << std::endl;
+        // std::cout << acknum << std::endl;
+        // std::cout << seq2data.begin()->first << std::endl;
     }
     else
     {
@@ -78,7 +77,7 @@ bool senddatamanager::acknowledged(uint32_t acknum)
         // 更新下一个确认号为对方发送的渴望得到的
         // 更新下一个序列号为ack+datalen
         //__Seqnum = d->get_ack() + d->get_datalen();
-        delete d;
+        // delete d;
     }
     return true;
 }
@@ -164,6 +163,7 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
 {
     auto d = new data;
     d->regen_data(pack);
+    std::cout << "accept ack is " << d->get_ack() << std::endl;
     // 对于收到的包进行解包，然后进行差错检验
     if (verify(d->get_ack()))
     { // 标识差错检测通过

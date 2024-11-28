@@ -209,6 +209,7 @@ int main()
             break;
         }
         client.Stop();
+        std::cout << "hereh" << std::endl;
     }
 
     // 断开

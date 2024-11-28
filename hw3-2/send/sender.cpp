@@ -201,12 +201,10 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
     if (__sdm.get_seq2data_size() < 5)
     {
         Lock();
-        std::cout << "111" << std::endl;
         socklen_t addr_len = sizeof(__recv_addr);
         // 确保flag是TRANS或者START
         assert(flag == START || flag == TRANS);
         uint8_t *Data = __sdm.get_package(flag, d, __windowsize, dlen);
-        std::cout << "111" << std::endl;
         Unlock();
         std::cout << "len is " << dlen << std::endl;
         sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
@@ -216,25 +214,38 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
     while (__sdm.get_seq2data_size() == 5)
     {
         // 用适度的吞吐下降换取避免忙等待
-        std::cout << "123" << std::endl;
+        // std::cout << "123" << std::endl;
         Sleep(10);
     }
 }
 
 void sender::Recv()
 {
-    // 当正在运行时并且seq不为空
-    while (is_Running && !__sdm.if_empty())
+    u_long mode = 1; // 非阻塞模式
+    if (ioctlsocket(__sendsocket, FIONBIO, &mode) != 0)
     {
-        std::cout << "111" << std::endl;
+        perror("ioctlsocket failed");
+        closesocket(__sendsocket);
+        WSACleanup();
+    }
+    // 当正在运行时并且seq不为空
+    while (is_Running)
+    {
+        Lock();
+        if (__sdm.if_empty() && !is_Running)
+        {
+            Unlock();
+            break;
+        }
+        Unlock();
         socklen_t addr_len = sizeof(__recv_addr);
         int cnt = 0;
         auto starttime = std::chrono::steady_clock::now();
         auto nowtime = std::chrono::steady_clock::now();
         // 这里修改为当没接收到并且缓冲池不为空时，不然会出现没有发数据，但等待接收的情况
-        while ((recvfrom(__sendsocket, (char *)recvbuff, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, &addr_len) == -1) && !__sdm.if_empty())
+        while (recvfrom(__sendsocket, (char *)recvbuff, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, &addr_len) == -1 && is_Running)
         {
-            std::cout << "222" << std::endl;
+            // sstd::cout << "222" << std::endl;
 
             if (cnt == 5)
             {
@@ -249,13 +260,24 @@ void sender::Recv()
                 cnt++;
                 // 清空cnt记录的接收到ack数目
                 Lock();
-                auto d = __sdm.get_first_data();
-                uint16_t dlen = d->get_datalen();
-                uint8_t *Data = d->gen_data(d->get_data());
+                data *d;
+                uint16_t dlen;
+                uint8_t *Data;
+                if (!__sdm.if_empty())
+                {
+                    d = __sdm.get_first_data();
+                    dlen = d->get_datalen();
+                    Data = d->gen_data(d->get_data());
+                }
                 __sdm.clear_cnt();
                 Unlock();
                 if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
                 {
+                    // 当超时并且为空时，退出
+                    if (__sdm.if_empty())
+                    {
+                        break;
+                    }
                     std::cout << std::endl;
                     std::string log = "Timeout , retry " + std::to_string(cnt) + " time ";
                     __sdm.add_log(log);
@@ -263,6 +285,11 @@ void sender::Recv()
                 }
                 else
                 {
+                    // 当超时并且为空时，退出
+                    if (__sdm.if_empty())
+                    {
+                        break;
+                    }
                     std::cout << std::endl;
                     std::string log = "Acknowledge 3 times acknum of last package , retry " + std::to_string(cnt) + " time ";
                     __sdm.add_log(log);
@@ -272,17 +299,13 @@ void sender::Recv()
                 delete Data;
                 starttime = std::chrono::steady_clock::now();
             }
-            Sleep(10);
-            if (__sdm.if_empty())
-            {
-                Sleep(1000);
-            }
         }
         cnt = 0;
-        std::cout << "333" << std::endl;
-        // std::lock_guard<std::mutex> lock(mtx);
+        // std::cout << "333" << std::endl;
+        // std::cout << "current first data seqnum " << __sdm.get_first_data()->get_seq() << std::endl;
         // 对接收到的数据包进行处理，这里应该判断是不是ACK
-        if (__sdm.solve_package(buff, 0))
+        Lock();
+        if (__sdm.solve_package(recvbuff, 0))
         {
             std::cout << "Seqnum " << __sdm.get_SEQ() << " Transmit Succeed! " << std::endl;
         }
@@ -290,7 +313,6 @@ void sender::Recv()
         {
             std::cout << "Transmit Failed " << std::endl;
         }
-        // std::lock_guard<std::mutex> Unlock(mtx);
-        Sleep(10);
+        Unlock();
     }
 }
