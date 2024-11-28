@@ -231,7 +231,6 @@ void sender::Recv()
             break;
         }
         Unlock();
-    L:
         socklen_t addr_len = sizeof(__recv_addr);
         int cnt = 0;
         auto starttime = std::chrono::steady_clock::now();
@@ -249,7 +248,7 @@ void sender::Recv()
             // 表示需要重传，即出现了超时
             // 这里尝试重传5次
             nowtime = std::chrono::steady_clock::now();
-            if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1 || __sdm.get_cnt() == 3)
+            if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 500 || __sdm.get_cnt() == 3)
             {
                 cnt++;
                 // 清空cnt记录的接收到ack数目
@@ -260,11 +259,17 @@ void sender::Recv()
                 if (!__sdm.if_empty())
                 {
                     d = __sdm.get_first_data();
+                    std::cout << "current data begin seq is " << __sdm.get_first_data()->get_seq() << std::endl;
                     dlen = d->get_datalen();
                     Data = d->gen_data(d->get_data());
                 }
+                else
+                {
+                    Unlock();
+                    break;
+                }
                 __sdm.clear_cnt();
-                if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
+                if (std::chrono::duration_cast<std::chrono::milliseconds>(nowtime - starttime).count() >= 500)
                 {
                     // 当超时并且为空时，退出
                     if (__sdm.if_empty())
@@ -281,6 +286,7 @@ void sender::Recv()
                     // 当超时并且为空时，退出
                     if (__sdm.if_empty())
                     {
+                        Unlock();
                         break;
                     }
                     std::cout << std::endl;
@@ -308,11 +314,6 @@ void sender::Recv()
             std::cout << "Transmit Failed " << std::endl;
         }
         Unlock();
-    }
-    // 当不为空时，需要继续接收
-    if (!__sdm.if_empty())
-    {
-        goto L;
     }
     Sleep(100);
 }

@@ -208,7 +208,7 @@ int main()
         default:
             break;
         }
-        Sleep(100);
+        //Sleep(100);
         client.Stop();
     }
     // 断开
