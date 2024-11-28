@@ -21,13 +21,19 @@ sender::sender(SOCKET sendsocket, std::string recvaddr, int port, int buffsize)
     __recv_addr.sin_port = htons(port);
     __recv_addr.sin_addr.s_addr = inet_addr(recvaddr.c_str());
     buff = new uint8_t[buffsize];
+    recvbuff = new uint8_t[1 + INITSIZE];
+
+    // Add in 3-2
+    is_Running = false;
 }
 
 sender::~sender()
 {
+    Stop();
     closesocket(__sendsocket);
     WSACleanup();
     delete[] buff;
+    delete[] recvbuff;
 }
 
 bool sender::Connect()
@@ -189,50 +195,102 @@ void sender::Disconnect()
     __sdm.add_log("Succedd to disconnect! ");
 }
 
+// 在这里我们对于发送握手和挥手的时候，还是采用停等机制，对于传输数据时，我们重写函数Sendto，用于传输数据时的滑动窗口
 void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
 {
-    socklen_t addr_len = sizeof(__recv_addr);
-    // 确保flag是TRANS或者START
-    assert(flag == START || flag == TRANS);
-    uint8_t *Data = __sdm.get_package(flag, d, __windowsize, dlen);
-    std::cout << "len is " << dlen << std::endl;
-    sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
-
-L:
-    int cnt = 0;
-    auto starttime = std::chrono::steady_clock::now();
-    auto nowtime = std::chrono::steady_clock::now();
-    while (recvfrom(__sendsocket, (char *)buff, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, &addr_len) == -1)
+    if (__sdm.get_seq2data_size() < 5)
     {
-        if (cnt == 5)
-        {
-            std::cout << "Failed to recv ACK , please retry " << std::endl;
-            return;
-        }
-        // 表示需要重传，即出现了超时
-        // 这里尝试重传5次
-        nowtime = std::chrono::steady_clock::now();
-        if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
-        {
-            cnt++;
-            std::cout << std::endl;
-            std::cout << "Timeout , retry " << cnt << " time " << std::endl;
-            std::string log = "Timeout , retry " + std::to_string(cnt) + " time ";
-            std::cout << std::endl;
-            sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
-            starttime = std::chrono::steady_clock::now();
-        }
+        Lock();
+        std::cout << "111" << std::endl;
+        socklen_t addr_len = sizeof(__recv_addr);
+        // 确保flag是TRANS或者START
+        assert(flag == START || flag == TRANS);
+        uint8_t *Data = __sdm.get_package(flag, d, __windowsize, dlen);
+        std::cout << "111" << std::endl;
+        Unlock();
+        std::cout << "len is " << dlen << std::endl;
+        sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
+        Sleep(10);
     }
-
-    cnt = 0;
-    // 对接收到的数据包进行处理，这里应该判断是不是ACK
-    if (__sdm.solve_package(buff, 0))
+    // 当现在的缓冲区等于最大值时
+    while (__sdm.get_seq2data_size() == 5)
     {
-        std::cout << "Transmit Succeed! " << std::endl;
+        // 用适度的吞吐下降换取避免忙等待
+        std::cout << "123" << std::endl;
+        Sleep(10);
     }
-    else
+}
+
+void sender::Recv()
+{
+    // 当正在运行时并且seq不为空
+    while (is_Running && !__sdm.if_empty())
     {
-        std::cout << "Transmit Failed " << std::endl;
-        goto L;
+        std::cout << "111" << std::endl;
+        socklen_t addr_len = sizeof(__recv_addr);
+        int cnt = 0;
+        auto starttime = std::chrono::steady_clock::now();
+        auto nowtime = std::chrono::steady_clock::now();
+        // 这里修改为当没接收到并且缓冲池不为空时，不然会出现没有发数据，但等待接收的情况
+        while ((recvfrom(__sendsocket, (char *)recvbuff, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, &addr_len) == -1) && !__sdm.if_empty())
+        {
+            std::cout << "222" << std::endl;
+
+            if (cnt == 5)
+            {
+                std::cout << "Failed to recv ACK , please retry " << std::endl;
+                return;
+            }
+            // 表示需要重传，即出现了超时
+            // 这里尝试重传5次
+            nowtime = std::chrono::steady_clock::now();
+            if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1 || __sdm.get_cnt() == 3)
+            {
+                cnt++;
+                // 清空cnt记录的接收到ack数目
+                Lock();
+                auto d = __sdm.get_first_data();
+                uint16_t dlen = d->get_datalen();
+                uint8_t *Data = d->gen_data(d->get_data());
+                __sdm.clear_cnt();
+                Unlock();
+                if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 1)
+                {
+                    std::cout << std::endl;
+                    std::string log = "Timeout , retry " + std::to_string(cnt) + " time ";
+                    __sdm.add_log(log);
+                    std::cout << std::endl;
+                }
+                else
+                {
+                    std::cout << std::endl;
+                    std::string log = "Acknowledge 3 times acknum of last package , retry " + std::to_string(cnt) + " time ";
+                    __sdm.add_log(log);
+                    std::cout << std::endl;
+                }
+                sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
+                delete Data;
+                starttime = std::chrono::steady_clock::now();
+            }
+            Sleep(10);
+            if (__sdm.if_empty())
+            {
+                Sleep(1000);
+            }
+        }
+        cnt = 0;
+        std::cout << "333" << std::endl;
+        // std::lock_guard<std::mutex> lock(mtx);
+        // 对接收到的数据包进行处理，这里应该判断是不是ACK
+        if (__sdm.solve_package(buff, 0))
+        {
+            std::cout << "Seqnum " << __sdm.get_SEQ() << " Transmit Succeed! " << std::endl;
+        }
+        else
+        {
+            std::cout << "Transmit Failed " << std::endl;
+        }
+        // std::lock_guard<std::mutex> Unlock(mtx);
+        Sleep(10);
     }
 }

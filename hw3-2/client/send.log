@@ -1,0 +1,445 @@
+First handshake timeout try 1 time  Times passed 1000ms
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+File ./helloworld.txt succeed to trans 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+File ./helloworld.txt succeed to trans 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+File ./helloworld.txt succeed to trans 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge 3 times acknum of last package , retry 1 time 
+Acknowledge 3 times acknum of last package , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+Timeout , retry 1 time 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 39405
+Acknowledge package seqnum 39405
+Acknowledge package seqnum 39405
+Acknowledge package seqnum 39405
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+Timeout , retry 1 time 
+Acknowledge package seqnum 39405
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 44321
+Acknowledge package seqnum 44321
+Acknowledge package seqnum 44321
+Acknowledge package seqnum 44321
+Acknowledge package seqnum 44321
+Timeout , retry 1 time 
+Acknowledge package seqnum 44321
+Timeout , retry 1 time 
+Acknowledge package seqnum 44321
+Timeout , retry 1 time 
+Acknowledge package seqnum 44321
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 55620
+Acknowledge package seqnum 55620
+Acknowledge package seqnum 55620
+Acknowledge package seqnum 55620
+Acknowledge package seqnum 55620
+Timeout , retry 1 time 
+Acknowledge package seqnum 55620
+Timeout , retry 1 time 
+Acknowledge package seqnum 55620
+Timeout , retry 1 time 
+Acknowledge package seqnum 55620
+Timeout , retry 1 time 
+Acknowledge package seqnum 55620
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 40671
+Acknowledge package seqnum 40671
+Acknowledge package seqnum 40671
+Acknowledge package seqnum 40671
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+Timeout , retry 1 time 
+Acknowledge package seqnum 40671
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 38803
+Acknowledge package seqnum 38803
+Acknowledge package seqnum 38803
+Acknowledge package seqnum 38803
+Acknowledge package seqnum 38803
+Timeout , retry 1 time 
+Acknowledge package seqnum 38803
+Timeout , retry 1 time 
+Acknowledge package seqnum 38803
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 44914
+Acknowledge package seqnum 44914
+Acknowledge package seqnum 44914
+Acknowledge package seqnum 44914
+Acknowledge package seqnum 44914
+Timeout , retry 1 time 
+Acknowledge package seqnum 44914
+Timeout , retry 1 time 
+Acknowledge package seqnum 44914
+Timeout , retry 1 time 
+Acknowledge package seqnum 44914
+Timeout , retry 1 time 
+Acknowledge package seqnum 44914
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 41013
+Acknowledge package seqnum 41013
+Acknowledge package seqnum 41013
+Acknowledge 3 times acknum of last package , retry 1 time 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 57594
+Acknowledge package seqnum 57594
+Acknowledge package seqnum 57594
+Acknowledge 3 times acknum of last package , retry 1 time 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 57164
+Acknowledge package seqnum 57164
+Acknowledge package seqnum 57164
+Acknowledge package seqnum 57164
+Acknowledge package seqnum 57164
+Timeout , retry 1 time 
+Acknowledge package seqnum 57164
+Timeout , retry 1 time 
+Acknowledge package seqnum 57164
+Timeout , retry 1 time 
+Acknowledge package seqnum 57164
+Timeout , retry 1 time 
+Acknowledge package seqnum 57164
+Timeout , retry 1 time 
+Acknowledge package seqnum 57164
+Timeout , retry 1 time 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 14518
+Acknowledge package seqnum 14518
+Acknowledge package seqnum 14518
+Acknowledge package seqnum 14518
+Acknowledge package seqnum 14518
+Timeout , retry 1 time 
+Acknowledge package seqnum 14518
+Timeout , retry 1 time 
+Acknowledge package seqnum 14518
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 60839
+Acknowledge package seqnum 60839
+Acknowledge package seqnum 60839
+Acknowledge package seqnum 60839
+Acknowledge package seqnum 60839
+Timeout , retry 1 time 
+Acknowledge package seqnum 60839
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Timeout , retry 1 time 
+Acknowledge package seqnum 40326
+Timeout , retry 1 time 
+Acknowledge package seqnum 40326
+Timeout , retry 1 time 
+Timeout , retry 2 time 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 13352
+Acknowledge package seqnum 13352
+Acknowledge package seqnum 13352
+Acknowledge package seqnum 13352
+Acknowledge package seqnum 13352
+Timeout , retry 1 time 
+Acknowledge package seqnum 13352
+Timeout , retry 1 time 
+Acknowledge package seqnum 13352
+Timeout , retry 1 time 
+Acknowledge package seqnum 13352
+Timeout , retry 1 time 
+Acknowledge package seqnum 13352
+Timeout , retry 1 time 
+Acknowledge package seqnum 13352
+Timeout , retry 1 time 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 26374
+Acknowledge package seqnum 26374
+Acknowledge package seqnum 26374
+Acknowledge package seqnum 26374
+Acknowledge package seqnum 26374
+Timeout , retry 1 time 
+Acknowledge package seqnum 26374
+Timeout , retry 1 time 
+Acknowledge package seqnum 26374
+Timeout , retry 1 time 
+Acknowledge package seqnum 26374
+Timeout , retry 1 time 
+Acknowledge package seqnum 26374
+Timeout , retry 1 time 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+SendSocket Failed to bind 
+SendSocket Failed to bind 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Acknowledge package seqnum 46558
+Acknowledge package seqnum 46558
+Acknowledge package seqnum 46558
+Acknowledge package seqnum 46558
+Acknowledge package seqnum 46558
+Timeout , retry 1 time 
+Acknowledge package seqnum 46558
+Timeout , retry 1 time 
+Acknowledge package seqnum 46558
+Timeout , retry 1 time 
+Acknowledge package seqnum 46558
+Timeout , retry 1 time 
+Acknowledge package seqnum 46558
+Timeout , retry 1 time 
+Acknowledge package seqnum 46558
+Timeout , retry 1 time 
+Acknowledge package seqnum 46558

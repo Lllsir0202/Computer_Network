@@ -1,0 +1,50 @@
+{
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Make client",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}\\client\\client",
+      "args": [],
+      "stopOnEntry": false,
+      "cwd": "${workspaceFolder}\\client",
+      "internalConsoleOptions": "neverOpen",
+      "preLaunchTask": "Make client"
+    },
+    {
+      "name": "Make server",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}\\server\\server",
+      "args": [],
+      "stopOnEntry": false,
+      "cwd": "${workspaceFolder}\\server",
+      "internalConsoleOptions": "neverOpen",
+      "preLaunchTask": "Make server"
+    },
+    {
+      "name": "run client",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}\\client\\client",
+      "args": [],
+      "stopOnEntry": false,
+      "cwd": "${workspaceFolder}\\client",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "run server",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}\\server\\server",
+      "args": [],
+      "stopOnEntry": false,
+      "cwd": "${workspaceFolder}\\server",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

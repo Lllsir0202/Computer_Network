@@ -4864,3 +4864,432 @@ Acknowledge Third Wave
 Third Wave Succeed! 
 Fourth wave Succeed!
 Succeed to disconnect!
+Start to accept client 
+Start to accept client 
+Acknowledge First Handshake
+Second handshake Succeed! 
+Acknowledge Third Handshake
+Succeed to connect 
+Start to accept helloworld.txt in file path: ./helloworld.txt
+Send ACK of 37867
+Filename: helloworld.txt Package number: 1
+Send ACK of 45867
+Filename: helloworld.txt Package number: 2
+Send ACK of 53867
+Filename: helloworld.txt Package number: 3
+Send ACK of 61867
+Filename: helloworld.txt Package number: 4
+Send ACK of 69867
+Filename: helloworld.txt Package number: 5
+Send ACK of 77867
+Filename: helloworld.txt Package number: 6
+Send ACK of 85867
+Filename: helloworld.txt Package number: 7
+Send ACK of 93867
+Filename: helloworld.txt Package number: 8
+Send ACK of 101867
+Filename: helloworld.txt Package number: 9
+Send ACK of 109867
+Filename: helloworld.txt Package number: 10
+Send ACK of 117867
+Filename: helloworld.txt Package number: 11
+Send ACK of 125867
+Filename: helloworld.txt Package number: 12
+Send ACK of 133867
+Filename: helloworld.txt Package number: 13
+Send ACK of 141867
+Filename: helloworld.txt Package number: 14
+Send ACK of 149867
+Filename: helloworld.txt Package number: 15
+Send ACK of 157867
+Filename: helloworld.txt Package number: 16
+Send ACK of 165867
+Filename: helloworld.txt Package number: 17
+Send ACK of 173867
+Filename: helloworld.txt Package number: 18
+Send ACK of 181867
+Filename: helloworld.txt Package number: 19
+Send ACK of 189867
+Filename: helloworld.txt Package number: 20
+Send ACK of 197867
+Filename: helloworld.txt Package number: 21
+Send ACK of 205867
+Filename: helloworld.txt Package number: 22
+Send ACK of 213867
+Filename: helloworld.txt Package number: 23
+Send ACK of 221867
+Filename: helloworld.txt Package number: 24
+Send ACK of 229867
+Filename: helloworld.txt Package number: 25
+Send ACK of 237867
+Filename: helloworld.txt Package number: 26
+Send ACK of 245867
+Filename: helloworld.txt Package number: 27
+Send ACK of 253867
+Filename: helloworld.txt Package number: 28
+Send ACK of 261867
+Filename: helloworld.txt Package number: 29
+Send ACK of 269867
+Filename: helloworld.txt Package number: 30
+Send ACK of 277867
+Filename: helloworld.txt Package number: 31
+Send ACK of 285867
+Filename: helloworld.txt Package number: 32
+Send ACK of 293867
+Filename: helloworld.txt Package number: 33
+Send ACK of 301867
+Filename: helloworld.txt Package number: 34
+Send ACK of 309867
+Filename: helloworld.txt Package number: 35
+Send ACK of 317867
+Filename: helloworld.txt Package number: 36
+Send ACK of 325867
+Filename: helloworld.txt Package number: 37
+Send ACK of 333867
+Filename: helloworld.txt Package number: 38
+Send ACK of 341867
+Filename: helloworld.txt Package number: 39
+Send ACK of 349867
+Filename: helloworld.txt Package number: 40
+Send ACK of 357867
+Filename: helloworld.txt Package number: 41
+Send ACK of 365867
+Filename: helloworld.txt Package number: 42
+Send ACK of 373867
+Filename: helloworld.txt Package number: 43
+Send ACK of 381867
+Filename: helloworld.txt Package number: 44
+Send ACK of 389867
+Filename: helloworld.txt Package number: 45
+Send ACK of 397867
+Filename: helloworld.txt Package number: 46
+Send ACK of 405867
+Filename: helloworld.txt Package number: 47
+Send ACK of 413867
+Filename: helloworld.txt Package number: 48
+Send ACK of 421867
+Filename: helloworld.txt Package number: 49
+Send ACK of 429867
+Filename: helloworld.txt Package number: 50
+Send ACK of 437867
+Filename: helloworld.txt Package number: 51
+Send ACK of 445867
+Filename: helloworld.txt Package number: 52
+Send ACK of 453867
+Filename: helloworld.txt Package number: 53
+Send ACK of 461867
+Filename: helloworld.txt Package number: 54
+Send ACK of 469867
+Filename: helloworld.txt Package number: 55
+Send ACK of 477867
+Filename: helloworld.txt Package number: 56
+Send ACK of 485867
+Filename: helloworld.txt Package number: 57
+Send ACK of 493867
+Filename: helloworld.txt Package number: 58
+Send ACK of 501867
+Filename: helloworld.txt Package number: 59
+Send ACK of 509867
+Filename: helloworld.txt Package number: 60
+Send ACK of 517867
+Filename: helloworld.txt Package number: 61
+Send ACK of 525867
+Filename: helloworld.txt Package number: 62
+Send ACK of 533867
+Filename: helloworld.txt Package number: 63
+Send ACK of 541867
+Filename: helloworld.txt Package number: 64
+Send ACK of 549867
+Filename: helloworld.txt Package number: 65
+Send ACK of 557867
+Filename: helloworld.txt Package number: 66
+Send ACK of 565867
+Filename: helloworld.txt Package number: 67
+Send ACK of 573867
+Filename: helloworld.txt Package number: 68
+Send ACK of 581867
+Filename: helloworld.txt Package number: 69
+Send ACK of 589867
+Filename: helloworld.txt Package number: 70
+Send ACK of 597867
+Filename: helloworld.txt Package number: 71
+Send ACK of 605867
+Filename: helloworld.txt Package number: 72
+Send ACK of 613867
+Filename: helloworld.txt Package number: 73
+Send ACK of 621867
+Filename: helloworld.txt Package number: 74
+Send ACK of 629867
+Filename: helloworld.txt Package number: 75
+Send ACK of 637867
+Filename: helloworld.txt Package number: 76
+Send ACK of 645867
+Filename: helloworld.txt Package number: 77
+Send ACK of 653867
+Filename: helloworld.txt Package number: 78
+Send ACK of 661867
+Filename: helloworld.txt Package number: 79
+Send ACK of 669867
+Filename: helloworld.txt Package number: 80
+Send ACK of 677867
+Filename: helloworld.txt Package number: 81
+Send ACK of 685867
+Filename: helloworld.txt Package number: 82
+Send ACK of 693867
+Filename: helloworld.txt Package number: 83
+Send ACK of 701867
+Filename: helloworld.txt Package number: 84
+Send ACK of 709867
+Filename: helloworld.txt Package number: 85
+Send ACK of 717867
+Filename: helloworld.txt Package number: 86
+Send ACK of 725867
+Filename: helloworld.txt Package number: 87
+Send ACK of 733867
+Filename: helloworld.txt Package number: 88
+Send ACK of 741867
+Filename: helloworld.txt Package number: 89
+Send ACK of 749867
+Filename: helloworld.txt Package number: 90
+Send ACK of 757867
+Filename: helloworld.txt Package number: 91
+Send ACK of 765867
+Filename: helloworld.txt Package number: 92
+Send ACK of 773867
+Filename: helloworld.txt Package number: 93
+Send ACK of 781867
+Filename: helloworld.txt Package number: 94
+Send ACK of 789867
+Filename: helloworld.txt Package number: 95
+Send ACK of 797867
+Filename: helloworld.txt Package number: 96
+Send ACK of 805867
+Filename: helloworld.txt Package number: 97
+Send ACK of 813867
+Filename: helloworld.txt Package number: 98
+Send ACK of 821867
+Filename: helloworld.txt Package number: 99
+Send ACK of 829867
+Filename: helloworld.txt Package number: 100
+Send ACK of 837867
+Filename: helloworld.txt Package number: 101
+Send ACK of 845867
+Filename: helloworld.txt Package number: 102
+Send ACK of 853867
+Filename: helloworld.txt Package number: 103
+Send ACK of 861867
+Filename: helloworld.txt Package number: 104
+Send ACK of 869867
+Filename: helloworld.txt Package number: 105
+Send ACK of 877867
+Filename: helloworld.txt Package number: 106
+Send ACK of 885867
+Filename: helloworld.txt Package number: 107
+Send ACK of 893867
+Filename: helloworld.txt Package number: 108
+Send ACK of 901867
+Filename: helloworld.txt Package number: 109
+Send ACK of 909867
+Filename: helloworld.txt Package number: 110
+Send ACK of 917867
+Filename: helloworld.txt Package number: 111
+Send ACK of 925867
+Filename: helloworld.txt Package number: 112
+Send ACK of 933867
+Filename: helloworld.txt Package number: 113
+Send ACK of 941867
+Filename: helloworld.txt Package number: 114
+Send ACK of 949867
+Filename: helloworld.txt Package number: 115
+Send ACK of 957867
+Filename: helloworld.txt Package number: 116
+Send ACK of 965867
+Filename: helloworld.txt Package number: 117
+Send ACK of 973867
+Filename: helloworld.txt Package number: 118
+Send ACK of 981867
+Filename: helloworld.txt Package number: 119
+Send ACK of 989867
+Filename: helloworld.txt Package number: 120
+Send ACK of 997867
+Filename: helloworld.txt Package number: 121
+Send ACK of 1005867
+Filename: helloworld.txt Package number: 122
+Send ACK of 1013867
+Filename: helloworld.txt Package number: 123
+Send ACK of 1021867
+Filename: helloworld.txt Package number: 124
+Send ACK of 1029867
+Filename: helloworld.txt Package number: 125
+Send ACK of 1037867
+Filename: helloworld.txt Package number: 126
+Send ACK of 1045867
+Filename: helloworld.txt Package number: 127
+Send ACK of 1053867
+Filename: helloworld.txt Package number: 128
+Send ACK of 1061867
+Filename: helloworld.txt Package number: 129
+Send ACK of 1069867
+Filename: helloworld.txt Package number: 130
+Send ACK of 1077867
+Filename: helloworld.txt Package number: 131
+Send ACK of 1085867
+Filename: helloworld.txt Package number: 132
+Send ACK of 1093867
+Filename: helloworld.txt Package number: 133
+Send ACK of 1101867
+Filename: helloworld.txt Package number: 134
+Send ACK of 1109867
+Filename: helloworld.txt Package number: 135
+Send ACK of 1117867
+Filename: helloworld.txt Package number: 136
+Send ACK of 1125867
+Filename: helloworld.txt Package number: 137
+Send ACK of 1133867
+Filename: helloworld.txt Package number: 138
+Send ACK of 1141867
+Filename: helloworld.txt Package number: 139
+Send ACK of 1149867
+Filename: helloworld.txt Package number: 140
+Send ACK of 1157867
+Filename: helloworld.txt Package number: 141
+Send ACK of 1165867
+Filename: helloworld.txt Package number: 142
+Send ACK of 1173867
+Filename: helloworld.txt Package number: 143
+Send ACK of 1181867
+Filename: helloworld.txt Package number: 144
+Send ACK of 1189867
+Filename: helloworld.txt Package number: 145
+Send ACK of 1197867
+Filename: helloworld.txt Package number: 146
+Send ACK of 1205867
+Filename: helloworld.txt Package number: 147
+Send ACK of 1213867
+Filename: helloworld.txt Package number: 148
+Send ACK of 1221867
+Filename: helloworld.txt Package number: 149
+Send ACK of 1229867
+Filename: helloworld.txt Package number: 150
+Send ACK of 1237867
+Filename: helloworld.txt Package number: 151
+Send ACK of 1245867
+Filename: helloworld.txt Package number: 152
+Send ACK of 1253867
+Filename: helloworld.txt Package number: 153
+Send ACK of 1261867
+Filename: helloworld.txt Package number: 154
+Send ACK of 1269867
+Filename: helloworld.txt Package number: 155
+Send ACK of 1277867
+Filename: helloworld.txt Package number: 156
+Send ACK of 1285867
+Filename: helloworld.txt Package number: 157
+Send ACK of 1293867
+Filename: helloworld.txt Package number: 158
+Send ACK of 1301867
+Filename: helloworld.txt Package number: 159
+Send ACK of 1309867
+Filename: helloworld.txt Package number: 160
+Send ACK of 1317867
+Filename: helloworld.txt Package number: 161
+Send ACK of 1325867
+Filename: helloworld.txt Package number: 162
+Send ACK of 1333867
+Filename: helloworld.txt Package number: 163
+Send ACK of 1341867
+Filename: helloworld.txt Package number: 164
+Send ACK of 1349867
+Filename: helloworld.txt Package number: 165
+Send ACK of 1357867
+Filename: helloworld.txt Package number: 166
+Send ACK of 1365867
+Filename: helloworld.txt Package number: 167
+Send ACK of 1373867
+Filename: helloworld.txt Package number: 168
+Send ACK of 1381867
+Filename: helloworld.txt Package number: 169
+Send ACK of 1389867
+Filename: helloworld.txt Package number: 170
+Send ACK of 1397867
+Filename: helloworld.txt Package number: 171
+Send ACK of 1405867
+Filename: helloworld.txt Package number: 172
+Send ACK of 1413867
+Filename: helloworld.txt Package number: 173
+Send ACK of 1421867
+Filename: helloworld.txt Package number: 174
+Send ACK of 1429867
+Filename: helloworld.txt Package number: 175
+Send ACK of 1437867
+Filename: helloworld.txt Package number: 176
+Send ACK of 1445867
+Filename: helloworld.txt Package number: 177
+Send ACK of 1453867
+Filename: helloworld.txt Package number: 178
+Send ACK of 1461867
+Filename: helloworld.txt Package number: 179
+Send ACK of 1469867
+Filename: helloworld.txt Package number: 180
+Send ACK of 1477867
+Filename: helloworld.txt Package number: 181
+Send ACK of 1485867
+Filename: helloworld.txt Package number: 182
+Send ACK of 1493867
+Filename: helloworld.txt Package number: 183
+Send ACK of 1501867
+Filename: helloworld.txt Package number: 184
+Send ACK of 1509867
+Filename: helloworld.txt Package number: 185
+Send ACK of 1517867
+Filename: helloworld.txt Package number: 186
+Send ACK of 1525867
+Filename: helloworld.txt Package number: 187
+Send ACK of 1533867
+Filename: helloworld.txt Package number: 188
+Send ACK of 1541867
+Filename: helloworld.txt Package number: 189
+Send ACK of 1549867
+Filename: helloworld.txt Package number: 190
+Send ACK of 1557867
+Filename: helloworld.txt Package number: 191
+Send ACK of 1565867
+Filename: helloworld.txt Package number: 192
+Send ACK of 1573867
+Filename: helloworld.txt Package number: 193
+Send ACK of 1581867
+Filename: helloworld.txt Package number: 194
+Send ACK of 1589867
+Filename: helloworld.txt Package number: 195
+Send ACK of 1597867
+Filename: helloworld.txt Package number: 196
+Send ACK of 1605867
+Filename: helloworld.txt Package number: 197
+Send ACK of 1613867
+Filename: helloworld.txt Package number: 198
+Send ACK of 1621867
+Filename: helloworld.txt Package number: 199
+Send ACK of 1629867
+Filename: helloworld.txt Package number: 200
+Send ACK of 1637867
+Filename: helloworld.txt Package number: 201
+Send ACK of 1645867
+Filename: helloworld.txt Package number: 202
+Send ACK of 1653867
+Filename: helloworld.txt Package number: 203
+Send ACK of 1661867
+Filename: helloworld.txt Package number: 204
+Send ACK of 1669867
+Filename: helloworld.txt Package number: 205
+Send ACK of 1677867
+Filename: helloworld.txt Package number: 206
+Send ACK of 1685867
+Filename: helloworld.txt Package number: 207
+Send ACK of 1693675
+Acknowledge First Wave
+Second Wave Succeed! 
+Acknowledge seqnum package 20496
+Acknowledge Third Wave
+Third Wave Succeed! 
+Fourth wave Succeed!
+Succeed to disconnect!

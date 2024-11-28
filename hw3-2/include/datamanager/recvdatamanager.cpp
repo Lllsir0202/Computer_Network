@@ -147,6 +147,15 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         {
         case 0:
         {
+            // 当接收到的数据包不是当前希望接收到的数据，那么直接丢弃这个包
+            // 虽然似乎用选择接收更经济()
+            if (d->get_seq() != __Acknum)
+            {
+                std::cout << std::endl
+                          << "Meet package lost seqnum is " << std::to_string(d->get_seq()) << " current acknum is " << std::to_string(__Acknum) << std::endl;
+                delete d;
+                return true;
+            }
             // 这里对接收端应该将这个文件写回
             // acknowledge(d->get_ack());
             // 这种情况表示这个数据包是第一个数据包
@@ -261,7 +270,13 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         break;
         }
     }
-    // 当验证失败时，不发送ack，让对方超时重传
+    else
+    {
+        // 这里应该进行重传了，但现在还没有实现
+        // std::cout << "error" << std::endl;
+        return false;
+        // 在这里返回false，在外面封装处理函数
+    }
     return true;
 }
 

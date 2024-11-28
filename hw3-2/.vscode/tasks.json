@@ -1,0 +1,88 @@
+{
+  "tasks": [
+    // C++
+    {
+      "type": "shell",
+      "label": "Make client",
+      "command": "clang++",
+      "args": [
+        "${workspaceFolder}\\include\\*.cpp",
+        "${workspaceFolder}\\include\\datamanager\\*.cpp",
+        "${workspaceFolder}\\recv\\*.cpp",
+        "${workspaceFolder}\\send\\*.cpp",
+        "${workspaceFolder}\\client\\*.cpp",
+        "-I",
+        "${workspaceFolder}\\send",
+        "${workspaceFolder}\\recv",
+        "${workspaceFolder}\\include\\datamanager",
+        "${workspaceFolder}\\include",
+        "-o",
+        "${workspaceFolder}\\client\\client.exe",
+        "-pthread",
+        "-lwsock32",
+        "-stdlib=libc++",
+        "-std=c++20",
+        "--target=x86_64-w64-mingw"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "detail": "编译client"
+    },
+    {
+      "type": "shell",
+      "label": "Make server",
+      "command": "clang++",
+      "args": [
+        "${workspaceFolder}\\include\\*.cpp",
+        "${workspaceFolder}\\include\\datamanager\\*.cpp",
+        "${workspaceFolder}\\recv\\*.cpp",
+        "${workspaceFolder}\\send\\*.cpp",
+        "${workspaceFolder}\\server\\*.cpp",
+        "-I",
+        "${workspaceFolder}\\send",
+        "${workspaceFolder}\\recv",
+        "${workspaceFolder}\\include\\datamanager",
+        "${workspaceFolder}\\include",
+        "-o",
+        "${workspaceFolder}\\server\\server.exe",
+        "-pthread",
+        "-lwsock32",
+        "-stdlib=libc++",
+        "-std=c++20",
+        "--target=x86_64-w64-mingw"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "detail": "编译server"
+    },
+  ],
+  "version": "2.0.0"
+}
