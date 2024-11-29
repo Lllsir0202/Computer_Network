@@ -98,7 +98,10 @@ int main()
             break;
         }
         std::string filepath;
-        client.Start();
+        if (file <= 3)
+        {
+            client.Start();
+        }
         switch (file)
         {
         case 1:
@@ -208,8 +211,12 @@ int main()
         default:
             break;
         }
-        //Sleep(100);
-        client.Stop();
+        // Sleep(100);
+        Sleep(100);
+        if (file <= 3)
+        {
+            client.Stop();
+        }
     }
     // 断开
     client.Disconnect();

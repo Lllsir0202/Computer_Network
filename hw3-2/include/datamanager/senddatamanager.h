@@ -84,6 +84,10 @@ public:
 
     int get_seq2data_size() { return seq2data.size(); }
 
+    auto get_seq2data_iter() { return seq2data.begin(); }
+
+    auto get_seq2data_end() { return seq2data.end(); }
+
 private:
     // 记录初始序列号
     uint32_t __ISN;

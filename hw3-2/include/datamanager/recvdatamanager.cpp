@@ -132,7 +132,10 @@ uint8_t *recvdatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     __Seqnum += datalen;
     // 保存Seqnum对应的数据包
     std::cout << "Current seqnum is " << __Seqnum << std::endl;
-    seq2data[__Seqnum] = d;
+    if ((d->get_flag() & SYNC) == SYNC || (d->get_flag() & FIN) == FIN)
+    {
+        seq2data[__Seqnum] = d;
+    }
     return d->gen_data(raw);
 }
 
@@ -270,6 +273,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         break;
         }
     }
+        std::cout << "!!!" << std::endl;
     return true;
 }
 

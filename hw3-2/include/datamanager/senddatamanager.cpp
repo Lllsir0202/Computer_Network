@@ -57,7 +57,6 @@ bool senddatamanager::verify(uint32_t acknum)
         auto d = seq2data[acknum];
         return __verify_data(d);
     }
-    return false;
 }
 
 bool senddatamanager::acknowledged(uint32_t acknum)
@@ -67,11 +66,22 @@ bool senddatamanager::acknowledged(uint32_t acknum)
         // 如果确认号是当前包的上一个数据包，
         // std::cout << "here" << std::endl;
         // std::cout << acknum << std::endl;
-        // std::cout << seq2data.begin()->first << std::endl;
+        // if (!seq2data.empty())
+        // {
+        //     std::cout << seq2data.begin()->first << std::endl;
+        // }
+        while (seq2data.begin()->first < acknum)
+        {
+            seq2data.erase(seq2data.begin()->first);
+        }
     }
     else
     {
         auto d = seq2data[acknum];
+        while (seq2data.begin()->first < acknum)
+        {
+            seq2data.erase(seq2data.begin()->first);
+        }
         seq2data.erase(acknum);
         std::cout << "current size is " << seq2data.size() << std::endl;
         // 更新下一个确认号为对方发送的渴望得到的
@@ -134,6 +144,8 @@ bool senddatamanager::__verify_data(data *d)
     {
         sum = (sum & EIGHTSIZE) + (sum >> 8);
     }
+    std::cout << "sum of data is " << (int)sum << std::endl;
+    std::cout << "__checksum is " << (int)__checksum << std::endl;
     sum += __checksum;
     return ((sum & EIGHTSIZE) == EIGHTSIZE);
 }
@@ -144,6 +156,8 @@ uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     auto d = new data();
     d->init(flag, __Acknum, __Seqnum, windowsize, datalen, raw);
     std::cout << "Seqnum is " << __Seqnum << std::endl;
+    std::cout << "Current seq2data size is " << seq2data.size() << std::endl
+              << std::endl;
     // 在生成对应的后，我们将seq += datalen，于是接收到的确认号其实就是seq+1
     if (tag)
     {
@@ -174,8 +188,9 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
             assert((d->get_flag() & ACK) == ACK);
             // 这是对收到的接受包进行确认，从缓冲区移去
             bool flag = acknowledged(d->get_ack());
-            if(!flag)
+            if (!flag)
             {
+                __Acknum = d->get_seq() + d->get_datalen();
                 delete d;
                 return false;
             }
@@ -239,6 +254,7 @@ bool senddatamanager::solve_package(uint8_t *pack, int flag)
     else
     {
         // 这里应该进行重传了，但现在还没有实现
+        std::cout << "here" << std::endl;
         return false;
         // 在这里返回false，在外面封装处理函数
     }

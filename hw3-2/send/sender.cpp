@@ -200,12 +200,12 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
 {
     if (__sdm.get_seq2data_size() < 33)
     {
-        Lock();
         socklen_t addr_len = sizeof(__recv_addr);
         // 确保flag是TRANS或者START
         assert(flag == START || flag == TRANS);
         uint8_t *Data = __sdm.get_package(flag, d, __windowsize, dlen);
         std::cout << "len is " << dlen << std::endl;
+        Lock();
         sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
         Unlock();
         Sleep(10);
@@ -215,14 +215,14 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
     {
         // 用适度的吞吐下降换取避免忙等待
         // std::cout << "123" << std::endl;
-        Sleep(10);
+        Sleep(1000);
     }
 }
 
 void sender::Recv()
 {
     // 当正在运行时并且seq不为空
-    while (is_Running)
+    while (1)
     {
         Lock();
         if (__sdm.if_empty() && !is_Running)
@@ -236,10 +236,8 @@ void sender::Recv()
         auto starttime = std::chrono::steady_clock::now();
         auto nowtime = std::chrono::steady_clock::now();
         // 这里修改为当没接收到并且缓冲池不为空时，不然会出现没有发数据，但等待接收的情况
-        while (recvfrom(__sendsocket, (char *)recvbuff, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, &addr_len) == -1 && is_Running)
+        while (recvfrom(__sendsocket, (char *)recvbuff, 1 + INITSIZE, 0, (struct sockaddr *)&__recv_addr, &addr_len) == -1)
         {
-            // sstd::cout << "222" << std::endl;
-
             if (cnt == 5)
             {
                 std::cout << "Failed to recv ACK , please retry " << std::endl;
@@ -248,26 +246,13 @@ void sender::Recv()
             // 表示需要重传，即出现了超时
             // 这里尝试重传5次
             nowtime = std::chrono::steady_clock::now();
-            if (std::chrono::duration_cast<std::chrono::seconds>(nowtime - starttime).count() >= 500 || __sdm.get_cnt() == 3)
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(nowtime - starttime).count() >= 500 || __sdm.get_cnt() >= 3)
             {
                 cnt++;
                 // 清空cnt记录的接收到ack数目
-                Lock();
                 data *d;
                 uint16_t dlen;
                 uint8_t *Data;
-                if (!__sdm.if_empty())
-                {
-                    d = __sdm.get_first_data();
-                    std::cout << "current data begin seq is " << __sdm.get_first_data()->get_seq() << std::endl;
-                    dlen = d->get_datalen();
-                    Data = d->gen_data(d->get_data());
-                }
-                else
-                {
-                    Unlock();
-                    break;
-                }
                 __sdm.clear_cnt();
                 if (std::chrono::duration_cast<std::chrono::milliseconds>(nowtime - starttime).count() >= 500)
                 {
@@ -294,8 +279,24 @@ void sender::Recv()
                     __sdm.add_log(log);
                     std::cout << std::endl;
                 }
-                sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
-                Unlock();
+                if (!__sdm.if_empty())
+                {
+                    Lock();
+                    auto it = __sdm.get_seq2data_iter();
+                    auto end = __sdm.get_seq2data_end();
+                    while (it != end)
+                    {
+                        it++;
+                        d = __sdm.get_first_data();
+                        std::cout << "current data begin seq is " << __sdm.get_first_data()->get_seq() << std::endl;
+                        std::cout << "d seqnum is " << d->get_seq() << std::endl;
+                        dlen = d->get_datalen();
+                        Data = d->gen_data(d->get_data());
+                        sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
+                    }
+                    Unlock();
+                }
+
                 delete Data;
                 starttime = std::chrono::steady_clock::now();
             }
@@ -315,5 +316,4 @@ void sender::Recv()
         }
         Unlock();
     }
-    Sleep(100);
 }

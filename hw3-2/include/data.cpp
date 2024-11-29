@@ -15,7 +15,16 @@ void data::init(uint8_t flag, uint32_t ack, uint32_t seq, uint32_t windowsize, u
     __SEQ = seq;
     __windowsize = windowsize;
     __datalen = datalen;
-    __d = d;
+    // 开辟空间保存
+    if ((__flag & START) == START || (__flag & TRANS) == TRANS)
+    {
+        __d = new uint8_t[datalen];
+        memcpy(__d, d, sizeof(uint8_t) * datalen);
+    }
+    else
+    {
+        __d = d;
+    }
     // 生成校验和
     __gen_checksum();
 }
