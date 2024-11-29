@@ -87,6 +87,19 @@ int main()
         return 1;
     }
 
+    // 设定窗口大小
+    int input_winsize = 0;
+    std::cout << "Please input window size " << std::endl;
+    std::cin >> input_winsize;
+    while (input_winsize <= 0)
+    {
+        std::cout << "Invalid input , please retry!" << std::endl;
+        std::cin >> input_winsize;
+    }
+    client.set_size(input_winsize);
+    std::string win_log = "Succeed to set window size = " + std::to_string(input_winsize);
+    client.get_sdm()->add_log(win_log);
+
     std::string filename;
     throughoutputMonitor output;
     while (1)
@@ -98,7 +111,7 @@ int main()
             break;
         }
         std::string filepath;
-        if (file <= 3)
+        if (file <= 4)
         {
             client.Start();
         }
@@ -213,7 +226,7 @@ int main()
         }
         // Sleep(100);
         Sleep(100);
-        if (file <= 3)
+        if (file <= 4)
         {
             client.Stop();
         }

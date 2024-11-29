@@ -183,7 +183,6 @@ void recver::Recvfrom()
             {
                 break;
             }
-            std::cout << "???" << std::endl;
             std::string raw = "";
             uint8_t *ack = __rdm.get_package(ACK, (uint8_t *)raw.c_str(), __windowsize, (uint16_t)1);
             sendto(__recvsocket, (char *)ack, 1 + INITSIZE, 0, (struct sockaddr *)&__send_addr, addr_len);

@@ -144,8 +144,6 @@ bool senddatamanager::__verify_data(data *d)
     {
         sum = (sum & EIGHTSIZE) + (sum >> 8);
     }
-    std::cout << "sum of data is " << (int)sum << std::endl;
-    std::cout << "__checksum is " << (int)__checksum << std::endl;
     sum += __checksum;
     return ((sum & EIGHTSIZE) == EIGHTSIZE);
 }

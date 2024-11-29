@@ -70,6 +70,11 @@ public:
     void Lock() { mtx.lock(); }
     void Unlock() { mtx.unlock(); }
 
+    void set_size(int win_size)
+    {
+        __size = win_size;
+    }
+
 private:
     senddatamanager __sdm;
 
@@ -96,4 +101,7 @@ private:
     std::thread __recv_thread;
     bool is_Running;
     std::mutex mtx;
+
+    // 用于设定窗口大小
+    int __size;
 };

@@ -198,7 +198,7 @@ void sender::Disconnect()
 // 在这里我们对于发送握手和挥手的时候，还是采用停等机制，对于传输数据时，我们重写函数Sendto，用于传输数据时的滑动窗口
 void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
 {
-    if (__sdm.get_seq2data_size() < 33)
+    if (__sdm.get_seq2data_size() <= __size)
     {
         socklen_t addr_len = sizeof(__recv_addr);
         // 确保flag是TRANS或者START
@@ -211,7 +211,7 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
         Sleep(10);
     }
     // 当现在的缓冲区等于最大值时
-    while (__sdm.get_seq2data_size() == 32)
+    while (__sdm.get_seq2data_size() > __size)
     {
         // 用适度的吞吐下降换取避免忙等待
         // std::cout << "123" << std::endl;
