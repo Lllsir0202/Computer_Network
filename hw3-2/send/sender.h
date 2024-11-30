@@ -67,6 +67,35 @@ public:
         }
     }
 
+    // 创建一个新的线程用来重传
+    // 这是线程函数
+    void Resendfunc(data *d, uint16_t dlen, uint8_t *Data, socklen_t addr_len)
+    {
+        Lock();
+        auto it = __sdm.get_seq2data_iter();
+        auto end = __sdm.get_seq2data_end();
+        while (it != end)
+        {
+            it++;
+            d = __sdm.get_first_data();
+            std::cout << "current data begin seq is " << __sdm.get_first_data()->get_seq() << std::endl;
+            std::cout << "d seqnum is " << d->get_seq() << std::endl;
+            dlen = d->get_datalen();
+            Data = d->gen_data(d->get_data());
+            sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
+        }
+        Unlock();
+    }
+
+    void Resend(data *d, uint16_t dlen, uint8_t *Data, socklen_t addr_len)
+    {
+        __resend_thread = std::thread(std::bind(&sender::Resendfunc, this, d, dlen, Data, addr_len));
+        if (__resend_thread.joinable())
+        {
+            __resend_thread.join();
+        }
+    }
+
     void Lock() { mtx.lock(); }
     void Unlock() { mtx.unlock(); }
 
@@ -99,6 +128,7 @@ private:
     // 这里的思路主要是：创建一个新的线程用来接收数据，同时对于seq2data进行确认，当seq2data.size() == SetWindowsize时
     // 我们把传输Sendto阻塞，同时在Recv函数中处理重传的情况
     std::thread __recv_thread;
+    std::thread __resend_thread;
     bool is_Running;
     std::mutex mtx;
 
