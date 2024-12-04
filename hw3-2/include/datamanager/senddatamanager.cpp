@@ -154,8 +154,7 @@ uint8_t *senddatamanager::get_package(uint8_t flag, uint8_t *raw, uint32_t windo
     auto d = new data();
     d->init(flag, __Acknum, __Seqnum, windowsize, datalen, raw);
     std::cout << "Seqnum is " << __Seqnum << std::endl;
-    std::cout << "Current seq2data size is " << seq2data.size() << std::endl
-              << std::endl;
+    std::cout << "Current seq2data size is " << seq2data.size() << std::endl;
     // 在生成对应的后，我们将seq += datalen，于是接收到的确认号其实就是seq+1
     if (tag)
     {

@@ -154,8 +154,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
             // 虽然似乎用选择接收更经济()
             if (d->get_seq() != __Acknum)
             {
-                std::cout << std::endl
-                          << "Meet package lost seqnum is " << std::to_string(d->get_seq()) << " current acknum is " << std::to_string(__Acknum) << std::endl;
+                std::cout << "Meet package lost seqnum is " << std::to_string(d->get_seq()) << " current acknum is " << std::to_string(__Acknum) << std::endl;
                 delete d;
                 return true;
             }
@@ -273,7 +272,7 @@ bool recvdatamanager::solve_package(uint8_t *pack, int flag)
         break;
         }
     }
-        std::cout << "!!!" << std::endl;
+    std::cout << "!!!" << std::endl;
     return true;
 }
 
