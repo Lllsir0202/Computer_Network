@@ -76,13 +76,12 @@ public:
         auto end = __sdm.get_seq2data_end();
         while (it != end)
         {
-            it++;
-            d = __sdm.get_first_data();
-            std::cout << "current data begin seq is " << __sdm.get_first_data()->get_seq() << std::endl;
+            d = it->second;
             std::cout << "d seqnum is " << d->get_seq() << std::endl;
             dlen = d->get_datalen();
             Data = d->gen_data(d->get_data());
             sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
+            it++;
         }
         Unlock();
     }

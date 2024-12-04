@@ -295,7 +295,7 @@ void sender::Recv()
         Lock();
         if (__sdm.solve_package(recvbuff, 0))
         {
-            std::cout << "Seqnum " << __sdm.get_SEQ() << " Transmit Succeed! " << std::endl;
+            std::cout << " Transmit Succeed! " << std::endl;
         }
         else
         {
