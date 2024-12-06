@@ -205,9 +205,9 @@ void sender::Sendto(uint8_t *d, uint16_t dlen, uint8_t flag)
         assert(flag == START || flag == TRANS);
         uint8_t *Data = __sdm.get_package(flag, d, __windowsize, dlen);
         std::cout << "len is " << dlen << std::endl;
-        Lock();
+        // Lock();
         sendto(__sendsocket, (char *)Data, dlen + INITSIZE, 0, (struct sockaddr *)&__recv_addr, addr_len);
-        Unlock();
+        // Unlock();
         Sleep(10);
     }
     // 当现在的缓冲区等于最大值时
