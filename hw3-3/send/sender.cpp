@@ -248,6 +248,10 @@ void sender::Recv()
             nowtime = std::chrono::steady_clock::now();
             if (std::chrono::duration_cast<std::chrono::milliseconds>(nowtime - starttime).count() >= 500 || __sdm.get_cnt() >= 3)
             {
+                if(get_cwnd() > 2)
+                {
+                    set_cwnd(get_cwnd() / 2);
+                }
                 cnt++;
                 // 清空cnt记录的接收到ack数目
                 data *d;
@@ -300,6 +304,23 @@ void sender::Recv()
         else
         {
             std::cout << "Transmit Failed " << std::endl;
+        }
+        if(get_size() >= get_cwnd())
+        {
+            set_flag(true);
+        }else
+        {
+            set_flag(false);
+        }
+        // 当处在快速增长时，乘2
+        if (!get_flag())
+        {
+            set_size(2 * get_size());
+        }
+        // 当处在拥塞避免时，逐一累加
+        else
+        {
+            set_size(get_size() + 1);
         }
         Unlock();
     }

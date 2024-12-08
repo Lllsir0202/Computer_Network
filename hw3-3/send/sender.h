@@ -103,6 +103,34 @@ public:
         __size = win_size;
     }
 
+    // Add in 3-3
+    // Used for set windows and avoid crowd
+
+    int get_size()
+    {
+        return __size;
+    }
+
+    void set_cwnd(int cwnd)
+    {
+        __cwnd = cwnd;
+    }
+
+    int get_cwnd()
+    {
+        return __cwnd;
+    }
+
+    void set_flag(bool flag)
+    {
+        __flag = flag;
+    }
+
+    int get_flag()
+    {
+        return __flag;
+    }
+
 private:
     senddatamanager __sdm;
 
@@ -132,5 +160,11 @@ private:
     std::mutex mtx;
 
     // 用于设定窗口大小
-    int __size;
+    int __size = 1;
+
+    // Add in 3-3
+    int __cwnd = 1;
+
+    // 表示是否在快速增长阶段
+    bool __flag = 0;
 };

@@ -89,15 +89,15 @@ int main()
 
     // 设定窗口大小
     int input_winsize = 0;
-    std::cout << "Please input window size " << std::endl;
+    std::cout << "Please set cwnd size " << std::endl;
     std::cin >> input_winsize;
     while (input_winsize <= 0)
     {
         std::cout << "Invalid input , please retry!" << std::endl;
         std::cin >> input_winsize;
     }
-    client.set_size(input_winsize);
-    std::string win_log = "Succeed to set window size = " + std::to_string(input_winsize);
+    client.set_cwnd(input_winsize);
+    std::string win_log = "Succeed to set cwnd size = " + std::to_string(input_winsize);
     client.get_sdm()->add_log(win_log);
 
     std::string filename;
