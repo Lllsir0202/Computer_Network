@@ -85,7 +85,7 @@ private:
         long long totalThroughput = 0; // 用于统计总吞吐量
         long long previousBytes = 0;
 
-        while (WaitForSingleObject(stopEvent, 1000) == WAIT_TIMEOUT)
+        while (WaitForSingleObject(stopEvent, 1) == WAIT_TIMEOUT)
         {
             long long currentBytes = totalBytes;
             long long throughput = currentBytes - previousBytes; // 计算每秒吞吐量
