@@ -88,7 +88,7 @@ private:
         while (WaitForSingleObject(stopEvent, 1) == WAIT_TIMEOUT)
         {
             long long currentBytes = totalBytes;
-            long long throughput = currentBytes - previousBytes; // 计算每秒吞吐量
+            long long throughput = currentBytes - previousBytes;
             previousBytes = currentBytes;
 
             totalThroughput += throughput; // 累计吞吐量
