@@ -248,10 +248,6 @@ void sender::Recv()
             nowtime = std::chrono::steady_clock::now();
             if (std::chrono::duration_cast<std::chrono::milliseconds>(nowtime - starttime).count() >= 500 || __sdm.get_cnt() >= 3)
             {
-                if(get_cwnd() > 2)
-                {
-                    set_cwnd(get_cwnd() / 2);
-                }
                 cnt++;
                 // 清空cnt记录的接收到ack数目
                 data *d;
@@ -269,25 +265,39 @@ void sender::Recv()
                     std::string log = "Timeout , retry " + std::to_string(cnt) + " time ";
                     __sdm.add_log(log);
                     std::cout << std::endl;
+                    Lock();
+                    // 出现了丢包，这里认为是出现了拥塞，在出现超时时，将拥塞阈值降低一半，同时设定当前窗口为1
+                    set_size(1);
+                    set_flag(true);
+                    set_cwnd(get_size() > 2 ? get_size() : 1);
+                    log = "Current window size is " + std::to_string(get_size()) + " and current cwnd size is " + std::to_string(get_cwnd());
+                    __sdm.add_log(log);
+                    Unlock();
                 }
                 else
                 {
                     // 当超时并且为空时，退出
                     if (__sdm.if_empty())
                     {
-                        Unlock();
                         break;
                     }
                     std::cout << std::endl;
                     std::string log = "Acknowledge 3 times acknum of last package , retry " + std::to_string(cnt) + " time ";
                     __sdm.add_log(log);
                     std::cout << std::endl;
+                    Lock();
+                    // 出现了丢包，这里认为是出现了拥塞，在出现3次重复ack时，将拥塞阈值降低一半，同时设定当前窗口降低一半
+                    set_size(get_size() / 2);
+                    set_flag(true);
+                    set_cwnd(get_size() > 2 ? get_size() : 1);
+                    log = "Current window size is " + std::to_string(get_size()) + " and current cwnd size is " + std::to_string(get_cwnd());
+                    __sdm.add_log(log);
+                    Unlock();
                 }
                 if (!__sdm.if_empty())
                 {
                     Resend(d, dlen, Data, addr_len);
                 }
-
                 delete Data;
                 starttime = std::chrono::steady_clock::now();
             }
@@ -305,22 +315,28 @@ void sender::Recv()
         {
             std::cout << "Transmit Failed " << std::endl;
         }
-        if(get_size() >= get_cwnd())
+        if (get_size() >= get_cwnd())
         {
             set_flag(true);
-        }else
-        {
-            set_flag(false);
         }
+        // 当进入慢启动状态后，不再重新恢复快启动
+        // else if(!get_flag())
+        // {
+        //     set_flag(false);
+        // }
         // 当处在快速增长时，乘2
         if (!get_flag())
         {
             set_size(2 * get_size());
+            std::string log = "Current window size is " + std::to_string(get_size()) + " and current cwnd size is " + std::to_string(get_cwnd());
+            __sdm.add_log(log);
         }
         // 当处在拥塞避免时，逐一累加
         else
         {
             set_size(get_size() + 1);
+            std::string log = "Current window size is " + std::to_string(get_size()) + " and current cwnd size is " + std::to_string(get_cwnd());
+            __sdm.add_log(log);
         }
         Unlock();
     }
