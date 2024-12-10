@@ -1,0 +1,960 @@
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Succeed to set cwnd size = 50
+Acknowledge package seqnum 52757
+Current window size is 2 and current cwnd size is 50
+Acknowledge package seqnum 60757
+Current window size is 4 and current cwnd size is 50
+Acknowledge package seqnum 68757
+Current window size is 8 and current cwnd size is 50
+Acknowledge package seqnum 76757
+Current window size is 16 and current cwnd size is 50
+Acknowledge package seqnum 84757
+Current window size is 32 and current cwnd size is 50
+Acknowledge package seqnum 92757
+Current window size is 64 and current cwnd size is 50
+Acknowledge package seqnum 100757
+Current window size is 65 and current cwnd size is 50
+Acknowledge package seqnum 108757
+Current window size is 66 and current cwnd size is 50
+Acknowledge package seqnum 116757
+Current window size is 67 and current cwnd size is 50
+Acknowledge package seqnum 124757
+Current window size is 68 and current cwnd size is 50
+Acknowledge package seqnum 132757
+Current window size is 69 and current cwnd size is 50
+Acknowledge package seqnum 140757
+Current window size is 70 and current cwnd size is 50
+Acknowledge package seqnum 148757
+Current window size is 71 and current cwnd size is 50
+Acknowledge package seqnum 156757
+Current window size is 72 and current cwnd size is 50
+Acknowledge package seqnum 164757
+Current window size is 73 and current cwnd size is 50
+Acknowledge package seqnum 172757
+Current window size is 74 and current cwnd size is 50
+Acknowledge package seqnum 180757
+Current window size is 75 and current cwnd size is 50
+Acknowledge package seqnum 188757
+Current window size is 76 and current cwnd size is 50
+Acknowledge package seqnum 196757
+Current window size is 77 and current cwnd size is 50
+Acknowledge package seqnum 204757
+Current window size is 78 and current cwnd size is 50
+Acknowledge package seqnum 212757
+Current window size is 79 and current cwnd size is 50
+Acknowledge package seqnum 220757
+Current window size is 80 and current cwnd size is 50
+Acknowledge package seqnum 228757
+Current window size is 81 and current cwnd size is 50
+Acknowledge package seqnum 236757
+Current window size is 82 and current cwnd size is 50
+Acknowledge package seqnum 244757
+Current window size is 83 and current cwnd size is 50
+Acknowledge package seqnum 252757
+Current window size is 84 and current cwnd size is 50
+Acknowledge package seqnum 260757
+Current window size is 85 and current cwnd size is 50
+Acknowledge package seqnum 268757
+Current window size is 86 and current cwnd size is 50
+Acknowledge package seqnum 276757
+Current window size is 87 and current cwnd size is 50
+Acknowledge package seqnum 284757
+Current window size is 88 and current cwnd size is 50
+Acknowledge package seqnum 292757
+Current window size is 89 and current cwnd size is 50
+Acknowledge package seqnum 300757
+Current window size is 90 and current cwnd size is 50
+Acknowledge package seqnum 308757
+Current window size is 91 and current cwnd size is 50
+Acknowledge package seqnum 316757
+Current window size is 92 and current cwnd size is 50
+Acknowledge package seqnum 324757
+Current window size is 93 and current cwnd size is 50
+Acknowledge package seqnum 332757
+Current window size is 94 and current cwnd size is 50
+Acknowledge package seqnum 340757
+Current window size is 95 and current cwnd size is 50
+Acknowledge package seqnum 348757
+Current window size is 96 and current cwnd size is 50
+Acknowledge package seqnum 356757
+Current window size is 97 and current cwnd size is 50
+Acknowledge package seqnum 364757
+Current window size is 98 and current cwnd size is 50
+Acknowledge package seqnum 372757
+Current window size is 99 and current cwnd size is 50
+Acknowledge package seqnum 380757
+Current window size is 100 and current cwnd size is 50
+Acknowledge package seqnum 388757
+Current window size is 101 and current cwnd size is 50
+Acknowledge package seqnum 396757
+Current window size is 102 and current cwnd size is 50
+Acknowledge package seqnum 404757
+Current window size is 103 and current cwnd size is 50
+Acknowledge package seqnum 412757
+Current window size is 104 and current cwnd size is 50
+Acknowledge package seqnum 420757
+Current window size is 105 and current cwnd size is 50
+Acknowledge package seqnum 428757
+Current window size is 106 and current cwnd size is 50
+Acknowledge package seqnum 436757
+Current window size is 107 and current cwnd size is 50
+Acknowledge package seqnum 444757
+Current window size is 108 and current cwnd size is 50
+Acknowledge package seqnum 452757
+Current window size is 109 and current cwnd size is 50
+Acknowledge package seqnum 460757
+Current window size is 110 and current cwnd size is 50
+Acknowledge package seqnum 468757
+Current window size is 111 and current cwnd size is 50
+Acknowledge package seqnum 476757
+Current window size is 112 and current cwnd size is 50
+Acknowledge package seqnum 484757
+Current window size is 113 and current cwnd size is 50
+Acknowledge package seqnum 492757
+Current window size is 114 and current cwnd size is 50
+Acknowledge package seqnum 500757
+Current window size is 115 and current cwnd size is 50
+Acknowledge package seqnum 508757
+Current window size is 116 and current cwnd size is 50
+Acknowledge package seqnum 516757
+Current window size is 117 and current cwnd size is 50
+Acknowledge package seqnum 524757
+Current window size is 118 and current cwnd size is 50
+Acknowledge package seqnum 532757
+Current window size is 119 and current cwnd size is 50
+Acknowledge package seqnum 540757
+Current window size is 120 and current cwnd size is 50
+Acknowledge package seqnum 548757
+Current window size is 121 and current cwnd size is 50
+Acknowledge package seqnum 556757
+Current window size is 122 and current cwnd size is 50
+Acknowledge package seqnum 564757
+Current window size is 123 and current cwnd size is 50
+Acknowledge package seqnum 572757
+Current window size is 124 and current cwnd size is 50
+Acknowledge package seqnum 580757
+Current window size is 125 and current cwnd size is 50
+Acknowledge package seqnum 588757
+Current window size is 126 and current cwnd size is 50
+Acknowledge package seqnum 596757
+Current window size is 127 and current cwnd size is 50
+Acknowledge package seqnum 604757
+Current window size is 128 and current cwnd size is 50
+Acknowledge package seqnum 612757
+Current window size is 129 and current cwnd size is 50
+Acknowledge package seqnum 620757
+Current window size is 130 and current cwnd size is 50
+Acknowledge package seqnum 628757
+Current window size is 131 and current cwnd size is 50
+Acknowledge package seqnum 636757
+Current window size is 132 and current cwnd size is 50
+Acknowledge package seqnum 644757
+Current window size is 133 and current cwnd size is 50
+Acknowledge package seqnum 652757
+Current window size is 134 and current cwnd size is 50
+Acknowledge package seqnum 660757
+Current window size is 135 and current cwnd size is 50
+Acknowledge package seqnum 668757
+Current window size is 136 and current cwnd size is 50
+Acknowledge package seqnum 676757
+Current window size is 137 and current cwnd size is 50
+Acknowledge package seqnum 684757
+Current window size is 138 and current cwnd size is 50
+Acknowledge package seqnum 692757
+Current window size is 139 and current cwnd size is 50
+Acknowledge package seqnum 700757
+Current window size is 140 and current cwnd size is 50
+Acknowledge package seqnum 708757
+Current window size is 141 and current cwnd size is 50
+Acknowledge package seqnum 716757
+Current window size is 142 and current cwnd size is 50
+Acknowledge package seqnum 724757
+Current window size is 143 and current cwnd size is 50
+Acknowledge package seqnum 732757
+Current window size is 144 and current cwnd size is 50
+Acknowledge package seqnum 740757
+Current window size is 145 and current cwnd size is 50
+Acknowledge package seqnum 748757
+Current window size is 146 and current cwnd size is 50
+Acknowledge package seqnum 756757
+Current window size is 147 and current cwnd size is 50
+Acknowledge package seqnum 764757
+Current window size is 148 and current cwnd size is 50
+Acknowledge package seqnum 772757
+Current window size is 149 and current cwnd size is 50
+Acknowledge package seqnum 780757
+Current window size is 150 and current cwnd size is 50
+Acknowledge package seqnum 788757
+Current window size is 151 and current cwnd size is 50
+Acknowledge package seqnum 796757
+Current window size is 152 and current cwnd size is 50
+Acknowledge package seqnum 804757
+Current window size is 153 and current cwnd size is 50
+Acknowledge package seqnum 812757
+Current window size is 154 and current cwnd size is 50
+Acknowledge package seqnum 820757
+Current window size is 155 and current cwnd size is 50
+Acknowledge package seqnum 828757
+Current window size is 156 and current cwnd size is 50
+Acknowledge package seqnum 836757
+Current window size is 157 and current cwnd size is 50
+Acknowledge package seqnum 844757
+Current window size is 158 and current cwnd size is 50
+Acknowledge package seqnum 852757
+Current window size is 159 and current cwnd size is 50
+Acknowledge package seqnum 860757
+Current window size is 160 and current cwnd size is 50
+Acknowledge package seqnum 868757
+Current window size is 161 and current cwnd size is 50
+Acknowledge package seqnum 876757
+Current window size is 162 and current cwnd size is 50
+Acknowledge package seqnum 884757
+Current window size is 163 and current cwnd size is 50
+Acknowledge package seqnum 892757
+Current window size is 164 and current cwnd size is 50
+Acknowledge package seqnum 900757
+Current window size is 165 and current cwnd size is 50
+Acknowledge package seqnum 908757
+Current window size is 166 and current cwnd size is 50
+Acknowledge package seqnum 916757
+Current window size is 167 and current cwnd size is 50
+Acknowledge package seqnum 924757
+Current window size is 168 and current cwnd size is 50
+Acknowledge package seqnum 932757
+Current window size is 169 and current cwnd size is 50
+Acknowledge package seqnum 940757
+Current window size is 170 and current cwnd size is 50
+Acknowledge package seqnum 948757
+Current window size is 171 and current cwnd size is 50
+Acknowledge package seqnum 956757
+Current window size is 172 and current cwnd size is 50
+Acknowledge package seqnum 964757
+Current window size is 173 and current cwnd size is 50
+Acknowledge package seqnum 972757
+Current window size is 174 and current cwnd size is 50
+Acknowledge package seqnum 980757
+Current window size is 175 and current cwnd size is 50
+Acknowledge package seqnum 988757
+Current window size is 176 and current cwnd size is 50
+Acknowledge package seqnum 996757
+Current window size is 177 and current cwnd size is 50
+Acknowledge package seqnum 1004757
+Current window size is 178 and current cwnd size is 50
+Acknowledge package seqnum 1012757
+Current window size is 179 and current cwnd size is 50
+Acknowledge package seqnum 1020757
+Current window size is 180 and current cwnd size is 50
+Acknowledge package seqnum 1028757
+Current window size is 181 and current cwnd size is 50
+Acknowledge package seqnum 1036757
+Current window size is 182 and current cwnd size is 50
+Acknowledge package seqnum 1044757
+Current window size is 183 and current cwnd size is 50
+Acknowledge package seqnum 1052757
+Current window size is 184 and current cwnd size is 50
+Acknowledge package seqnum 1060757
+Current window size is 185 and current cwnd size is 50
+Acknowledge package seqnum 1068757
+Current window size is 186 and current cwnd size is 50
+Acknowledge package seqnum 1076757
+Current window size is 187 and current cwnd size is 50
+Acknowledge package seqnum 1084757
+Current window size is 188 and current cwnd size is 50
+Acknowledge package seqnum 1092757
+Current window size is 189 and current cwnd size is 50
+Acknowledge package seqnum 1100757
+Current window size is 190 and current cwnd size is 50
+Acknowledge package seqnum 1108757
+Current window size is 191 and current cwnd size is 50
+Acknowledge package seqnum 1116757
+Current window size is 192 and current cwnd size is 50
+Acknowledge package seqnum 1124757
+Current window size is 193 and current cwnd size is 50
+Acknowledge package seqnum 1132757
+Current window size is 194 and current cwnd size is 50
+Acknowledge package seqnum 1140757
+Current window size is 195 and current cwnd size is 50
+Acknowledge package seqnum 1148757
+Current window size is 196 and current cwnd size is 50
+Acknowledge package seqnum 1156757
+Current window size is 197 and current cwnd size is 50
+Acknowledge package seqnum 1164757
+Current window size is 198 and current cwnd size is 50
+Acknowledge package seqnum 1172757
+Current window size is 199 and current cwnd size is 50
+Acknowledge package seqnum 1180757
+Current window size is 200 and current cwnd size is 50
+Acknowledge package seqnum 1188757
+Current window size is 201 and current cwnd size is 50
+Acknowledge package seqnum 1196757
+Current window size is 202 and current cwnd size is 50
+Acknowledge package seqnum 1204757
+Current window size is 203 and current cwnd size is 50
+Acknowledge package seqnum 1212757
+Current window size is 204 and current cwnd size is 50
+Acknowledge package seqnum 1220757
+Current window size is 205 and current cwnd size is 50
+Acknowledge package seqnum 1228757
+Current window size is 206 and current cwnd size is 50
+Acknowledge package seqnum 1236757
+Current window size is 207 and current cwnd size is 50
+Acknowledge package seqnum 1244757
+Current window size is 208 and current cwnd size is 50
+Acknowledge package seqnum 1252757
+Current window size is 209 and current cwnd size is 50
+Acknowledge package seqnum 1260757
+Current window size is 210 and current cwnd size is 50
+Acknowledge package seqnum 1268757
+Current window size is 211 and current cwnd size is 50
+Acknowledge package seqnum 1276757
+Current window size is 212 and current cwnd size is 50
+Acknowledge package seqnum 1284757
+Current window size is 213 and current cwnd size is 50
+Acknowledge package seqnum 1292757
+Current window size is 214 and current cwnd size is 50
+Acknowledge package seqnum 1300757
+Current window size is 215 and current cwnd size is 50
+Acknowledge package seqnum 1308757
+Current window size is 216 and current cwnd size is 50
+Acknowledge package seqnum 1316757
+Current window size is 217 and current cwnd size is 50
+Acknowledge package seqnum 1324757
+Current window size is 218 and current cwnd size is 50
+Acknowledge package seqnum 1332757
+Current window size is 219 and current cwnd size is 50
+Acknowledge package seqnum 1340757
+Current window size is 220 and current cwnd size is 50
+Acknowledge package seqnum 1348757
+Current window size is 221 and current cwnd size is 50
+Acknowledge package seqnum 1356757
+Current window size is 222 and current cwnd size is 50
+Acknowledge package seqnum 1364757
+Current window size is 223 and current cwnd size is 50
+Acknowledge package seqnum 1372757
+Current window size is 224 and current cwnd size is 50
+Acknowledge package seqnum 1380757
+Current window size is 225 and current cwnd size is 50
+Acknowledge package seqnum 1388757
+Current window size is 226 and current cwnd size is 50
+Acknowledge package seqnum 1396757
+Current window size is 227 and current cwnd size is 50
+Acknowledge package seqnum 1404757
+Current window size is 228 and current cwnd size is 50
+Acknowledge package seqnum 1412757
+Current window size is 229 and current cwnd size is 50
+Acknowledge package seqnum 1420757
+Current window size is 230 and current cwnd size is 50
+Acknowledge package seqnum 1428757
+Current window size is 231 and current cwnd size is 50
+Acknowledge package seqnum 1436757
+Current window size is 232 and current cwnd size is 50
+Acknowledge package seqnum 1444757
+Current window size is 233 and current cwnd size is 50
+Acknowledge package seqnum 1452757
+Current window size is 234 and current cwnd size is 50
+Acknowledge package seqnum 1460757
+Current window size is 235 and current cwnd size is 50
+Acknowledge package seqnum 1468757
+Current window size is 236 and current cwnd size is 50
+Acknowledge package seqnum 1476757
+Current window size is 237 and current cwnd size is 50
+Acknowledge package seqnum 1484757
+Current window size is 238 and current cwnd size is 50
+Acknowledge package seqnum 1492757
+Current window size is 239 and current cwnd size is 50
+Acknowledge package seqnum 1500757
+Current window size is 240 and current cwnd size is 50
+Acknowledge package seqnum 1508757
+Current window size is 241 and current cwnd size is 50
+Acknowledge package seqnum 1516757
+Current window size is 242 and current cwnd size is 50
+Acknowledge package seqnum 1524757
+Current window size is 243 and current cwnd size is 50
+Acknowledge package seqnum 1532757
+Current window size is 244 and current cwnd size is 50
+Acknowledge package seqnum 1540757
+Current window size is 245 and current cwnd size is 50
+Acknowledge package seqnum 1548757
+Current window size is 246 and current cwnd size is 50
+Acknowledge package seqnum 1556757
+Current window size is 247 and current cwnd size is 50
+Acknowledge package seqnum 1564757
+Current window size is 248 and current cwnd size is 50
+Acknowledge package seqnum 1572757
+Current window size is 249 and current cwnd size is 50
+Acknowledge package seqnum 1580757
+Current window size is 250 and current cwnd size is 50
+Acknowledge package seqnum 1588757
+Current window size is 251 and current cwnd size is 50
+Acknowledge package seqnum 1596757
+Current window size is 252 and current cwnd size is 50
+Acknowledge package seqnum 1604757
+Current window size is 253 and current cwnd size is 50
+Acknowledge package seqnum 1612757
+Current window size is 254 and current cwnd size is 50
+Acknowledge package seqnum 1620757
+Current window size is 255 and current cwnd size is 50
+Acknowledge package seqnum 1628757
+Current window size is 256 and current cwnd size is 50
+Acknowledge package seqnum 1636757
+Current window size is 257 and current cwnd size is 50
+Acknowledge package seqnum 1644757
+Current window size is 258 and current cwnd size is 50
+Acknowledge package seqnum 1652757
+Current window size is 259 and current cwnd size is 50
+Acknowledge package seqnum 1660757
+Current window size is 260 and current cwnd size is 50
+Acknowledge package seqnum 1668757
+Current window size is 261 and current cwnd size is 50
+Acknowledge package seqnum 1676757
+Current window size is 262 and current cwnd size is 50
+Acknowledge package seqnum 1684757
+Current window size is 263 and current cwnd size is 50
+Acknowledge package seqnum 1692757
+Current window size is 264 and current cwnd size is 50
+Acknowledge package seqnum 1700757
+Current window size is 265 and current cwnd size is 50
+Acknowledge package seqnum 1708757
+Current window size is 266 and current cwnd size is 50
+Acknowledge package seqnum 1716757
+Current window size is 267 and current cwnd size is 50
+Acknowledge package seqnum 1724757
+Current window size is 268 and current cwnd size is 50
+Acknowledge package seqnum 1732757
+Current window size is 269 and current cwnd size is 50
+Acknowledge package seqnum 1740757
+Current window size is 270 and current cwnd size is 50
+Acknowledge package seqnum 1748757
+Current window size is 271 and current cwnd size is 50
+Acknowledge package seqnum 1756757
+Current window size is 272 and current cwnd size is 50
+Acknowledge package seqnum 1764757
+Current window size is 273 and current cwnd size is 50
+Acknowledge package seqnum 1772757
+Current window size is 274 and current cwnd size is 50
+Acknowledge package seqnum 1780757
+Current window size is 275 and current cwnd size is 50
+Acknowledge package seqnum 1788757
+Current window size is 276 and current cwnd size is 50
+Acknowledge package seqnum 1796757
+Current window size is 277 and current cwnd size is 50
+Acknowledge package seqnum 1804757
+Current window size is 278 and current cwnd size is 50
+Acknowledge package seqnum 1812757
+Current window size is 279 and current cwnd size is 50
+Acknowledge package seqnum 1820757
+Current window size is 280 and current cwnd size is 50
+Acknowledge package seqnum 1828757
+Current window size is 281 and current cwnd size is 50
+Acknowledge package seqnum 1836757
+Current window size is 282 and current cwnd size is 50
+Acknowledge package seqnum 1844757
+Current window size is 283 and current cwnd size is 50
+Acknowledge package seqnum 1852757
+Current window size is 284 and current cwnd size is 50
+Acknowledge package seqnum 1860757
+Current window size is 285 and current cwnd size is 50
+Acknowledge package seqnum 1868757
+Current window size is 286 and current cwnd size is 50
+Acknowledge package seqnum 1876757
+Current window size is 287 and current cwnd size is 50
+Acknowledge package seqnum 1884757
+Current window size is 288 and current cwnd size is 50
+Acknowledge package seqnum 1892757
+Current window size is 289 and current cwnd size is 50
+Acknowledge package seqnum 1900757
+Current window size is 290 and current cwnd size is 50
+Acknowledge package seqnum 1908757
+Current window size is 291 and current cwnd size is 50
+Acknowledge package seqnum 1910110
+Current window size is 292 and current cwnd size is 50
+File ./1.jpg succeed to trans 
+Acknowledge package seqnum 1910110
+Current window size is 293 and current cwnd size is 50
+First wave Succeed! 
+Acknowledge Second Wave
+Third wave Succeed
+Acknowledge Fourth Wave
+Succedd to disconnect! 
+First handshake Succeed! 
+Acknowledge Second Handshake
+Third handshake Succeed! 
+Succeed to set cwnd size = 50
+Acknowledge package seqnum 1025
+Current window size is 2 and current cwnd size is 50
+Acknowledge package seqnum 9025
+Current window size is 4 and current cwnd size is 50
+Acknowledge package seqnum 17025
+Current window size is 8 and current cwnd size is 50
+Acknowledge package seqnum 25025
+Current window size is 16 and current cwnd size is 50
+Acknowledge package seqnum 33025
+Current window size is 32 and current cwnd size is 50
+Acknowledge package seqnum 41025
+Current window size is 64 and current cwnd size is 50
+Acknowledge package seqnum 49025
+Current window size is 65 and current cwnd size is 50
+Acknowledge package seqnum 57025
+Current window size is 66 and current cwnd size is 50
+Acknowledge package seqnum 65025
+Current window size is 67 and current cwnd size is 50
+Acknowledge package seqnum 73025
+Current window size is 68 and current cwnd size is 50
+Acknowledge package seqnum 81025
+Current window size is 69 and current cwnd size is 50
+Acknowledge package seqnum 89025
+Current window size is 70 and current cwnd size is 50
+Acknowledge package seqnum 97025
+Current window size is 71 and current cwnd size is 50
+Acknowledge package seqnum 105025
+Current window size is 72 and current cwnd size is 50
+Acknowledge package seqnum 113025
+Current window size is 73 and current cwnd size is 50
+Acknowledge package seqnum 121025
+Current window size is 74 and current cwnd size is 50
+Acknowledge package seqnum 129025
+Current window size is 75 and current cwnd size is 50
+Acknowledge package seqnum 137025
+Current window size is 76 and current cwnd size is 50
+Acknowledge package seqnum 145025
+Current window size is 77 and current cwnd size is 50
+Acknowledge package seqnum 153025
+Current window size is 78 and current cwnd size is 50
+Acknowledge package seqnum 161025
+Current window size is 79 and current cwnd size is 50
+Acknowledge package seqnum 169025
+Current window size is 80 and current cwnd size is 50
+Acknowledge package seqnum 177025
+Current window size is 81 and current cwnd size is 50
+Acknowledge package seqnum 185025
+Current window size is 82 and current cwnd size is 50
+Acknowledge package seqnum 193025
+Current window size is 83 and current cwnd size is 50
+Acknowledge package seqnum 201025
+Current window size is 84 and current cwnd size is 50
+Acknowledge package seqnum 209025
+Current window size is 85 and current cwnd size is 50
+Acknowledge package seqnum 217025
+Current window size is 86 and current cwnd size is 50
+Acknowledge package seqnum 225025
+Current window size is 87 and current cwnd size is 50
+Acknowledge package seqnum 233025
+Current window size is 88 and current cwnd size is 50
+Acknowledge package seqnum 241025
+Current window size is 89 and current cwnd size is 50
+Acknowledge package seqnum 249025
+Current window size is 90 and current cwnd size is 50
+Acknowledge package seqnum 257025
+Current window size is 91 and current cwnd size is 50
+Acknowledge package seqnum 265025
+Current window size is 92 and current cwnd size is 50
+Acknowledge package seqnum 273025
+Current window size is 93 and current cwnd size is 50
+Acknowledge package seqnum 281025
+Current window size is 94 and current cwnd size is 50
+Acknowledge package seqnum 289025
+Current window size is 95 and current cwnd size is 50
+Acknowledge package seqnum 297025
+Current window size is 96 and current cwnd size is 50
+Acknowledge package seqnum 305025
+Current window size is 97 and current cwnd size is 50
+Acknowledge package seqnum 313025
+Current window size is 98 and current cwnd size is 50
+Acknowledge package seqnum 321025
+Current window size is 99 and current cwnd size is 50
+Acknowledge package seqnum 329025
+Current window size is 100 and current cwnd size is 50
+Acknowledge package seqnum 337025
+Current window size is 101 and current cwnd size is 50
+Acknowledge package seqnum 345025
+Current window size is 102 and current cwnd size is 50
+Acknowledge package seqnum 353025
+Current window size is 103 and current cwnd size is 50
+Acknowledge package seqnum 361025
+Current window size is 104 and current cwnd size is 50
+Acknowledge package seqnum 369025
+Current window size is 105 and current cwnd size is 50
+Acknowledge package seqnum 377025
+Current window size is 106 and current cwnd size is 50
+Acknowledge package seqnum 385025
+Current window size is 107 and current cwnd size is 50
+Acknowledge package seqnum 393025
+Current window size is 108 and current cwnd size is 50
+Acknowledge package seqnum 401025
+Current window size is 109 and current cwnd size is 50
+Acknowledge package seqnum 409025
+Current window size is 110 and current cwnd size is 50
+Acknowledge package seqnum 417025
+Current window size is 111 and current cwnd size is 50
+Acknowledge package seqnum 425025
+Current window size is 112 and current cwnd size is 50
+Acknowledge package seqnum 433025
+Current window size is 113 and current cwnd size is 50
+Acknowledge package seqnum 441025
+Current window size is 114 and current cwnd size is 50
+Acknowledge package seqnum 449025
+Current window size is 115 and current cwnd size is 50
+Acknowledge package seqnum 457025
+Current window size is 116 and current cwnd size is 50
+Acknowledge package seqnum 465025
+Current window size is 117 and current cwnd size is 50
+Acknowledge package seqnum 473025
+Current window size is 118 and current cwnd size is 50
+Acknowledge package seqnum 481025
+Current window size is 119 and current cwnd size is 50
+Acknowledge package seqnum 489025
+Current window size is 120 and current cwnd size is 50
+Acknowledge package seqnum 497025
+Current window size is 121 and current cwnd size is 50
+Acknowledge package seqnum 505025
+Current window size is 122 and current cwnd size is 50
+Acknowledge package seqnum 513025
+Current window size is 123 and current cwnd size is 50
+Acknowledge package seqnum 521025
+Current window size is 124 and current cwnd size is 50
+Acknowledge package seqnum 529025
+Current window size is 125 and current cwnd size is 50
+Acknowledge package seqnum 537025
+Current window size is 126 and current cwnd size is 50
+Acknowledge package seqnum 545025
+Current window size is 127 and current cwnd size is 50
+Acknowledge package seqnum 553025
+Current window size is 128 and current cwnd size is 50
+Acknowledge package seqnum 561025
+Current window size is 129 and current cwnd size is 50
+Acknowledge package seqnum 569025
+Current window size is 130 and current cwnd size is 50
+Acknowledge package seqnum 577025
+Current window size is 131 and current cwnd size is 50
+Acknowledge package seqnum 585025
+Current window size is 132 and current cwnd size is 50
+Acknowledge package seqnum 593025
+Current window size is 133 and current cwnd size is 50
+Acknowledge package seqnum 601025
+Current window size is 134 and current cwnd size is 50
+Acknowledge package seqnum 609025
+Current window size is 135 and current cwnd size is 50
+Acknowledge package seqnum 617025
+Current window size is 136 and current cwnd size is 50
+Acknowledge package seqnum 625025
+Current window size is 137 and current cwnd size is 50
+Acknowledge package seqnum 633025
+Current window size is 138 and current cwnd size is 50
+Acknowledge package seqnum 641025
+Current window size is 139 and current cwnd size is 50
+Acknowledge package seqnum 649025
+Current window size is 140 and current cwnd size is 50
+Acknowledge package seqnum 657025
+Current window size is 141 and current cwnd size is 50
+Acknowledge package seqnum 665025
+Current window size is 142 and current cwnd size is 50
+Acknowledge package seqnum 673025
+Current window size is 143 and current cwnd size is 50
+Acknowledge package seqnum 681025
+Current window size is 144 and current cwnd size is 50
+Acknowledge package seqnum 689025
+Current window size is 145 and current cwnd size is 50
+Acknowledge package seqnum 697025
+Current window size is 146 and current cwnd size is 50
+Acknowledge package seqnum 705025
+Current window size is 147 and current cwnd size is 50
+Acknowledge package seqnum 713025
+Current window size is 148 and current cwnd size is 50
+Acknowledge package seqnum 721025
+Current window size is 149 and current cwnd size is 50
+Acknowledge package seqnum 729025
+Current window size is 150 and current cwnd size is 50
+Acknowledge package seqnum 737025
+Current window size is 151 and current cwnd size is 50
+Acknowledge package seqnum 745025
+Current window size is 152 and current cwnd size is 50
+Acknowledge package seqnum 753025
+Current window size is 153 and current cwnd size is 50
+Acknowledge package seqnum 761025
+Current window size is 154 and current cwnd size is 50
+Acknowledge package seqnum 769025
+Current window size is 155 and current cwnd size is 50
+Acknowledge package seqnum 777025
+Current window size is 156 and current cwnd size is 50
+Acknowledge package seqnum 785025
+Current window size is 157 and current cwnd size is 50
+Acknowledge package seqnum 793025
+Current window size is 158 and current cwnd size is 50
+Acknowledge package seqnum 801025
+Current window size is 159 and current cwnd size is 50
+Acknowledge package seqnum 809025
+Current window size is 160 and current cwnd size is 50
+Acknowledge package seqnum 817025
+Current window size is 161 and current cwnd size is 50
+Acknowledge package seqnum 825025
+Current window size is 162 and current cwnd size is 50
+Acknowledge package seqnum 833025
+Current window size is 163 and current cwnd size is 50
+Acknowledge package seqnum 841025
+Current window size is 164 and current cwnd size is 50
+Acknowledge package seqnum 849025
+Current window size is 165 and current cwnd size is 50
+Acknowledge package seqnum 857025
+Current window size is 166 and current cwnd size is 50
+Acknowledge package seqnum 865025
+Current window size is 167 and current cwnd size is 50
+Acknowledge package seqnum 873025
+Current window size is 168 and current cwnd size is 50
+Acknowledge package seqnum 881025
+Current window size is 169 and current cwnd size is 50
+Acknowledge package seqnum 889025
+Current window size is 170 and current cwnd size is 50
+Acknowledge package seqnum 897025
+Current window size is 171 and current cwnd size is 50
+Acknowledge package seqnum 905025
+Current window size is 172 and current cwnd size is 50
+Acknowledge package seqnum 913025
+Current window size is 173 and current cwnd size is 50
+Acknowledge package seqnum 921025
+Current window size is 174 and current cwnd size is 50
+Acknowledge package seqnum 929025
+Current window size is 175 and current cwnd size is 50
+Acknowledge package seqnum 937025
+Current window size is 176 and current cwnd size is 50
+Acknowledge package seqnum 945025
+Current window size is 177 and current cwnd size is 50
+Acknowledge package seqnum 953025
+Current window size is 178 and current cwnd size is 50
+Acknowledge package seqnum 961025
+Current window size is 179 and current cwnd size is 50
+Acknowledge package seqnum 969025
+Current window size is 180 and current cwnd size is 50
+Acknowledge package seqnum 977025
+Current window size is 181 and current cwnd size is 50
+Acknowledge package seqnum 985025
+Current window size is 182 and current cwnd size is 50
+Acknowledge package seqnum 993025
+Current window size is 183 and current cwnd size is 50
+Acknowledge package seqnum 1001025
+Current window size is 184 and current cwnd size is 50
+Acknowledge package seqnum 1009025
+Current window size is 185 and current cwnd size is 50
+Acknowledge package seqnum 1017025
+Current window size is 186 and current cwnd size is 50
+Acknowledge package seqnum 1025025
+Current window size is 187 and current cwnd size is 50
+Acknowledge package seqnum 1033025
+Current window size is 188 and current cwnd size is 50
+Acknowledge package seqnum 1041025
+Current window size is 189 and current cwnd size is 50
+Acknowledge package seqnum 1049025
+Current window size is 190 and current cwnd size is 50
+Acknowledge package seqnum 1057025
+Current window size is 191 and current cwnd size is 50
+Acknowledge package seqnum 1065025
+Current window size is 192 and current cwnd size is 50
+Acknowledge package seqnum 1073025
+Current window size is 193 and current cwnd size is 50
+Acknowledge package seqnum 1081025
+Current window size is 194 and current cwnd size is 50
+Acknowledge package seqnum 1089025
+Current window size is 195 and current cwnd size is 50
+Acknowledge package seqnum 1097025
+Current window size is 196 and current cwnd size is 50
+Acknowledge package seqnum 1105025
+Current window size is 197 and current cwnd size is 50
+Acknowledge package seqnum 1113025
+Current window size is 198 and current cwnd size is 50
+Acknowledge package seqnum 1121025
+Current window size is 199 and current cwnd size is 50
+Acknowledge package seqnum 1129025
+Current window size is 200 and current cwnd size is 50
+Acknowledge package seqnum 1137025
+Current window size is 201 and current cwnd size is 50
+Acknowledge package seqnum 1145025
+Current window size is 202 and current cwnd size is 50
+Acknowledge package seqnum 1153025
+Current window size is 203 and current cwnd size is 50
+Acknowledge package seqnum 1161025
+Current window size is 204 and current cwnd size is 50
+Acknowledge package seqnum 1169025
+Current window size is 205 and current cwnd size is 50
+Acknowledge package seqnum 1177025
+Current window size is 206 and current cwnd size is 50
+Acknowledge package seqnum 1185025
+Current window size is 207 and current cwnd size is 50
+Acknowledge package seqnum 1193025
+Current window size is 208 and current cwnd size is 50
+Acknowledge package seqnum 1201025
+Current window size is 209 and current cwnd size is 50
+Acknowledge package seqnum 1209025
+Current window size is 210 and current cwnd size is 50
+Acknowledge package seqnum 1217025
+Current window size is 211 and current cwnd size is 50
+Acknowledge package seqnum 1225025
+Current window size is 212 and current cwnd size is 50
+Acknowledge package seqnum 1233025
+Current window size is 213 and current cwnd size is 50
+Acknowledge package seqnum 1241025
+Current window size is 214 and current cwnd size is 50
+Acknowledge package seqnum 1249025
+Current window size is 215 and current cwnd size is 50
+Acknowledge package seqnum 1257025
+Current window size is 216 and current cwnd size is 50
+Acknowledge package seqnum 1265025
+Current window size is 217 and current cwnd size is 50
+Acknowledge package seqnum 1273025
+Current window size is 218 and current cwnd size is 50
+Acknowledge package seqnum 1281025
+Current window size is 219 and current cwnd size is 50
+Acknowledge package seqnum 1289025
+Current window size is 220 and current cwnd size is 50
+Acknowledge package seqnum 1297025
+Current window size is 221 and current cwnd size is 50
+Acknowledge package seqnum 1305025
+Current window size is 222 and current cwnd size is 50
+Acknowledge package seqnum 1313025
+Current window size is 223 and current cwnd size is 50
+Acknowledge package seqnum 1321025
+Current window size is 224 and current cwnd size is 50
+Acknowledge package seqnum 1329025
+Current window size is 225 and current cwnd size is 50
+Acknowledge package seqnum 1337025
+Current window size is 226 and current cwnd size is 50
+Acknowledge package seqnum 1345025
+Current window size is 227 and current cwnd size is 50
+Acknowledge package seqnum 1353025
+Current window size is 228 and current cwnd size is 50
+Acknowledge package seqnum 1361025
+Current window size is 229 and current cwnd size is 50
+Acknowledge package seqnum 1369025
+Current window size is 230 and current cwnd size is 50
+Acknowledge package seqnum 1377025
+Current window size is 231 and current cwnd size is 50
+Acknowledge package seqnum 1385025
+Current window size is 232 and current cwnd size is 50
+Acknowledge package seqnum 1393025
+Current window size is 233 and current cwnd size is 50
+Acknowledge package seqnum 1401025
+Current window size is 234 and current cwnd size is 50
+Acknowledge package seqnum 1409025
+Current window size is 235 and current cwnd size is 50
+Acknowledge package seqnum 1417025
+Current window size is 236 and current cwnd size is 50
+Acknowledge package seqnum 1425025
+Current window size is 237 and current cwnd size is 50
+Acknowledge package seqnum 1433025
+Current window size is 238 and current cwnd size is 50
+Acknowledge package seqnum 1441025
+Current window size is 239 and current cwnd size is 50
+Acknowledge package seqnum 1449025
+Current window size is 240 and current cwnd size is 50
+Acknowledge package seqnum 1457025
+Current window size is 241 and current cwnd size is 50
+Acknowledge package seqnum 1465025
+Current window size is 242 and current cwnd size is 50
+Acknowledge package seqnum 1473025
+Current window size is 243 and current cwnd size is 50
+Acknowledge package seqnum 1481025
+Current window size is 244 and current cwnd size is 50
+Acknowledge package seqnum 1489025
+Current window size is 245 and current cwnd size is 50
+Acknowledge package seqnum 1497025
+Current window size is 246 and current cwnd size is 50
+Acknowledge package seqnum 1505025
+Current window size is 247 and current cwnd size is 50
+Acknowledge package seqnum 1513025
+Current window size is 248 and current cwnd size is 50
+Acknowledge package seqnum 1521025
+Current window size is 249 and current cwnd size is 50
+Acknowledge package seqnum 1529025
+Current window size is 250 and current cwnd size is 50
+Acknowledge package seqnum 1537025
+Current window size is 251 and current cwnd size is 50
+Acknowledge package seqnum 1545025
+Current window size is 252 and current cwnd size is 50
+Acknowledge package seqnum 1553025
+Current window size is 253 and current cwnd size is 50
+Acknowledge package seqnum 1561025
+Current window size is 254 and current cwnd size is 50
+Acknowledge package seqnum 1569025
+Current window size is 255 and current cwnd size is 50
+Acknowledge package seqnum 1577025
+Current window size is 256 and current cwnd size is 50
+Acknowledge package seqnum 1585025
+Current window size is 257 and current cwnd size is 50
+Acknowledge package seqnum 1593025
+Current window size is 258 and current cwnd size is 50
+Acknowledge package seqnum 1601025
+Current window size is 259 and current cwnd size is 50
+Acknowledge package seqnum 1609025
+Current window size is 260 and current cwnd size is 50
+Acknowledge package seqnum 1617025
+Current window size is 261 and current cwnd size is 50
+Acknowledge package seqnum 1625025
+Current window size is 262 and current cwnd size is 50
+Acknowledge package seqnum 1633025
+Current window size is 263 and current cwnd size is 50
+Acknowledge package seqnum 1641025
+Current window size is 264 and current cwnd size is 50
+Acknowledge package seqnum 1649025
+Current window size is 265 and current cwnd size is 50
+Acknowledge package seqnum 1657025
+Current window size is 266 and current cwnd size is 50
+Acknowledge package seqnum 1665025
+Current window size is 267 and current cwnd size is 50
+Acknowledge package seqnum 1673025
+Current window size is 268 and current cwnd size is 50
+Acknowledge package seqnum 1681025
+Current window size is 269 and current cwnd size is 50
+Acknowledge package seqnum 1689025
+Current window size is 270 and current cwnd size is 50
+Acknowledge package seqnum 1697025
+Current window size is 271 and current cwnd size is 50
+Acknowledge package seqnum 1705025
+Current window size is 272 and current cwnd size is 50
+Acknowledge package seqnum 1713025
+Current window size is 273 and current cwnd size is 50
+Acknowledge package seqnum 1721025
+Current window size is 274 and current cwnd size is 50
+Acknowledge package seqnum 1729025
+Current window size is 275 and current cwnd size is 50
+Acknowledge package seqnum 1737025
+Current window size is 276 and current cwnd size is 50
+Acknowledge package seqnum 1745025
+Current window size is 277 and current cwnd size is 50
+Acknowledge package seqnum 1753025
+Current window size is 278 and current cwnd size is 50
+Acknowledge package seqnum 1761025
+Current window size is 279 and current cwnd size is 50
+Acknowledge package seqnum 1769025
+Current window size is 280 and current cwnd size is 50
+Acknowledge package seqnum 1777025
+Current window size is 281 and current cwnd size is 50
+Acknowledge package seqnum 1785025
+Current window size is 282 and current cwnd size is 50
+Acknowledge package seqnum 1793025
+Current window size is 283 and current cwnd size is 50
+Acknowledge package seqnum 1801025
+Current window size is 284 and current cwnd size is 50
+Acknowledge package seqnum 1809025
+Current window size is 285 and current cwnd size is 50
+Acknowledge package seqnum 1817025
+Current window size is 286 and current cwnd size is 50
+Acknowledge package seqnum 1825025
+Current window size is 287 and current cwnd size is 50
+Acknowledge package seqnum 1833025
+Current window size is 288 and current cwnd size is 50
+Acknowledge package seqnum 1841025
+Current window size is 289 and current cwnd size is 50
+Acknowledge package seqnum 1849025
+Current window size is 290 and current cwnd size is 50
+Acknowledge package seqnum 1857025
+Current window size is 291 and current cwnd size is 50
+Acknowledge package seqnum 1858378
+Current window size is 292 and current cwnd size is 50
+File ./1.jpg succeed to trans 
+Acknowledge package seqnum 1858378
+Current window size is 293 and current cwnd size is 50
+First wave Succeed! 
+Acknowledge Second Wave
+Third wave Succeed
+Acknowledge Fourth Wave
+Succedd to disconnect! 

@@ -10,20 +10,22 @@ static std::string get_time_str()
     // 获取当前时间点
     auto now = std::chrono::system_clock::now();
 
-    // 转换为 time_t 类型，方便格式化
+    // 转换为 time_t 类型，方便格式化日期和时间
     std::time_t now_time = std::chrono::system_clock::to_time_t(now);
 
-    // 格式化并输出
+    // 获取毫秒部分
+    auto now_ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
+
+    // 格式化日期和时间
     std::tm *local_time = std::localtime(&now_time);
-    // 创建字符串流用于格式化
     std::ostringstream time_stream;
 
-    // 使用 std::put_time 来格式化时间为字符串
-    time_stream << std::put_time(local_time, "%Y-%m-%d %H:%M:%S");
+    // 格式化为 "YYYY-MM-DD HH:MM:SS.mmm"
+    time_stream << std::put_time(local_time, "%Y-%m-%d %H:%M:%S")
+                << '.' << std::setfill('0') << std::setw(3) << now_ms.count();
 
-    // 将流中的内容转换为字符串
-    std::string time_str = time_stream.str();
-    time_str = "     <" + time_str + ">";
+    // 包装到字符串中并添加括号
+    std::string time_str = "     <" + time_stream.str() + ">";
     return time_str;
 }
 
@@ -79,17 +81,23 @@ private:
     // 吞吐量统计线程
     void MonitorThroughput()
     {
+        out << "Start at " + get_time_str() << std::endl;
+        long long totalThroughput = 0; // 用于统计总吞吐量
         long long previousBytes = 0;
+
         while (WaitForSingleObject(stopEvent, 1000) == WAIT_TIMEOUT)
         {
             long long currentBytes = totalBytes;
             long long throughput = currentBytes - previousBytes; // 计算每秒吞吐量
             previousBytes = currentBytes;
 
-            long long output = throughput;
-            std::string log = "Throughoutput in " + get_time_str() + " is " + std::to_string(output) + " Bytes per 1 second ";
-            out << log << std::endl;
+            totalThroughput += throughput; // 累计吞吐量
         }
+
+        // 监控结束后输出总吞吐量
+        std::string log = "Total throughput is " + std::to_string(totalThroughput) + " Bytes ";
+        out << log << std::endl;
+        out << "Ended at " + get_time_str() << std::endl;
     }
 
     std::atomic<long long> totalBytes; // 使用原子操作确保线程安全
