@@ -14,3 +14,5 @@ This is Computer Network course work
 11/27   删除Makefile，完善README.md用于介绍文件功能
 
 11/28   解决多线程同步问题，处理好滑动窗口下的文件传输功能，并能够较好的解决丢包，但还是会出现CPU空转的情况
+
+12/10   完成Reno算法处理拥塞控制，并修改对时延和吞吐量的计算方式。
